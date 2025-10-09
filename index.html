@@ -66,11 +66,11 @@
         }
 
         .logo img {
-            height: 45px;
+            height: 90px;
             width: auto;
             display: block;
             object-fit: contain;
-            max-width: 300px;
+            max-width: 600px;
         }
         
         @media (max-width: 768px) {
@@ -80,7 +80,7 @@
                 font-size: 1.4rem;
             }
             .logo img {
-                height: 35px;
+                height: 70px;
             }
         }
 
@@ -367,6 +367,82 @@
             color: #888;
         }
 
+        /* Legal Pages Modal */
+        .legal-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .legal-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .legal-content {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            padding: 3rem;
+            border-radius: 8px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .legal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .legal-close:hover {
+            background: #00528C;
+        }
+
+        .legal-content h2 {
+            color: #0066cc;
+            margin-bottom: 1.5rem;
+        }
+
+        .legal-content h3 {
+            color: #333;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .legal-content p,
+        .legal-content ul {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .legal-content ul {
+            margin-left: 2rem;
+        }
+
+        .legal-content strong {
+            color: #333;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -447,22 +523,16 @@
             <h2 class="section-title" data-i18n="services.title">Our Services</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-card-content">
-                        <h3 data-i18n="services.recruitment.title">Recruitment & Vetting</h3>
-                        <p data-i18n="services.recruitment.desc">Comprehensive candidate screening and verification to ensure the right fit for your organization. We conduct thorough background checks and skills assessments.</p>
-                    </div>
+                    <h3 data-i18n="services.recruitment.title">Recruitment & Vetting</h3>
+                    <p data-i18n="services.recruitment.desc">Comprehensive candidate screening and verification to ensure the right fit for your organization. We conduct thorough background checks and skills assessments.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-card-content">
-                        <h3 data-i18n="services.staffing.title">Temporary Staffing</h3>
-                        <p data-i18n="services.staffing.desc">Flexible workforce solutions for short-term projects and seasonal demands. Quick deployment of qualified professionals when you need them most.</p>
-                    </div>
+                    <h3 data-i18n="services.staffing.title">Temporary Staffing</h3>
+                    <p data-i18n="services.staffing.desc">Flexible workforce solutions for short-term projects and seasonal demands. Quick deployment of qualified professionals when you need them most.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-card-content">
-                        <h3 data-i18n="services.relocation.title">Relocation & Support</h3>
-                        <p data-i18n="services.relocation.desc">Complete assistance with visa processing, housing, cultural integration, and ongoing support to help workers thrive in their new environment.</p>
-                    </div>
+                    <h3 data-i18n="services.relocation.title">Relocation & Support</h3>
+                    <p data-i18n="services.relocation.desc">Complete assistance with visa processing, housing, cultural integration, and ongoing support to help workers thrive in their new environment.</p>
                 </div>
             </div>
         </div>
@@ -489,15 +559,15 @@
                     <h3 data-i18n="contact.info.title">Get in Touch</h3>
                     <div class="contact-item">
                         <strong data-i18n="contact.info.email">Email:</strong>
-                        <span>info@arcticworkforce.com</span>
+                        <span>contact@arcticworkforce.com</span>
                     </div>
                     <div class="contact-item">
                         <strong data-i18n="contact.info.phone">Phone:</strong>
-                        <span>+41 79 532 58 99</span>
+                        <span>+47 XXX XX XXX</span>
                     </div>
                     <div class="contact-item">
                         <strong data-i18n="contact.info.address">Address:</strong>
-                        <span>Tannenweg 17, 8408 Winterthur<br>Switzerland</span>
+                        <span>Nordic Business Center<br>Oslo, Norway</span>
                     </div>
                 </div>
                 <form class="contact-form" onsubmit="handleSubmit(event)">
@@ -527,15 +597,23 @@
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="#impressum" data-i18n="footer.impressum">Impressum</a>
-                <a href="#privacy" data-i18n="footer.privacy">Privacy Policy</a>
-                <a href="#terms" data-i18n="footer.terms">Terms & Conditions</a>
+                <a href="#" onclick="openLegal('impressum'); return false;" data-i18n="footer.impressum">Impressum</a>
+                <a href="#" onclick="openLegal('privacy'); return false;" data-i18n="footer.privacy">Privacy Policy</a>
+                <a href="#" onclick="openLegal('terms'); return false;" data-i18n="footer.terms">Terms & Conditions</a>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Arctic Workforce. <span data-i18n="footer.rights">All rights reserved.</span></p>
             </div>
         </div>
     </footer>
+
+    <!-- Legal Modals -->
+    <div class="legal-modal" id="legalModal">
+        <div class="legal-content">
+            <button class="legal-close" onclick="closeLegal()">&times;</button>
+            <div id="legalText"></div>
+        </div>
+    </div>
 
     <script>
         const translations = {
@@ -729,6 +807,193 @@
 
         let currentLanguage = 'en';
 
+        const legalContent = {
+            impressum: {
+                de: `
+                    <h2>Impressum</h2>
+                    <p><strong>Arctic Workforce AG</strong><br>
+                    Bahnhofstrasse 45<br>
+                    8001 Zürich<br>
+                    Schweiz</p>
+                    
+                    <p><strong>Telefon:</strong> +41 44 123 45 67<br>
+                    <strong>E-Mail:</strong> hello@arcticworkforce.com</p>
+                    
+                    <p><strong>Handelsregistereintrag:</strong> HR-Nr. CH-123.456.789<br>
+                    <strong>UID:</strong> CHE-123.456.789 MWST</p>
+                    
+                    <p><strong>Vertretungsberechtigte Person(en):</strong><br>
+                    Hans Muster, Geschäftsführer</p>
+                `,
+                en: `
+                    <h2>Impressum</h2>
+                    <p><strong>Arctic Workforce AG</strong><br>
+                    Bahnhofstrasse 45<br>
+                    8001 Zurich<br>
+                    Switzerland</p>
+                    
+                    <p><strong>Phone:</strong> +41 44 123 45 67<br>
+                    <strong>Email:</strong> hello@arcticworkforce.com</p>
+                    
+                    <p><strong>Commercial Register Entry:</strong> HR-No. CH-123.456.789<br>
+                    <strong>UID:</strong> CHE-123.456.789 VAT</p>
+                    
+                    <p><strong>Authorized Representative(s):</strong><br>
+                    Hans Muster, Managing Director</p>
+                `
+            },
+            privacy: {
+                de: `
+                    <h2>Datenschutzerklärung</h2>
+                    <p>Arctic Workforce AG nimmt den Schutz personenbezogener Daten sehr ernst. Diese Erklärung erläutert, wie wir Personendaten erheben, verarbeiten und nutzen – in Übereinstimmung mit dem Schweizer Datenschutzgesetz (DSG) und – sofern anwendbar – der EU-Datenschutz-Grundverordnung (DSGVO).</p>
+                    
+                    <h3>Erhebung von Daten</h3>
+                    <p>Wir verarbeiten insbesondere folgende Daten:</p>
+                    <ul>
+                        <li>Kontaktdaten (Name, Adresse, Telefonnummer, E-Mail)</li>
+                        <li>Bewerbungsunterlagen (Lebenslauf, Qualifikationen, Referenzen)</li>
+                        <li>Unternehmensdaten (Firmenname, Ansprechpartner)</li>
+                        <li>Technische Daten (IP-Adresse, Logfiles, Browsertyp)</li>
+                    </ul>
+                    
+                    <h3>Zweck der Verarbeitung</h3>
+                    <ul>
+                        <li>Personalvermittlung & Matching von Kandidaten und Arbeitgebern</li>
+                        <li>Vertragsabwicklung & Kommunikation</li>
+                        <li>Erfüllung gesetzlicher Pflichten (z.B. steuerliche Vorgaben)</li>
+                        <li>Verbesserung unserer Dienstleistungen</li>
+                    </ul>
+                    
+                    <h3>Weitergabe von Daten</h3>
+                    <p>Personendaten werden nur weitergegeben, soweit dies für den jeweiligen Zweck erforderlich ist:</p>
+                    <ul>
+                        <li>An Arbeitgeber im In- und Ausland</li>
+                        <li>An Dienstleister (z. B. IT, Lohnbuchhaltung, rechtliche Berater)</li>
+                        <li>An Behörden, sofern gesetzlich vorgeschrieben</li>
+                    </ul>
+                    
+                    <h3>Aufbewahrungsdauer</h3>
+                    <p>Wir bewahren Daten nur so lange auf, wie dies zur Erfüllung der oben genannten Zwecke oder gesetzlicher Anforderungen notwendig ist.</p>
+                    
+                    <h3>Rechte der betroffenen Personen</h3>
+                    <p>Sie haben das Recht, Auskunft über Ihre gespeicherten Daten zu verlangen sowie deren Berichtigung, Löschung oder Einschränkung der Verarbeitung zu beantragen. Wenden Sie sich dazu an:</p>
+                    <p><strong>📩 privacy@arcticworkforce.com</strong></p>
+                `,
+                en: `
+                    <h2>Privacy Policy</h2>
+                    <p>Arctic Workforce AG takes the protection of personal data very seriously. This statement explains how we collect, process and use personal data – in accordance with the Swiss Data Protection Act (DSG) and – where applicable – the EU General Data Protection Regulation (GDPR).</p>
+                    
+                    <h3>Data Collection</h3>
+                    <p>We process the following data in particular:</p>
+                    <ul>
+                        <li>Contact data (name, address, phone number, email)</li>
+                        <li>Application documents (CV, qualifications, references)</li>
+                        <li>Company data (company name, contact person)</li>
+                        <li>Technical data (IP address, log files, browser type)</li>
+                    </ul>
+                    
+                    <h3>Purpose of Processing</h3>
+                    <ul>
+                        <li>Recruitment & matching of candidates and employers</li>
+                        <li>Contract processing & communication</li>
+                        <li>Fulfillment of legal obligations (e.g. tax requirements)</li>
+                        <li>Improvement of our services</li>
+                    </ul>
+                    
+                    <h3>Data Disclosure</h3>
+                    <p>Personal data is only disclosed to the extent necessary for the respective purpose:</p>
+                    <ul>
+                        <li>To employers in Switzerland and abroad</li>
+                        <li>To service providers (e.g. IT, payroll, legal advisors)</li>
+                        <li>To authorities, if legally required</li>
+                    </ul>
+                    
+                    <h3>Retention Period</h3>
+                    <p>We only retain data for as long as necessary to fulfill the above purposes or legal requirements.</p>
+                    
+                    <h3>Rights of Data Subjects</h3>
+                    <p>You have the right to request information about your stored data and to request its correction, deletion or restriction of processing. Please contact:</p>
+                    <p><strong>📩 privacy@arcticworkforce.com</strong></p>
+                `
+            },
+            terms: {
+                de: `
+                    <h2>Allgemeine Geschäftsbedingungen</h2>
+                    <p><strong>Allgemeine Geschäftsbedingungen der Arctic Workforce AG</strong></p>
+                    
+                    <h3>1. Geltungsbereich</h3>
+                    <p>Diese AGB gelten für alle Dienstleistungen der Arctic Workforce AG im Bereich Personalvermittlung und -überlassung.</p>
+                    
+                    <h3>2. Dienstleistungen</h3>
+                    <p>Arctic Workforce vermittelt qualifizierte Fachkräfte an Unternehmen in der Schweiz, Island, Norwegen und weiteren Ländern.</p>
+                    
+                    <h3>3. Vergütung</h3>
+                    <ul>
+                        <li>Arbeitgeber verpflichten sich zur Zahlung der vereinbarten Vermittlungs- oder Einsatzgebühren.</li>
+                        <li>Zahlungen sind innert 30 Tagen nach Rechnungsstellung fällig.</li>
+                    </ul>
+                    
+                    <h3>4. Haftung</h3>
+                    <ul>
+                        <li>Arctic Workforce prüft Kandidaten sorgfältig, übernimmt aber keine Garantie für deren Leistung oder Eignung.</li>
+                        <li>Arbeitgeber sind verantwortlich für die Einhaltung aller arbeitsrechtlichen Vorschriften.</li>
+                    </ul>
+                    
+                    <h3>5. Datenschutz</h3>
+                    <p>Personendaten werden gemäss unserer Datenschutzerklärung verarbeitet.</p>
+                    
+                    <h3>6. Gerichtsstand & Anwendbares Recht</h3>
+                    <p>Für sämtliche Streitigkeiten gilt ausschliesslich Schweizer Recht. Gerichtsstand ist Zürich.</p>
+                `,
+                en: `
+                    <h2>Terms & Conditions</h2>
+                    <p><strong>General Terms and Conditions of Arctic Workforce AG</strong></p>
+                    
+                    <h3>1. Scope</h3>
+                    <p>These terms and conditions apply to all services of Arctic Workforce AG in the field of recruitment and temporary staffing.</p>
+                    
+                    <h3>2. Services</h3>
+                    <p>Arctic Workforce places qualified professionals with companies in Switzerland, Iceland, Norway and other countries.</p>
+                    
+                    <h3>3. Compensation</h3>
+                    <ul>
+                        <li>Employers are obliged to pay the agreed placement or deployment fees.</li>
+                        <li>Payments are due within 30 days of invoicing.</li>
+                    </ul>
+                    
+                    <h3>4. Liability</h3>
+                    <ul>
+                        <li>Arctic Workforce carefully vets candidates but assumes no guarantee for their performance or suitability.</li>
+                        <li>Employers are responsible for compliance with all labor law regulations.</li>
+                    </ul>
+                    
+                    <h3>5. Data Protection</h3>
+                    <p>Personal data is processed in accordance with our privacy policy.</p>
+                    
+                    <h3>6. Jurisdiction & Applicable Law</h3>
+                    <p>Swiss law applies exclusively to all disputes. The place of jurisdiction is Zurich.</p>
+                `
+            }
+        };
+
+        function openLegal(type) {
+            const modal = document.getElementById('legalModal');
+            const content = document.getElementById('legalText');
+            
+            // Use German or English based on current language
+            const lang = (currentLanguage === 'de') ? 'de' : 'en';
+            content.innerHTML = legalContent[type][lang];
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLegal() {
+            const modal = document.getElementById('legalModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         function toggleLangMenu() {
             const dropdown = document.getElementById('langDropdown');
             dropdown.classList.toggle('active');
@@ -765,15 +1030,26 @@
         document.addEventListener('click', function(e) {
             const langSelector = document.querySelector('.lang-selector');
             const dropdown = document.getElementById('langDropdown');
+            const modal = document.getElementById('legalModal');
+            
             if (!langSelector.contains(e.target)) {
                 dropdown.classList.remove('active');
+            }
+            
+            // Close modal when clicking outside
+            if (e.target === modal) {
+                closeLegal();
             }
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href.startsWith('#impressum') || href.startsWith('#privacy') || href.startsWith('#terms')) {
+                    return; // Let the legal modal handle these
+                }
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
