@@ -143,22 +143,44 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0066cc 0%, #00b4d8 100%);
+            background: linear-gradient(rgba(0, 82, 140, 0.85), rgba(0, 102, 204, 0.85)), 
+                        url('https://i.postimg.cc/jjz6kTT6/background.png') center/cover;
             color: white;
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 82, 140, 0.7) 0%, rgba(0, 180, 216, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             margin-bottom: 1rem;
             font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
             opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-buttons {
@@ -182,17 +204,20 @@
         .btn-primary {
             background: white;
             color: #0066cc;
+            font-weight: 600;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background: #f0f7ff;
         }
 
         .btn-secondary {
             background: transparent;
             color: white;
             border: 2px solid white;
+            font-weight: 600;
         }
 
         .btn-secondary:hover {
@@ -253,15 +278,70 @@
         }
 
         .about-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+        }
+
+        .about-content > p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
             text-align: center;
         }
 
-        .about-content p {
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .benefit-item h3 {
+            color: #0066cc;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .benefit-item h3::before {
+            content: '✓';
+            color: #00b4d8;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .benefit-item p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0066cc 0%, #00b4d8 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .cta-section .btn {
             font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #555;
+            padding: 16px 40px;
         }
 
         /* Contact Section */
@@ -275,6 +355,65 @@
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
             align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .cv-upload-section {
+            background: #f0f7ff;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 2px dashed #0066cc;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cv-upload-section h3 {
+            color: #0066cc;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .cv-upload-section p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload-input {
+            display: none;
+        }
+
+        .file-upload-label {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #0066cc;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .file-upload-label:hover {
+            background: #00528C;
+        }
+
+        .file-name {
+            display: block;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .file-size-info {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.5rem;
         }
 
         .contact-info {
@@ -460,6 +599,14 @@
             .services-grid {
                 grid-template-columns: 1fr;
             }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-upload-wrapper {
+                grid-column: 1;
+            }
         }
     </style>
 </head>
@@ -508,11 +655,11 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 data-i18n="hero.title">Trusted workforce solutions for the Nordic region</h1>
-            <p data-i18n="hero.subtitle">Connecting Nordic businesses with skilled professionals through ethical recruitment and comprehensive support</p>
+            <h1 data-i18n="hero.title">Trusted workforce solutions for the Nordics</h1>
+            <p data-i18n="hero.subtitle">Connecting skilled people with opportunities across the Nordic region – reliable, fast and professional.</p>
             <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Get started</a>
-                <a href="#services" class="btn btn-secondary" data-i18n="hero.cta2">Our services</a>
+                <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Hire workforce</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="hero.cta2">Find a job</a>
             </div>
         </div>
     </section>
@@ -554,6 +701,27 @@
     <section class="contact" id="contact">
         <div class="container">
             <h2 class="section-title" data-i18n="contact.title">Contact Us</h2>
+            
+            <!-- CV Upload Section -->
+            <div class="cv-upload-section">
+                <h3 data-i18n="cv.title">Upload your CV</h3>
+                <p data-i18n="cv.description">Looking for a job? Send us your CV and we'll connect you with the right opportunities.</p>
+                <form id="cvUploadForm" action="https://formsubmit.co/info@arcticworkforce.com" method="POST" enctype="multipart/form-data">
+                    <!-- FormSubmit configuration -->
+                    <input type="hidden" name="_subject" value="New CV Submission - Arctic Workforce">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="cvFile" name="attachment" class="file-upload-input" accept=".pdf,.doc,.docx" required>
+                        <label for="cvFile" class="file-upload-label" data-i18n="cv.button">Choose File</label>
+                        <span class="file-name" id="fileName" data-i18n="cv.nofile">No file chosen</span>
+                        <p class="file-size-info" data-i18n="cv.maxsize">Max. 10 MB (PDF, DOC, DOCX)</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 1.5rem;" data-i18n="cv.submit">Submit CV</button>
+                </form>
+            </div>
+
             <div class="contact-wrapper">
                 <div class="contact-info">
                     <h3 data-i18n="contact.info.title">Get in Touch</h3>
@@ -618,21 +786,29 @@
     <script>
         const translations = {
             en: {
-                'hero.title': 'Trusted workforce solutions for the Nordic region',
-                'hero.subtitle': 'Connecting Nordic businesses with skilled professionals through ethical recruitment and comprehensive support',
-                'hero.cta1': 'Get started',
-                'hero.cta2': 'Our services',
+                'hero.title': 'Trusted workforce solutions for the Nordics',
+                'hero.subtitle': 'Connecting skilled people with opportunities across the Nordic region – reliable, fast and professional.',
+                'hero.cta1': 'Hire workforce',
+                'hero.cta2': 'Find a job',
                 'services.title': 'Our Services',
                 'services.recruitment.title': 'Recruitment & Vetting',
-                'services.recruitment.desc': 'Comprehensive candidate screening and verification to ensure the right fit for your organization. We conduct thorough background checks and skills assessments.',
+                'services.recruitment.desc': 'We carefully select and screen every candidate to ensure skills, reliability, and cultural fit.',
                 'services.staffing.title': 'Temporary Staffing',
-                'services.staffing.desc': 'Flexible workforce solutions for short-term projects and seasonal demands. Quick deployment of qualified professionals when you need them most.',
+                'services.staffing.desc': 'Flexible staffing solutions for seasonal peaks and short-term projects across industries.',
                 'services.relocation.title': 'Relocation & Support',
-                'services.relocation.desc': 'Complete assistance with visa processing, housing, cultural integration, and ongoing support to help workers thrive in their new environment.',
-                'about.title': 'About Arctic Workforce',
-                'about.p1': 'Arctic Workforce is a trusted partner for businesses across the Nordic region, specializing in ethical and transparent workforce solutions. We believe in building long-term partnerships based on fairness, integrity, and mutual respect.',
-                'about.p2': 'Our commitment to ethical recruitment means we prioritize the wellbeing of workers while meeting the staffing needs of our clients. We ensure fair wages, safe working conditions, and full compliance with all labor regulations.',
-                'about.p3': 'With deep expertise in Nordic labor markets and multilingual support, we bridge the gap between talented professionals and forward-thinking companies, creating value for all stakeholders.',
+                'services.relocation.desc': 'From paperwork to housing – we help workers settle in smoothly, so they can focus on the job.',
+                'about.title': 'Why Arctic Workforce?',
+                'about.intro': 'Arctic Workforce is a trusted partner for businesses across the Nordic region, specializing in ethical and transparent workforce solutions.',
+                'benefits.nordic.title': 'Nordic expertise',
+                'benefits.nordic.desc': 'We know the region, its labor markets, and regulations.',
+                'benefits.fast.title': 'Fast & reliable',
+                'benefits.fast.desc': 'From request to placement in just days.',
+                'benefits.network.title': 'International network',
+                'benefits.network.desc': 'Connecting talent from across Europe to opportunities in the Nordics.',
+                'benefits.compliance.title': 'Compliance & safety',
+                'benefits.compliance.desc': 'Transparent contracts and high standards.',
+                'cta.title': 'Ready to find your workforce solution?',
+                'cta.button': 'Get in touch',
                 'contact.title': 'Contact Us',
                 'contact.info.title': 'Get in Touch',
                 'contact.info.email': 'Email:',
@@ -643,27 +819,41 @@
                 'contact.form.email': 'Email *',
                 'contact.form.message': 'Message *',
                 'contact.form.submit': 'Send Message',
+                'cv.title': 'Upload your CV',
+                'cv.description': 'Looking for a job? Send us your CV and we\'ll connect you with the right opportunities.',
+                'cv.button': 'Choose File',
+                'cv.nofile': 'No file chosen',
+                'cv.maxsize': 'Max. 10 MB (PDF, DOC, DOCX)',
+                'cv.submit': 'Submit CV',
                 'footer.impressum': 'Impressum',
                 'footer.privacy': 'Privacy Policy',
                 'footer.terms': 'Terms & Conditions',
                 'footer.rights': 'All rights reserved.'
             },
             de: {
-                'hero.title': 'Vertrauenswürdige Personaldienstleistungen für den Norden',
-                'hero.subtitle': 'Wir verbinden nordische Unternehmen mit qualifizierten Fachkräften durch ethische Rekrutierung und umfassende Unterstützung',
-                'hero.cta1': 'Jetzt starten',
-                'hero.cta2': 'Unsere Dienstleistungen',
+                'hero.title': 'Vertrauenswürdige Personaldienstleistungen für die Nordics',
+                'hero.subtitle': 'Wir verbinden qualifizierte Menschen mit Chancen in der nordischen Region – zuverlässig, schnell und professionell.',
+                'hero.cta1': 'Personal einstellen',
+                'hero.cta2': 'Job finden',
                 'services.title': 'Unsere Dienstleistungen',
                 'services.recruitment.title': 'Rekrutierung & Überprüfung',
-                'services.recruitment.desc': 'Umfassende Kandidatenprüfung und Verifizierung, um die richtige Besetzung für Ihr Unternehmen sicherzustellen. Wir führen gründliche Hintergrundprüfungen und Kompetenzbewertungen durch.',
+                'services.recruitment.desc': 'Wir wählen und prüfen jeden Kandidaten sorgfältig, um Fähigkeiten, Zuverlässigkeit und kulturelle Passung sicherzustellen.',
                 'services.staffing.title': 'Zeitarbeit',
-                'services.staffing.desc': 'Flexible Personaldienstleistungen für kurzfristige Projekte und saisonale Anforderungen. Schnelle Bereitstellung qualifizierter Fachkräfte, wenn Sie sie am dringendsten benötigen.',
+                'services.staffing.desc': 'Flexible Personallösungen für saisonale Spitzen und kurzfristige Projekte in verschiedenen Branchen.',
                 'services.relocation.title': 'Umzug & Unterstützung',
-                'services.relocation.desc': 'Komplette Unterstützung bei Visabearbeitung, Wohnungssuche, kultureller Integration und fortlaufender Betreuung, damit Mitarbeiter in ihrem neuen Umfeld erfolgreich sind.',
-                'about.title': 'Über Arctic Workforce',
-                'about.p1': 'Arctic Workforce ist ein vertrauenswürdiger Partner für Unternehmen in der nordischen Region und spezialisiert auf ethische und transparente Personaldienstleistungen. Wir glauben an langfristige Partnerschaften basierend auf Fairness, Integrität und gegenseitigem Respekt.',
-                'about.p2': 'Unser Engagement für ethische Rekrutierung bedeutet, dass wir das Wohlergehen der Arbeitnehmer priorisieren und gleichzeitig die Personalbedürfnisse unserer Kunden erfüllen. Wir gewährleisten faire Löhne, sichere Arbeitsbedingungen und vollständige Einhaltung aller Arbeitsvorschriften.',
-                'about.p3': 'Mit tiefer Expertise in nordischen Arbeitsmärkten und mehrsprachiger Unterstützung schlagen wir die Brücke zwischen talentierten Fachkräften und zukunftsorientierten Unternehmen und schaffen Mehrwert für alle Beteiligten.',
+                'services.relocation.desc': 'Von Papierkram bis Wohnung – wir helfen Arbeitnehmern, sich reibungslos einzuleben, damit sie sich auf den Job konzentrieren können.',
+                'about.title': 'Warum Arctic Workforce?',
+                'about.intro': 'Arctic Workforce ist ein vertrauenswürdiger Partner für Unternehmen in der nordischen Region und spezialisiert auf ethische und transparente Personaldienstleistungen.',
+                'benefits.nordic.title': 'Nordic-Expertise',
+                'benefits.nordic.desc': 'Wir kennen die Region, ihre Arbeitsmärkte und Vorschriften.',
+                'benefits.fast.title': 'Schnell & zuverlässig',
+                'benefits.fast.desc': 'Von der Anfrage bis zur Vermittlung in nur wenigen Tagen.',
+                'benefits.network.title': 'Internationales Netzwerk',
+                'benefits.network.desc': 'Wir verbinden Talente aus ganz Europa mit Chancen in den Nordics.',
+                'benefits.compliance.title': 'Compliance & Sicherheit',
+                'benefits.compliance.desc': 'Transparente Verträge und hohe Standards.',
+                'cta.title': 'Bereit, Ihre Personallösung zu finden?',
+                'cta.button': 'Kontakt aufnehmen',
                 'contact.title': 'Kontakt',
                 'contact.info.title': 'Kontaktieren Sie uns',
                 'contact.info.email': 'E-Mail:',
@@ -674,6 +864,12 @@
                 'contact.form.email': 'E-Mail *',
                 'contact.form.message': 'Nachricht *',
                 'contact.form.submit': 'Nachricht senden',
+                'cv.title': 'Lebenslauf hochladen',
+                'cv.description': 'Auf Jobsuche? Senden Sie uns Ihren Lebenslauf und wir verbinden Sie mit den richtigen Möglichkeiten.',
+                'cv.button': 'Datei wählen',
+                'cv.nofile': 'Keine Datei gewählt',
+                'cv.maxsize': 'Max. 10 MB (PDF, DOC, DOCX)',
+                'cv.submit': 'Lebenslauf senden',
                 'footer.impressum': 'Impressum',
                 'footer.privacy': 'Datenschutz',
                 'footer.terms': 'Geschäftsbedingungen',
@@ -681,20 +877,28 @@
             },
             no: {
                 'hero.title': 'Pålitelige bemanningsløsninger for Norden',
-                'hero.subtitle': 'Vi kobler nordiske bedrifter med dyktige fagfolk gjennom etisk rekruttering og omfattende støtte',
-                'hero.cta1': 'Kom i gang',
-                'hero.cta2': 'Våre tjenester',
+                'hero.subtitle': 'Vi kobler dyktige mennesker med muligheter i den nordiske regionen – pålitelig, raskt og profesjonelt.',
+                'hero.cta1': 'Ansett arbeidskraft',
+                'hero.cta2': 'Finn en jobb',
                 'services.title': 'Våre Tjenester',
                 'services.recruitment.title': 'Rekruttering & Vurdering',
-                'services.recruitment.desc': 'Omfattende kandidatscreening og verifisering for å sikre riktig match til organisasjonen din. Vi gjennomfører grundige bakgrunnssjekker og kompetansevurderinger.',
+                'services.recruitment.desc': 'Vi velger og screener nøye hver kandidat for å sikre kompetanse, pålitelighet og kulturell tilpasning.',
                 'services.staffing.title': 'Vikarbyrå',
-                'services.staffing.desc': 'Fleksible bemanningsløsninger for kortsiktige prosjekter og sesongmessige behov. Rask utplassering av kvalifiserte fagfolk når du trenger dem mest.',
+                'services.staffing.desc': 'Fleksible bemanningsløsninger for sesongtopper og kortsiktige prosjekter på tvers av bransjer.',
                 'services.relocation.title': 'Flytting & Støtte',
-                'services.relocation.desc': 'Komplett assistanse med visumprosessering, bolig, kulturell integrasjon og løpende støtte for å hjelpe arbeidere med å trives i sitt nye miljø.',
-                'about.title': 'Om Arctic Workforce',
-                'about.p1': 'Arctic Workforce er en pålitelig partner for bedrifter i Norden, spesialisert på etiske og transparente bemanningsløsninger. Vi tror på å bygge langsiktige partnerskap basert på rettferdighet, integritet og gjensidig respekt.',
-                'about.p2': 'Vårt engasjement for etisk rekruttering betyr at vi prioriterer arbeidstakeres velvære samtidig som vi møter våre kunders bemanningsbehov. Vi sikrer rettferdige lønninger, trygge arbeidsforhold og full overholdelse av alle arbeidsforskrifter.',
-                'about.p3': 'Med dyp ekspertise i nordiske arbeidsmarkeder og flerspråklig støtte, bygger vi bro mellom talentfulle fagfolk og fremtidsrettede bedrifter, og skaper verdi for alle interessenter.',
+                'services.relocation.desc': 'Fra papirarbeid til bolig – vi hjelper arbeidere med å bosette seg smidig, slik at de kan fokusere på jobben.',
+                'about.title': 'Hvorfor Arctic Workforce?',
+                'about.intro': 'Arctic Workforce er en pålitelig partner for bedrifter i den nordiske regionen, spesialisert på etiske og transparente bemanningsløsninger.',
+                'benefits.nordic.title': 'Nordisk ekspertise',
+                'benefits.nordic.desc': 'Vi kjenner regionen, arbeidsmarkedene og regelverket.',
+                'benefits.fast.title': 'Raskt & pålitelig',
+                'benefits.fast.desc': 'Fra forespørsel til plassering på bare noen dager.',
+                'benefits.network.title': 'Internasjonalt nettverk',
+                'benefits.network.desc': 'Vi kobler talenter fra hele Europa med muligheter i Norden.',
+                'benefits.compliance.title': 'Compliance & sikkerhet',
+                'benefits.compliance.desc': 'Transparente kontrakter og høye standarder.',
+                'cta.title': 'Klar til å finne din bemanningsløsning?',
+                'cta.button': 'Ta kontakt',
                 'contact.title': 'Kontakt Oss',
                 'contact.info.title': 'Ta Kontakt',
                 'contact.info.email': 'E-post:',
@@ -705,6 +909,12 @@
                 'contact.form.email': 'E-post *',
                 'contact.form.message': 'Melding *',
                 'contact.form.submit': 'Send Melding',
+                'cv.title': 'Last opp CV',
+                'cv.description': 'Leter etter jobb? Send oss din CV og vi kobler deg med de rette mulighetene.',
+                'cv.button': 'Velg fil',
+                'cv.nofile': 'Ingen fil valgt',
+                'cv.maxsize': 'Maks. 10 MB (PDF, DOC, DOCX)',
+                'cv.submit': 'Send CV',
                 'footer.impressum': 'Impressum',
                 'footer.privacy': 'Personvernerklæring',
                 'footer.terms': 'Vilkår og betingelser',
@@ -712,20 +922,28 @@
             },
             is: {
                 'hero.title': 'Áreiðanlegar vinnuaflslausnir fyrir Norðurlönd',
-                'hero.subtitle': 'Við tengum norræn fyrirtæki við hæfa fagfólk með siðferðilegri ráðningu og alhliða stuðningi',
-                'hero.cta1': 'Byrja',
-                'hero.cta2': 'Þjónusta okkar',
+                'hero.subtitle': 'Við tengum hæft fólk við tækifæri um norðurskautssvæðið – áreiðanlegt, hratt og fagmannlegt.',
+                'hero.cta1': 'Ráða starfsfólk',
+                'hero.cta2': 'Finna vinnu',
                 'services.title': 'Þjónusta Okkar',
                 'services.recruitment.title': 'Ráðning & Mat',
-                'services.recruitment.desc': 'Alhliða athugun og staðfesting á umsækjendum til að tryggja rétta samsvörun fyrir fyrirtækið þitt. Við framkvæmum ítarlegar bakgrunnsathuganir og hæfnismat.',
+                'services.recruitment.desc': 'Við veljum og skoðum vandlega hvern umsækjanda til að tryggja hæfni, áreiðanleika og menningarlega samsvörun.',
                 'services.staffing.title': 'Tímabundin Ráðning',
-                'services.staffing.desc': 'Sveigjanlegar vinnuaflslausnir fyrir skammtímaverkefni og árstíðabundnar þarfir. Hröð virkjun hæfra fagaðila þegar þú þarft þeirra mest.',
+                'services.staffing.desc': 'Sveigjanlegar starfsmannalausnir fyrir árstíðabundnar toppa og skammtímaverkefni í mismunandi atvinnugreinum.',
                 'services.relocation.title': 'Flutningur & Stuðningur',
-                'services.relocation.desc': 'Fullkomin aðstoð við vegabréfsáritunarvinnslu, húsnæði, menningarlega aðlögun og áframhaldandi stuðning til að hjálpa starfsfólki að dafna í nýju umhverfi sínu.',
-                'about.title': 'Um Arctic Workforce',
-                'about.p1': 'Arctic Workforce er áreiðanlegur samstarfsaðili fyrirtækja um öll Norðurlönd, með sérhæfingu í siðferðilegum og gagnsæjum vinnuaflslausnum. Við trúum á að byggja upp langtímasamstarf sem byggir á sanngirni, heiðarleika og gagnkvæmri virðingu.',
-                'about.p2': 'Skuldbinding okkar við siðferðilega ráðningu þýðir að við forgangsraðum velferð starfsmanna á meðan við uppfyllum ráðningarþarfir viðskiptavina okkar. Við tryggum sanngjörn laun, öruggt vinnuumhverfi og fulla samræmi við allar vinnureglugerðir.',
-                'about.p3': 'Með djúpri sérfræðiþekkingu á norrænum vinnumörkuðum og fjöltyngt stuðningi, brúum við bilið milli hæfileikaríkra fagaðila og framsýnna fyrirtækja, sköpum verðmæti fyrir alla hagsmunaaðila.',
+                'services.relocation.desc': 'Frá pappírsvinnu til húsnæðis – við hjálpum starfsmönnum að setjast að hnökralaust, svo þeir geti einbeitt sér að vinnunni.',
+                'about.title': 'Af hverju Arctic Workforce?',
+                'about.intro': 'Arctic Workforce er áreiðanlegur samstarfsaðili fyrirtækja í norrænu svæðinu, sérhæfður í siðferðilegum og gagnsæjum vinnuaflslausnum.',
+                'benefits.nordic.title': 'Norræn sérfræðiþekking',
+                'benefits.nordic.desc': 'Við þekkjum svæðið, vinnumarkaði þess og reglugerðir.',
+                'benefits.fast.title': 'Hratt & áreiðanlegt',
+                'benefits.fast.desc': 'Frá beiðni til útsetningar á örfáum dögum.',
+                'benefits.network.title': 'Alþjóðlegt net',
+                'benefits.network.desc': 'Tengum hæfileikafólk frá öllum Evrópu við tækifæri á Norðurlöndum.',
+                'benefits.compliance.title': 'Reglufylgni & öryggi',
+                'benefits.compliance.desc': 'Gagnsæir samningar og háir staðlar.',
+                'cta.title': 'Tilbúinn að finna vinnuaflslausnina þína?',
+                'cta.button': 'Hafðu samband',
                 'contact.title': 'Hafðu Samband',
                 'contact.info.title': 'Komdu í samband',
                 'contact.info.email': 'Netfang:',
@@ -736,27 +954,41 @@
                 'contact.form.email': 'Netfang *',
                 'contact.form.message': 'Skilaboð *',
                 'contact.form.submit': 'Senda Skilaboð',
+                'cv.title': 'Hlaða upp ferilskrá',
+                'cv.description': 'Að leita að vinnu? Sendu okkur ferilskrána þína og við tengjum þig við rétt tækifæri.',
+                'cv.button': 'Velja skrá',
+                'cv.nofile': 'Engin skrá valin',
+                'cv.maxsize': 'Hámark 10 MB (PDF, DOC, DOCX)',
+                'cv.submit': 'Senda ferilskrá',
                 'footer.impressum': 'Impressum',
                 'footer.privacy': 'Persónuverndarstefna',
                 'footer.terms': 'Skilmálar',
                 'footer.rights': 'Allur réttur áskilinn.'
             },
             pl: {
-                'hero.title': 'Zaufane rozwiązania kadrowe dla Północy',
-                'hero.subtitle': 'Łączymy nordyckie firmy z wykwalifikowanymi specjalistami poprzez etyczną rekrutację i kompleksowe wsparcie',
-                'hero.cta1': 'Zacznij teraz',
-                'hero.cta2': 'Nasze usługi',
+                'hero.title': 'Zaufane rozwiązania kadrowe dla Nordyków',
+                'hero.subtitle': 'Łączymy wykwalifikowane osoby z możliwościami w regionie nordyckim – niezawodnie, szybko i profesjonalnie.',
+                'hero.cta1': 'Zatrudnij pracowników',
+                'hero.cta2': 'Znajdź pracę',
                 'services.title': 'Nasze Usługi',
                 'services.recruitment.title': 'Rekrutacja i Weryfikacja',
-                'services.recruitment.desc': 'Kompleksowe badanie i weryfikacja kandydatów, aby zapewnić właściwe dopasowanie do Twojej organizacji. Przeprowadzamy dokładne sprawdzenie przeszłości i ocenę umiejętności.',
+                'services.recruitment.desc': 'Starannie wybieramy i sprawdzamy każdego kandydata, aby zapewnić umiejętności, niezawodność i dopasowanie kulturowe.',
                 'services.staffing.title': 'Praca Tymczasowa',
-                'services.staffing.desc': 'Elastyczne rozwiązania kadrowe dla projektów krótkoterminowych i sezonowych potrzeb. Szybkie wdrożenie wykwalifikowanych specjalistów, kiedy najbardziej ich potrzebujesz.',
+                'services.staffing.desc': 'Elastyczne rozwiązania kadrowe na szczyty sezonowe i projekty krótkoterminowe w różnych branżach.',
                 'services.relocation.title': 'Relokacja i Wsparcie',
-                'services.relocation.desc': 'Kompleksowa pomoc w procesie wizowym, zakwaterowaniu, integracji kulturowej i bieżącym wsparciu, aby pomóc pracownikom rozwijać się w nowym środowisku.',
-                'about.title': 'O Arctic Workforce',
-                'about.p1': 'Arctic Workforce jest zaufanym partnerem dla firm w regionie nordyckim, specjalizującym się w etycznych i przejrzystych rozwiązaniach kadrowych. Wierzymy w budowanie długoterminowych partnerstw opartych na uczciwości, integralności i wzajemnym szacunku.',
-                'about.p2': 'Nasze zaangażowanie w etyczną rekrutację oznacza, że priorytetowo traktujemy dobro pracowników, jednocześnie spełniając potrzeby kadrowe naszych klientów. Zapewniamy uczciwe wynagrodzenia, bezpieczne warunki pracy i pełną zgodność z wszelkimi przepisami prawa pracy.',
-                'about.p3': 'Dzięki głębokiej wiedzy na temat nordyckich rynków pracy i wsparciu wielojęzycznemu, łączymy utalentowanych specjalistów z wizjonerskimi firmami, tworząc wartość dla wszystkich interesariuszy.',
+                'services.relocation.desc': 'Od formalności po mieszkanie – pomagamy pracownikom sprawnie się osiedlić, aby mogli skupić się na pracy.',
+                'about.title': 'Dlaczego Arctic Workforce?',
+                'about.intro': 'Arctic Workforce to zaufany partner dla firm w regionie nordyckim, specjalizujący się w etycznych i przejrzystych rozwiązaniach kadrowych.',
+                'benefits.nordic.title': 'Nordycka ekspertyza',
+                'benefits.nordic.desc': 'Znamy region, jego rynki pracy i przepisy.',
+                'benefits.fast.title': 'Szybko i niezawodnie',
+                'benefits.fast.desc': 'Od zapytania do zatrudnienia w ciągu kilku dni.',
+                'benefits.network.title': 'Międzynarodowa sieć',
+                'benefits.network.desc': 'Łączymy talenty z całej Europy z możliwościami w krajach nordyckich.',
+                'benefits.compliance.title': 'Zgodność i bezpieczeństwo',
+                'benefits.compliance.desc': 'Przejrzyste umowy i wysokie standardy.',
+                'cta.title': 'Gotowy znaleźć swoje rozwiązanie kadrowe?',
+                'cta.button': 'Skontaktuj się',
                 'contact.title': 'Kontakt',
                 'contact.info.title': 'Skontaktuj się z nami',
                 'contact.info.email': 'E-mail:',
@@ -767,27 +999,41 @@
                 'contact.form.email': 'E-mail *',
                 'contact.form.message': 'Wiadomość *',
                 'contact.form.submit': 'Wyślij wiadomość',
+                'cv.title': 'Prześlij swoje CV',
+                'cv.description': 'Szukasz pracy? Wyślij nam swoje CV, a my połączymy Cię z odpowiednimi możliwościami.',
+                'cv.button': 'Wybierz plik',
+                'cv.nofile': 'Nie wybrano pliku',
+                'cv.maxsize': 'Maks. 10 MB (PDF, DOC, DOCX)',
+                'cv.submit': 'Wyślij CV',
                 'footer.impressum': 'Impressum',
                 'footer.privacy': 'Polityka prywatności',
                 'footer.terms': 'Regulamin',
                 'footer.rights': 'Wszelkie prawa zastrzeżone.'
             },
             ro: {
-                'hero.title': 'Soluții de forță de muncă de încredere pentru Nord',
-                'hero.subtitle': 'Conectăm afacerile nordice cu profesioniști calificați prin recrutare etică și suport cuprinzător',
-                'hero.cta1': 'Începe acum',
-                'hero.cta2': 'Serviciile noastre',
+                'hero.title': 'Soluții de forță de muncă de încredere pentru Nordicii',
+                'hero.subtitle': 'Conectăm oameni calificați cu oportunități în regiunea nordică – de încredere, rapid și profesional.',
+                'hero.cta1': 'Angajează forță de muncă',
+                'hero.cta2': 'Găsește un job',
                 'services.title': 'Serviciile Noastre',
                 'services.recruitment.title': 'Recrutare și Verificare',
-                'services.recruitment.desc': 'Verificare și validare cuprinzătoare a candidaților pentru a asigura potrivirea corectă pentru organizația dvs. Efectuăm verificări detaliate de antecedente și evaluări de competențe.',
+                'services.recruitment.desc': 'Selectăm și verificăm cu atenție fiecare candidat pentru a asigura competențe, fiabilitate și potrivire culturală.',
                 'services.staffing.title': 'Personal Temporar',
-                'services.staffing.desc': 'Soluții flexibile de forță de muncă pentru proiecte pe termen scurt și cerințe sezoniere. Desfășurare rapidă a profesioniștilor calificați atunci când aveți cea mai mare nevoie de ei.',
+                'services.staffing.desc': 'Soluții flexibile de personal pentru vârfuri sezoniere și proiecte pe termen scurt în diverse industrii.',
                 'services.relocation.title': 'Relocare și Suport',
-                'services.relocation.desc': 'Asistență completă cu procesarea vizelor, cazare, integrare culturală și suport continuu pentru a ajuta lucrătorii să prospere în noul lor mediu.',
-                'about.title': 'Despre Arctic Workforce',
-                'about.p1': 'Arctic Workforce este un partener de încredere pentru afacerile din regiunea nordică, specializat în soluții etice și transparente de forță de muncă. Credem în construirea de parteneriate pe termen lung bazate pe corectitudine, integritate și respect reciproc.',
-                'about.p2': 'Angajamentul nostru față de recrutarea etică înseamnă că prioritizăm bunăstarea lucrătorilor, satisfăcând în același timp nevoile de personal ale clienților noștri. Asigurăm salarii corecte, condiții de muncă sigure și conformitate deplină cu toate reglementările de muncă.',
-                'about.p3': 'Cu expertiză profundă pe piețele de muncă nordice și suport multilingv, facem legătura între profesioniști talentați și companii progresiste, creând valoare pentru toți stakeholderii.',
+                'services.relocation.desc': 'De la acte la cazare – îi ajutăm pe lucrători să se stabilească fără probleme, astfel încât să se poată concentra pe job.',
+                'about.title': 'De ce Arctic Workforce?',
+                'about.intro': 'Arctic Workforce este un partener de încredere pentru afacerile din regiunea nordică, specializat în soluții etice și transparente de forță de muncă.',
+                'benefits.nordic.title': 'Expertiză nordică',
+                'benefits.nordic.desc': 'Cunoaștem regiunea, piețele sale de muncă și reglementările.',
+                'benefits.fast.title': 'Rapid & de încredere',
+                'benefits.fast.desc': 'De la solicitare la plasare în câteva zile.',
+                'benefits.network.title': 'Rețea internațională',
+                'benefits.network.desc': 'Conectăm talente din întreaga Europă cu oportunități în Nordice.',
+                'benefits.compliance.title': 'Conformitate & siguranță',
+                'benefits.compliance.desc': 'Contracte transparente și standarde înalte.',
+                'cta.title': 'Pregătit să găsești soluția ta de forță de muncă?',
+                'cta.button': 'Contactează-ne',
                 'contact.title': 'Contactați-ne',
                 'contact.info.title': 'Luați legătura',
                 'contact.info.email': 'Email:',
@@ -798,6 +1044,12 @@
                 'contact.form.email': 'Email *',
                 'contact.form.message': 'Mesaj *',
                 'contact.form.submit': 'Trimite mesaj',
+                'cv.title': 'Încarcă CV-ul tău',
+                'cv.description': 'Cauți un job? Trimite-ne CV-ul tău și te vom conecta cu oportunitățile potrivite.',
+                'cv.button': 'Alege fișier',
+                'cv.nofile': 'Niciun fișier ales',
+                'cv.maxsize': 'Max. 10 MB (PDF, DOC, DOCX)',
+                'cv.submit': 'Trimite CV',
                 'footer.impressum': 'Impressum',
                 'footer.privacy': 'Politica de confidențialitate',
                 'footer.terms': 'Termeni și condiții',
@@ -1026,6 +1278,33 @@
                   'Mulțumim pentru mesaj! Vă vom contacta în curând.');
             e.target.reset();
         }
+
+        // CV Upload handling
+        document.getElementById('cvFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            
+            if (file) {
+                // Check file size (10MB)
+                if (file.size > 10 * 1024 * 1024) {
+                    alert(currentLanguage === 'en' ? 'File size must be less than 10MB.' :
+                          currentLanguage === 'de' ? 'Dateigröße muss kleiner als 10MB sein.' :
+                          currentLanguage === 'no' ? 'Filstørrelsen må være mindre enn 10MB.' :
+                          currentLanguage === 'is' ? 'Skráarstærð verður að vera minni en 10MB.' :
+                          currentLanguage === 'pl' ? 'Rozmiar pliku musi być mniejszy niż 10MB.' :
+                          'Dimensiunea fișierului trebuie să fie mai mică de 10MB.');
+                    e.target.value = '';
+                    document.getElementById('fileName').textContent = currentLanguage === 'en' ? 'No file chosen' :
+                          currentLanguage === 'de' ? 'Keine Datei gewählt' :
+                          currentLanguage === 'no' ? 'Ingen fil valgt' :
+                          currentLanguage === 'is' ? 'Engin skrá valin' :
+                          currentLanguage === 'pl' ? 'Nie wybrano pliku' :
+                          'Niciun fișier ales';
+                    return;
+                }
+                
+                document.getElementById('fileName').textContent = file.name;
+            }
+        });
 
         document.addEventListener('click', function(e) {
             const langSelector = document.querySelector('.lang-selector');
