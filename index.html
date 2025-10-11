@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+        .form-group select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background: white;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #0066cc;
+        }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -643,7 +655,18 @@
                     <div class="lang-option" onclick="changeLang('en', '🇬🇧 EN')">
                         <span class="flag">🇬🇧</span>
                         <span>English</span>
+                        <div class="contact-item">
+                        <strong data-i18n="contact.info.hours">Office hours:</strong>
+                        <span data-i18n="contact.info.hours.time">Mon – Fri: 09:00 – 17:00 CET</span>
                     </div>
+                    <div class="contact-item">
+                        <strong data-i18n="contact.info.social">Follow us:</strong>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                            <a href="https://linkedin.com" target="_blank" style="color: #0066cc; text-decoration: none;">LinkedIn</a>
+                            <a href="https://facebook.com" target="_blank" style="color: #0066cc; text-decoration: none;">Facebook</a>
+                        </div>
+                    </div>
+                </div>
                     <div class="lang-option" onclick="changeLang('de', '🇩🇪 DE')">
                         <span class="flag">🇩🇪</span>
                         <span>Deutsch</span>
@@ -758,15 +781,23 @@
                 <form class="contact-form" onsubmit="handleSubmit(event)">
                     <div class="form-group">
                         <label for="name" data-i18n="contact.form.name">Name *</label>
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email" data-i18n="contact.form.email">Email *</label>
-                        <input type="email" id="email" required>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="purpose" data-i18n="contact.form.purpose">I am looking for *</label>
+                        <select id="purpose" name="purpose" required>
+                            <option value="work" data-i18n="contact.form.work">Work</option>
+                            <option value="workers" data-i18n="contact.form.workers">Workers</option>
+                            <option value="partnership" data-i18n="contact.form.partnership">Partnership</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="message" data-i18n="contact.form.message">Message *</label>
-                        <textarea id="message" required></textarea>
+                        <textarea id="message" name="message" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Send Message</button>
                 </form>
@@ -832,7 +863,14 @@
                 'contact.form.company': 'Company',
                 'contact.form.email': 'Email *',
                 'contact.form.message': 'Message *',
+                'contact.form.purpose': 'I am looking for *',
+                'contact.form.work': 'Work',
+                'contact.form.workers': 'Workers',
+                'contact.form.partnership': 'Partnership',
                 'contact.form.submit': 'Send Message',
+                'contact.info.hours': 'Office hours:',
+                'contact.info.hours.time': 'Mon – Fri: 09:00 – 17:00 CET',
+                'contact.info.social': 'Follow us:',
                 'cv.title': 'Upload your CV',
                 'cv.description': 'Looking for a job? Send us your CV and we\'ll connect you with the right opportunities.',
                 'cv.button': 'Choose File',
@@ -877,7 +915,14 @@
                 'contact.form.company': 'Firma',
                 'contact.form.email': 'E-Mail *',
                 'contact.form.message': 'Nachricht *',
+                'contact.form.purpose': 'Ich suche *',
+                'contact.form.work': 'Arbeit',
+                'contact.form.workers': 'Arbeitskräfte',
+                'contact.form.partnership': 'Partnerschaft',
                 'contact.form.submit': 'Nachricht senden',
+                'contact.info.hours': 'Bürozeiten:',
+                'contact.info.hours.time': 'Mo – Fr: 09:00 – 17:00 MEZ',
+                'contact.info.social': 'Folgen Sie uns:',
                 'cv.title': 'Lebenslauf hochladen',
                 'cv.description': 'Auf Jobsuche? Senden Sie uns Ihren Lebenslauf und wir verbinden Sie mit den richtigen Möglichkeiten.',
                 'cv.button': 'Datei wählen',
@@ -922,7 +967,14 @@
                 'contact.form.company': 'Firma',
                 'contact.form.email': 'E-post *',
                 'contact.form.message': 'Melding *',
+                'contact.form.purpose': 'Jeg søker etter *',
+                'contact.form.work': 'Arbeid',
+                'contact.form.workers': 'Arbeidere',
+                'contact.form.partnership': 'Partnerskap',
                 'contact.form.submit': 'Send Melding',
+                'contact.info.hours': 'Kontortid:',
+                'contact.info.hours.time': 'Man – Fre: 09:00 – 17:00 CET',
+                'contact.info.social': 'Følg oss:',
                 'cv.title': 'Last opp CV',
                 'cv.description': 'Leter etter jobb? Send oss din CV og vi kobler deg med de rette mulighetene.',
                 'cv.button': 'Velg fil',
@@ -967,7 +1019,14 @@
                 'contact.form.company': 'Fyrirtæki',
                 'contact.form.email': 'Netfang *',
                 'contact.form.message': 'Skilaboð *',
+                'contact.form.purpose': 'Ég er að leita að *',
+                'contact.form.work': 'Vinnu',
+                'contact.form.workers': 'Starfsmönnum',
+                'contact.form.partnership': 'Samstarfi',
                 'contact.form.submit': 'Senda Skilaboð',
+                'contact.info.hours': 'Opnunartímar:',
+                'contact.info.hours.time': 'Mán – Fös: 09:00 – 17:00 CET',
+                'contact.info.social': 'Fylgdu okkur:',
                 'cv.title': 'Hlaða upp ferilskrá',
                 'cv.description': 'Að leita að vinnu? Sendu okkur ferilskrána þína og við tengjum þig við rétt tækifæri.',
                 'cv.button': 'Velja skrá',
@@ -1012,7 +1071,14 @@
                 'contact.form.company': 'Firma',
                 'contact.form.email': 'E-mail *',
                 'contact.form.message': 'Wiadomość *',
+                'contact.form.purpose': 'Szukam *',
+                'contact.form.work': 'Pracy',
+                'contact.form.workers': 'Pracowników',
+                'contact.form.partnership': 'Współpracy',
                 'contact.form.submit': 'Wyślij wiadomość',
+                'contact.info.hours': 'Godziny pracy:',
+                'contact.info.hours.time': 'Pon – Pt: 09:00 – 17:00 CET',
+                'contact.info.social': 'Śledź nas:',
                 'cv.title': 'Prześlij swoje CV',
                 'cv.description': 'Szukasz pracy? Wyślij nam swoje CV, a my połączymy Cię z odpowiednimi możliwościami.',
                 'cv.button': 'Wybierz plik',
@@ -1057,7 +1123,14 @@
                 'contact.form.company': 'Companie',
                 'contact.form.email': 'Email *',
                 'contact.form.message': 'Mesaj *',
+                'contact.form.purpose': 'Caut *',
+                'contact.form.work': 'Muncă',
+                'contact.form.workers': 'Lucrători',
+                'contact.form.partnership': 'Parteneriat',
                 'contact.form.submit': 'Trimite mesaj',
+                'contact.info.hours': 'Program:',
+                'contact.info.hours.time': 'Lun – Vin: 09:00 – 17:00 CET',
+                'contact.info.social': 'Urmărește-ne:',
                 'cv.title': 'Încarcă CV-ul tău',
                 'cv.description': 'Cauți un job? Trimite-ne CV-ul tău și te vom conecta cu oportunitățile potrivite.',
                 'cv.button': 'Alege fișier',
