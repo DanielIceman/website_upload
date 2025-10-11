@@ -1,4 +1,6 @@
-        .form-group select {
+                'services.compliance.title': 'Compliance & Payroll',
+                'services.compliance.desc': 'We manage all documentation, taxes, and safety training.',
+                'services.button': 'Learn More About Our Process',        .form-group select {
             padding: 12px;
             border: 2px solid #e0e0e0;
             border-radius: 6px;
@@ -251,7 +253,7 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -371,6 +373,17 @@
         .cta-section .btn {
             font-size: 1.1rem;
             padding: 16px 40px;
+        }
+
+        .cta-section .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-section .btn-secondary:hover {
+            background: white;
+            color: #0066cc;
         }
 
         /* Contact Section */
@@ -695,11 +708,11 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 data-i18n="hero.title">Trusted workforce solutions for the Nordics</h1>
-            <p data-i18n="hero.subtitle">Connecting skilled people with opportunities across the Nordic region – reliable, fast and professional.</p>
+            <h1 data-i18n="hero.title">Connecting skilled workers with the Nordic industries that need them most</h1>
+            <p data-i18n="hero.subtitle">We provide ethical recruitment, relocation, and staffing solutions across Norway and Iceland — ensuring fair work, safe conditions, and reliable partnerships.</p>
             <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Hire workforce</a>
-                <a href="#contact" class="btn btn-secondary" data-i18n="hero.cta2">Find a job</a>
+                <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Find Work</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="hero.cta2">Hire Talent</a>
             </div>
         </div>
     </section>
@@ -831,28 +844,29 @@
         const translations = {
             en: {
                 'hero.title': 'Connecting skilled workers with the Nordic industries that need them most',
-                'hero.subtitle': 'We provide ethical recruitment, relocation, and staffing solutions across Norway, Sweden, Finland, and Iceland — ensuring fair work, safe conditions, and reliable partnerships.',
+                'hero.subtitle': 'We provide ethical recruitment, relocation, and staffing solutions across Norway and Iceland — ensuring fair work, safe conditions, and reliable partnerships.',
                 'hero.cta1': 'Find Work',
                 'hero.cta2': 'Hire Talent',
                 'services.title': 'Our Services',
                 'services.recruitment.title': 'Recruitment',
-                'services.recruitment.desc': 'Sourcing skilled workers for energy, construction, and logistics sectors across the Nordic region.',
+                'services.recruitment.desc': 'Sourcing skilled workers for energy, construction, and logistics sectors.',
                 'services.staffing.title': 'Temporary Staffing',
-                'services.staffing.desc': 'Flexible staffing solutions for seasonal or short-term projects with quick deployment.',
+                'services.staffing.desc': 'Flexible staffing solutions for seasonal or short-term projects.',
                 'services.relocation.title': 'Relocation Assistance',
-                'services.relocation.desc': 'Visa, accommodation, and integration support for international workers moving to the Nordics.',
+                'services.relocation.desc': 'Visa, accommodation, and integration support for international workers.',
                 'about.title': 'Why choose Arctic Workforce?',
                 'about.intro': 'We specialize in connecting skilled workers with trusted Nordic employers through transparent, ethical recruitment and comprehensive support.',
-                'benefits.nordic.title': 'Local Expertise',
+                'benefits.nordic.title': '🏔️ Local Expertise',
                 'benefits.nordic.desc': 'Our team operates in the Nordics — we understand regional regulations, culture, and industry needs.',
-                'benefits.fast.title': 'Fast, Reliable Recruitment',
+                'benefits.fast.title': '🚀 Fast, Reliable Recruitment',
                 'benefits.fast.desc': 'We match qualified workers with trusted companies — typically within 7 days.',
-                'benefits.network.title': 'Fair & Transparent Employment',
+                'benefits.network.title': '✅ Fair & Transparent Employment',
                 'benefits.network.desc': 'We ensure legal contracts, fair pay, and full compliance with Nordic labour laws.',
-                'benefits.compliance.title': 'Complete Relocation Support',
+                'benefits.compliance.title': '🌍 Complete Relocation Support',
                 'benefits.compliance.desc': 'From visas to housing, we handle every step of your move, so you can focus on your new job.',
                 'cta.title': 'Ready to start?',
-                'cta.button': 'Get in touch',
+                'cta.button1': 'Find a Job',
+                'cta.button2': 'Hire Workers',
                 'cta.subtitle': 'Our multilingual team will respond within 24 hours.',
                 'contact.title': 'Contact Us',
                 'contact.info.title': 'Get in Touch',
@@ -884,7 +898,7 @@
             },
             de: {
                 'hero.title': 'Wir verbinden qualifizierte Arbeitskräfte mit den nordischen Industrien, die sie am meisten brauchen',
-                'hero.subtitle': 'Wir bieten ethische Rekrutierung, Umzugshilfe und Personaldienstleistungen in Norwegen, Schweden, Finnland und Island – für faire Arbeit, sichere Bedingungen und zuverlässige Partnerschaften.',
+                'hero.subtitle': 'Wir bieten ethische Rekrutierung, Umzugshilfe und Personaldienstleistungen in Norwegen und Island – für faire Arbeit, sichere Bedingungen und zuverlässige Partnerschaften.',
                 'hero.cta1': 'Arbeit finden',
                 'hero.cta2': 'Talente einstellen',
                 'services.title': 'Unsere Dienstleistungen',
@@ -956,8 +970,10 @@
                 'benefits.network.desc': 'Vi kobler talenter fra hele Europa med muligheter i Norden.',
                 'benefits.compliance.title': 'Compliance & sikkerhet',
                 'benefits.compliance.desc': 'Transparente kontrakter og høye standarder.',
-                'cta.title': 'Klar til å finne din bemanningsløsning?',
-                'cta.button': 'Ta kontakt',
+                'cta.title': 'Klar til å starte?',
+                'cta.button1': 'Finn en jobb',
+                'cta.button2': 'Ansett arbeidere',
+                'cta.subtitle': 'Vårt flerspråklige team svarer innen 24 timer.',
                 'contact.title': 'Kontakt Oss',
                 'contact.info.title': 'Ta Kontakt',
                 'contact.info.email': 'E-post:',
@@ -1008,8 +1024,10 @@
                 'benefits.network.desc': 'Tengum hæfileikafólk frá öllum Evrópu við tækifæri á Norðurlöndum.',
                 'benefits.compliance.title': 'Reglufylgni & öryggi',
                 'benefits.compliance.desc': 'Gagnsæir samningar og háir staðlar.',
-                'cta.title': 'Tilbúinn að finna vinnuaflslausnina þína?',
-                'cta.button': 'Hafðu samband',
+                'cta.title': 'Tilbúinn að byrja?',
+                'cta.button1': 'Finna vinnu',
+                'cta.button2': 'Ráða starfsfólk',
+                'cta.subtitle': 'Fjöltyngt teymið okkar svarar innan 24 klukkustunda.',
                 'contact.title': 'Hafðu Samband',
                 'contact.info.title': 'Komdu í samband',
                 'contact.info.email': 'Netfang:',
@@ -1060,8 +1078,10 @@
                 'benefits.network.desc': 'Łączymy talenty z całej Europy z możliwościami w krajach nordyckich.',
                 'benefits.compliance.title': 'Zgodność i bezpieczeństwo',
                 'benefits.compliance.desc': 'Przejrzyste umowy i wysokie standardy.',
-                'cta.title': 'Gotowy znaleźć swoje rozwiązanie kadrowe?',
-                'cta.button': 'Skontaktuj się',
+                'cta.title': 'Gotowy do startu?',
+                'cta.button1': 'Znajdź pracę',
+                'cta.button2': 'Zatrudnij pracowników',
+                'cta.subtitle': 'Nasz wielojęzyczny zespół odpowie w ciągu 24 godzin.',
                 'contact.title': 'Kontakt',
                 'contact.info.title': 'Skontaktuj się z nami',
                 'contact.info.email': 'E-mail:',
@@ -1112,8 +1132,10 @@
                 'benefits.network.desc': 'Conectăm talente din întreaga Europă cu oportunități în Nordice.',
                 'benefits.compliance.title': 'Conformitate & siguranță',
                 'benefits.compliance.desc': 'Contracte transparente și standarde înalte.',
-                'cta.title': 'Pregătit să găsești soluția ta de forță de muncă?',
-                'cta.button': 'Contactează-ne',
+                'cta.title': 'Pregătit să începi?',
+                'cta.button1': 'Găsește un job',
+                'cta.button2': 'Angajează lucrători',
+                'cta.subtitle': 'Echipa noastră multilingvă va răspunde în 24 de ore.',
                 'contact.title': 'Contactați-ne',
                 'contact.info.title': 'Luați legătura',
                 'contact.info.email': 'Email:',
