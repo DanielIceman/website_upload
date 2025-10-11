@@ -157,7 +157,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 82, 140, 0.75) 0%, rgba(0, 180, 216, 0.7) 100%);
+            background: linear-gradient(135deg, rgba(0, 82, 140, 0.85) 0%, rgba(0, 102, 204, 0.85) 100%);
             z-index: 1;
         }
 
@@ -273,7 +273,24 @@
         /* About Section */
         .about {
             padding: 80px 0;
-            background: #f0f7ff;
+            background: url('https://i.postimg.cc/63tVB9tk/windmills.jpg') center/cover;
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(240, 247, 255, 0.95);
+            z-index: 1;
+        }
+
+        .about .container {
+            position: relative;
+            z-index: 2;
         }
 
         .about-content {
