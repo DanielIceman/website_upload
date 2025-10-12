@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arctic Workforce - Trusted Workforce Solutions for the Nordics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,10 +15,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: #ffffff;
+            font-size: 16px;
         }
 
         .container {
@@ -24,7 +28,6 @@
             padding: 0 20px;
         }
 
-        /* Header */
         header {
             background: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -40,17 +43,10 @@
             padding: 1rem 0;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
         .logo img {
             height: 90px;
             width: auto;
             display: block;
-            object-fit: contain;
-            max-width: 600px;
         }
 
         .lang-selector {
@@ -58,21 +54,24 @@
         }
 
         .lang-btn {
-            background: #f0f7ff;
-            border: 2px solid #0066cc;
-            padding: 8px 16px;
-            border-radius: 6px;
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            padding: 10px 18px;
+            border-radius: 10px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.95rem;
             transition: all 0.3s;
+            font-weight: 600;
         }
 
         .lang-btn:hover {
-            background: #0066cc;
+            background: #0ea5e9;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
         }
 
         .lang-dropdown {
@@ -81,11 +80,12 @@
             top: 100%;
             right: 0;
             background: white;
-            border: 2px solid #0066cc;
-            border-radius: 6px;
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
             margin-top: 8px;
             min-width: 180px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+            overflow: hidden;
         }
 
         .lang-dropdown.active {
@@ -99,18 +99,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 0.95rem;
         }
 
         .lang-option:hover {
-            background: #f0f7ff;
+            background: #f0f9ff;
         }
 
-        .lang-option .flag {
-            font-size: 1.3rem;
-        }
-
-        /* Hero Section */
         .hero {
             background: url('https://i.postimg.cc/ydyJjcqj/background.png') center/cover;
             color: white;
@@ -126,7 +120,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 82, 140, 0.85) 0%, rgba(0, 102, 204, 0.85) 100%);
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.92) 0%, rgba(26, 54, 93, 0.88) 50%, rgba(14, 116, 144, 0.85) 100%);
             z-index: 1;
         }
 
@@ -136,19 +130,24 @@
         }
 
         .hero h1 {
-            font-size: 3.2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-size: 3.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            max-width: 800px;
+            font-size: 1.35rem;
+            margin-bottom: 3rem;
+            opacity: 0.98;
+            max-width: 750px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 400;
+            line-height: 1.6;
         }
 
         .cta-buttons {
@@ -159,206 +158,351 @@
         }
 
         .btn {
-            padding: 14px 32px;
+            padding: 16px 40px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
             cursor: pointer;
             border: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
             display: inline-block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .btn-primary {
-            background: white;
-            color: #0066cc;
-            font-weight: 600;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            background: #f0f7ff;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(14, 165, 233, 0.4);
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-            font-weight: 600;
+            background: white;
+            color: #0ea5e9;
+            border: 3px solid white;
+            font-weight: 700;
         }
 
         .btn-secondary:hover {
-            background: white;
-            color: #0066cc;
+            background: #f0f9ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255,255,255,0.3);
         }
 
-        /* About Section */
         .about {
-            padding: 80px 0;
-            background: url('https://i.postimg.cc/x1qnFHm3/windraeder.png') center/cover;
-            background-position: center 20%;
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%);
             position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(240, 247, 255, 0.85);
-            z-index: 1;
-        }
-
-        .about .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .about-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-content > p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #555;
-            text-align: center;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            color: #0066cc;
-            margin-bottom: 3rem;
+            font-size: 3rem;
+            color: #1a365d;
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .about-intro {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #475569;
+            text-align: center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .about-mission {
+            font-size: 1.15rem;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 5rem;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            padding: 2rem;
+            background: rgba(14, 165, 233, 0.03);
+            border-radius: 12px;
+            border-left: 4px solid #0ea5e9;
+        }
+
+        .about-mission strong {
+            color: #0f3460;
+            font-weight: 700;
+            font-size: 1.2rem;
         }
 
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .benefit-item {
             background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(15, 52, 96, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0ea5e9, #0284c7);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .benefit-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.15);
+            border-color: #0ea5e9;
         }
 
         .benefit-item h3 {
-            color: #0066cc;
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
+            color: #0f3460;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .benefit-item p {
-            color: #666;
-            line-height: 1.7;
-            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 1rem;
         }
 
-        /* Services Section */
+        .values-closing {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #0f3460;
+            font-weight: 600;
+            max-width: 750px;
+            margin: 5rem auto 0;
+            line-height: 1.8;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(2, 132, 199, 0.05) 100%);
+            border-radius: 16px;
+            border-left: 5px solid #0ea5e9;
+        }
+
         .services {
-            padding: 80px 0;
-            background: #fff;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .service-card {
-            background: #f8f9fa;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
+            background: white;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 4px 24px rgba(15, 52, 96, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #0ea5e9, #0284c7);
+            opacity: 0;
+            transition: opacity 0.4s;
+            border-radius: 16px 0 0 16px;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
         }
 
         .service-card:hover {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.18);
+            transform: translateY(-8px);
+            border-color: #0ea5e9;
         }
 
         .service-card h3 {
-            color: #0066cc;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            font-weight: 600;
+            color: #0f3460;
+            margin-bottom: 1.25rem;
+            font-size: 1.65rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
         }
 
         .service-card p {
-            color: #666;
-            line-height: 1.7;
+            color: #64748b;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
 
-        /* CTA Section */
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+        }
+
+        .service-card ul li {
+            color: #555;
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .service-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0ea5e9;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
         .cta-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #0066cc 0%, #00b4d8 100%);
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #0e7490 100%);
             text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 2;
         }
 
         .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
+            font-size: 3.2rem;
+            margin-bottom: 2.5rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .cta-section .btn {
-            font-size: 1.1rem;
-            padding: 16px 40px;
-        }
-
-        .cta-section .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .cta-section .btn-secondary:hover {
-            background: white;
-            color: #0066cc;
-        }
-
-        /* Contact Section */
         .contact {
-            padding: 80px 0;
-            background: #fff;
+            padding: 100px 0;
+            background: white;
         }
 
         .cv-upload-section {
-            background: #f0f7ff;
-            padding: 2.5rem;
-            border-radius: 8px;
-            border: 2px dashed #0066cc;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 3.5rem;
+            border-radius: 20px;
+            border: 2px solid #0ea5e9;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 5rem;
+            box-shadow: 0 8px 32px rgba(14, 165, 233, 0.12);
         }
 
         .cv-upload-section h3 {
-            color: #0066cc;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            color: #0f3460;
+            margin-bottom: 1.25rem;
+            font-size: 2.2rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .cv-upload-section p {
-            color: #666;
-            margin-bottom: 1.5rem;
+        .cv-upload-section .cv-intro {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
         }
 
-        .file-upload-wrapper {
-            position: relative;
+        .cv-process-steps {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .cv-step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(15, 52, 96, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .cv-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+        }
+
+        .cv-step-number {
             display: inline-block;
-            width: 100%;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-weight: bold;
+            font-size: 1.4rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+        }
+
+        .cv-step h4 {
+            color: #0f3460;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .cv-step p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .file-upload-input {
@@ -367,24 +511,26 @@
 
         .file-upload-label {
             display: inline-block;
-            padding: 12px 30px;
-            background: #0066cc;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
             color: white;
-            border-radius: 6px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: 600;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
         }
 
         .file-upload-label:hover {
-            background: #00528C;
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
         }
 
         .file-name {
             display: block;
             margin-top: 1rem;
             color: #666;
-            font-size: 0.9rem;
         }
 
         .file-size-info {
@@ -397,19 +543,48 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: start;
-            margin-bottom: 3rem;
+        }
+
+        .contact-form-wrapper {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(15, 52, 96, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-form-wrapper h3 {
+            color: #0f3460;
+            margin-bottom: 1.25rem;
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-form-intro {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .contact-form-intro strong {
+            color: #0f3460;
+            font-weight: 700;
         }
 
         .contact-info {
-            background: #f0f7ff;
-            padding: 2rem;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid #bae6fd;
         }
 
         .contact-info h3 {
-            color: #0066cc;
-            margin-bottom: 1.5rem;
+            color: #0f3460;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
         }
 
         .contact-item {
@@ -418,47 +593,38 @@
 
         .contact-item strong {
             display: block;
-            color: #0066cc;
+            color: #0f3460;
             margin-bottom: 0.5rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            font-weight: 700;
+            font-size: 1.05rem;
         }
 
         .form-group {
-            display: flex;
-            flex-direction: column;
             margin-bottom: 1rem;
         }
 
         .form-group label {
-            margin-bottom: 0.5rem;
-            color: #0066cc;
+            display: block;
+            margin-bottom: 0.75rem;
+            color: #0f3460;
             font-weight: 600;
+            font-size: 1rem;
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
-            padding: 12px 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
             width: 100%;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
             background: white;
         }
 
         .form-group select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%23666' d='M7 10L2 5h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-            padding-right: 40px;
             cursor: pointer;
         }
 
@@ -466,7 +632,8 @@
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #0066cc;
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
         }
 
         .form-group textarea {
@@ -474,40 +641,40 @@
             resize: vertical;
         }
 
-        /* Footer */
         footer {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
             color: #fff;
-            padding: 3rem 0 1rem;
+            padding: 4rem 0 1.5rem;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
             flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: #00b4d8;
+            color: #7dd3fc;
             text-decoration: none;
-            transition: color 0.3s;
             cursor: pointer;
+            transition: color 0.3s;
+            font-weight: 500;
         }
 
         .footer-links a:hover {
-            color: #fff;
+            color: #ffffff;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-            color: #888;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #94a3b8;
+            font-size: 0.95rem;
         }
 
-        /* Legal Modal */
         .legal-modal {
             display: none;
             position: fixed;
@@ -518,13 +685,13 @@
             background: rgba(0,0,0,0.8);
             z-index: 9999;
             overflow-y: auto;
-            padding: 2rem;
         }
 
         .legal-modal.active {
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 2rem;
         }
 
         .legal-content {
@@ -542,7 +709,7 @@
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background: #0066cc;
+            background: #0ea5e9;
             color: white;
             border: none;
             width: 40px;
@@ -550,15 +717,10 @@
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        .legal-close:hover {
-            background: #00528C;
         }
 
         .legal-content h2 {
-            color: #0066cc;
+            color: #0f3460;
             margin-bottom: 1.5rem;
         }
 
@@ -579,256 +741,273 @@
             margin-left: 2rem;
         }
 
-        .legal-content strong {
-            color: #333;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
-
             .hero p {
                 font-size: 1.1rem;
             }
-
+            .section-title {
+                font-size: 2.2rem;
+            }
             .contact-wrapper {
                 grid-template-columns: 1fr;
             }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .services-grid,
             .benefits-grid {
                 grid-template-columns: 1fr;
             }
-
             .logo img {
                 height: 70px;
+            }
+            .cta-section h2 {
+                font-size: 2.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav class="container">
             <div class="logo">
-                <img src='https://i.postimg.cc/5yRZbF6b/arctic-logo.jpg' alt='Arctic Workforce Logo'>
+                <img src='https://i.postimg.cc/5yRZbF6b/arctic-logo.jpg' alt='Arctic Workforce'>
             </div>
             <div class="lang-selector">
-                <button class="lang-btn" onclick="toggleLangMenu()">
+                <button class="lang-btn" onclick="toggleLang()">
                     <span id="currentLang">🇬🇧 EN</span>
                     <span>▼</span>
                 </button>
                 <div class="lang-dropdown" id="langDropdown">
                     <div class="lang-option" onclick="changeLang('en', '🇬🇧 EN')">
-                        <span class="flag">🇬🇧</span>
-                        <span>English</span>
+                        <span>🇬🇧</span><span>English</span>
                     </div>
                     <div class="lang-option" onclick="changeLang('de', '🇩🇪 DE')">
-                        <span class="flag">🇩🇪</span>
-                        <span>Deutsch</span>
+                        <span>🇩🇪</span><span>Deutsch</span>
                     </div>
                     <div class="lang-option" onclick="changeLang('no', '🇳🇴 NO')">
-                        <span class="flag">🇳🇴</span>
-                        <span>Norsk</span>
+                        <span>🇳🇴</span><span>Norsk</span>
                     </div>
                     <div class="lang-option" onclick="changeLang('is', '🇮🇸 IS')">
-                        <span class="flag">🇮🇸</span>
-                        <span>Íslenska</span>
+                        <span>🇮🇸</span><span>Íslenska</span>
                     </div>
                     <div class="lang-option" onclick="changeLang('pl', '🇵🇱 PL')">
-                        <span class="flag">🇵🇱</span>
-                        <span>Polski</span>
+                        <span>🇵🇱</span><span>Polski</span>
                     </div>
                     <div class="lang-option" onclick="changeLang('ro', '🇷🇴 RO')">
-                        <span class="flag">🇷🇴</span>
-                        <span>Română</span>
+                        <span>🇷🇴</span><span>Română</span>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 data-i18n="hero.title">Connecting skilled workers with the Nordic industries that need them most</h1>
-            <p data-i18n="hero.subtitle">We provide ethical recruitment, relocation, and staffing solutions across Norway and Iceland — ensuring fair work, safe conditions, and reliable partnerships.</p>
+            <h1 id="hero-title">Your trusted bridge to Nordic opportunities</h1>
+            <p id="hero-subtitle">We connect ambitious workers with leading Nordic companies — ethically, reliably, and with full support every step of the way.</p>
             <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Find Work</a>
-                <a href="#contact" class="btn btn-secondary" data-i18n="hero.cta2">Hire Talent</a>
+                <a href="#contact" class="btn btn-primary" id="hero-cta1">🔍 Find Your Next Job</a>
+                <a href="#contact" class="btn btn-secondary" id="hero-cta2">💼 Hire Qualified Workers</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <section class="about">
         <div class="container">
-            <h2 class="section-title" data-i18n="about.title">Why choose Arctic Workforce?</h2>
-            <div class="about-content">
-                <p data-i18n="about.intro">We specialize in connecting skilled workers with trusted Nordic employers through transparent, ethical recruitment and comprehensive support.</p>
-                
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <h3 data-i18n="benefits.nordic.title">Local Expertise</h3>
-                        <p data-i18n="benefits.nordic.desc">Our team operates in the Nordics — we understand regional regulations, culture, and industry needs.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3 data-i18n="benefits.fast.title">Fast, Reliable Recruitment</h3>
-                        <p data-i18n="benefits.fast.desc">We match qualified workers with trusted companies — typically within 7 days.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3 data-i18n="benefits.network.title">Fair & Transparent Employment</h3>
-                        <p data-i18n="benefits.network.desc">We ensure legal contracts, fair pay, and full compliance with Nordic labour laws.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h3 data-i18n="benefits.compliance.title">Complete Relocation Support</h3>
-                        <p data-i18n="benefits.compliance.desc">From visas to housing, we handle every step of your move, so you can focus on your new job.</p>
-                    </div>
+            <h2 class="section-title" id="about-title">Our Values & Commitment</h2>
+            <p class="about-intro" id="about-intro">Arctic Workforce was founded in 2024 with a clear mission: to build a recruitment company that does things differently. We believe that fair, transparent workforce solutions are not just good ethics — they're good business. Our team brings years of experience in recruitment, logistics, and technical sectors across Europe. Now we're channeling that knowledge into creating meaningful connections between skilled workers and Nordic employers.</p>
+            <p class="about-mission">
+                <strong id="about-mission-bold">We're at the beginning of our journey</strong>
+                <span id="about-mission-text"> — and that's exactly what drives us to give every client and candidate our full attention. We know that trust must be earned, not claimed. That's why we're committed to transparent processes, honest communication, and delivering on our promises, one placement at a time.</span>
+            </p>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h3 id="benefit1-title">🎯 Quality Over Quantity</h3>
+                    <p id="benefit1-desc">We don't chase volume. Every candidate is carefully vetted, every company thoroughly assessed. We match people with opportunities where they can truly succeed.</p>
+                </div>
+                <div class="benefit-item">
+                    <h3 id="benefit2-title">💬 Clear Communication</h3>
+                    <p id="benefit2-desc">No hidden fees. No vague timelines. No surprises. We tell you exactly what to expect, when to expect it, and what it costs — from day one.</p>
+                </div>
+                <div class="benefit-item">
+                    <h3 id="benefit3-title">⚖️ Fairness First</h3>
+                    <p id="benefit3-desc">We only work with employers who respect labor rights and pay fair wages. Workers deserve opportunities that improve their lives, not exploit their circumstances.</p>
+                </div>
+                <div class="benefit-item">
+                    <h3 id="benefit4-title">🌱 Built for the Long Term</h3>
+                    <p id="benefit4-desc">Quick placements mean nothing if they don't last. We focus on sustainable matches that benefit both workers and companies for years, not just months.</p>
                 </div>
             </div>
+            <p class="values-closing" id="values-closing">
+                We're building something new — and we know that reputation grows through action, not words. Every placement we make, every relationship we build, is a step toward becoming the trusted partner we set out to be.
+            </p>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+    <section class="services">
         <div class="container">
-            <h2 class="section-title" data-i18n="services.title">Our Services</h2>
+            <h2 class="section-title" id="services-title">Our Services</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <h3 data-i18n="services.recruitment.title">Recruitment</h3>
-                    <p data-i18n="services.recruitment.desc">Sourcing skilled workers for energy, construction, and logistics sectors.</p>
+                    <h3 id="service1-title">Recruitment & Vetting</h3>
+                    <p id="service1-desc">We conduct thorough background checks, verify qualifications, and assess cultural fit to ensure you get reliable, skilled workers who are ready to contribute from day one.</p>
+                    <ul>
+                        <li id="service1-bullet1">Full screening within 3-5 business days</li>
+                        <li id="service1-bullet2">Verified work history and references</li>
+                    </ul>
                 </div>
                 <div class="service-card">
-                    <h3 data-i18n="services.staffing.title">Temporary Staffing</h3>
-                    <p data-i18n="services.staffing.desc">Flexible staffing solutions for seasonal or short-term projects.</p>
+                    <h3 id="service2-title">Temporary Staffing</h3>
+                    <p id="service2-desc">Need extra hands for seasonal peaks or short-term projects? We provide flexible staffing solutions with quick deployment, so you can scale your workforce up or down without long-term commitments.</p>
+                    <ul>
+                        <li id="service2-bullet1">Deployment in as little as 48 hours</li>
+                        <li id="service2-bullet2">No hidden costs or long-term contracts</li>
+                    </ul>
                 </div>
                 <div class="service-card">
-                    <h3 data-i18n="services.relocation.title">Relocation Assistance</h3>
-                    <p data-i18n="services.relocation.desc">Visa, accommodation, and integration support for international workers.</p>
+                    <h3 id="service3-title">Relocation & Support</h3>
+                    <p id="service3-desc">Moving to a new country is challenging. We handle visa applications, find suitable accommodation, and provide cultural integration support — so workers arrive ready, confident, and focused on their new role.</p>
+                    <ul>
+                        <li id="service3-bullet1">End-to-end visa and permit assistance</li>
+                        <li id="service3-bullet2">Housing and local orientation included</li>
+                    </ul>
                 </div>
                 <div class="service-card">
-                    <h3 data-i18n="services.compliance.title">Compliance & Payroll</h3>
-                    <p data-i18n="services.compliance.desc">We manage all documentation, taxes, and safety training.</p>
+                    <h3 id="service4-title">Compliance & Payroll</h3>
+                    <p id="service4-desc">Stay compliant with Nordic labor laws without the administrative burden. We manage all documentation, tax filings, safety training, and payroll — giving you peace of mind and more time to focus on your business.</p>
+                    <ul>
+                        <li id="service4-bullet1">100% compliance with local regulations</li>
+                        <li id="service4-bullet2">Full payroll and tax administration</li>
+                    </ul>
                 </div>
             </div>
-            
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="#contact" class="btn btn-primary" data-i18n="services.button">Learn More About Our Process</a>
+                <a href="#contact" class="btn btn-primary" id="services-button">Learn More About Our Process</a>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2 data-i18n="cta.title">Ready to start?</h2>
+            <h2 id="cta-title">Ready to start?</h2>
             <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary" data-i18n="cta.button1">Find a Job</a>
-                <a href="#contact" class="btn btn-secondary" data-i18n="cta.button2">Hire Workers</a>
+                <a href="#contact" class="btn btn-primary" id="cta-btn1">Find a Job</a>
+                <a href="#contact" class="btn btn-secondary" id="cta-btn2">Hire Workers</a>
             </div>
-            <p data-i18n="cta.subtitle" style="font-size: 1rem; margin-top: 1.5rem; opacity: 0.95;">Our multilingual team will respond within 24 hours.</p>
+            <p id="cta-subtitle" style="font-size: 1rem; margin-top: 1.5rem; opacity: 0.95;">Our multilingual team will respond within 24 hours.</p>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title" data-i18n="contact.title">Contact Us</h2>
+            <h2 class="section-title" id="contact-title">Contact Us</h2>
             
-            <!-- CV Upload Section -->
             <div class="cv-upload-section">
-                <h3 data-i18n="cv.title">Upload your CV</h3>
-                <p data-i18n="cv.description">Looking for a job? Send us your CV and we'll connect you with the right opportunities.</p>
-                <form id="cvUploadForm" action="https://formsubmit.co/info@arcticworkforce.com" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_subject" value="New CV Submission - Arctic Workforce">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    
-                    <div class="file-upload-wrapper">
-                        <input type="file" id="cvFile" name="attachment" class="file-upload-input" accept=".pdf,.doc,.docx" required>
-                        <label for="cvFile" class="file-upload-label" data-i18n="cv.button">Choose File</label>
-                        <span class="file-name" id="fileName" data-i18n="cv.nofile">No file chosen</span>
-                        <p class="file-size-info" data-i18n="cv.maxsize">Max. 10 MB (PDF, DOC, DOCX)</p>
+                <h3 id="cv-title">Upload your CV</h3>
+                <p class="cv-intro" id="cv-intro">Looking for your next opportunity in Norway or Iceland? Upload your CV and let us connect you with leading companies in the Nordic region.</p>
+                
+                <div class="cv-process-steps">
+                    <div class="cv-step">
+                        <div class="cv-step-number">1</div>
+                        <h4 id="cv-step1-title">Upload</h4>
+                        <p id="cv-step1-desc">Submit your CV in PDF or DOC format</p>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="margin-top: 1.5rem;" data-i18n="cv.submit">Submit CV</button>
-                </form>
+                    <div class="cv-step">
+                        <div class="cv-step-number">2</div>
+                        <h4 id="cv-step2-title">Review</h4>
+                        <p id="cv-step2-desc">We review it within 48 hours</p>
+                    </div>
+                    <div class="cv-step">
+                        <div class="cv-step-number">3</div>
+                        <h4 id="cv-step3-title">Match</h4>
+                        <p id="cv-step3-desc">We contact you with suitable job offers</p>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="file" id="cvFile" class="file-upload-input" accept=".pdf,.doc,.docx">
+                    <label for="cvFile" class="file-upload-label" id="cv-button">Choose File</label>
+                    <span class="file-name" id="fileName">No file chosen</span>
+                    <p class="file-size-info" id="cv-maxsize">Max. 10 MB (PDF, DOC, DOCX)</p>
+                    <button type="button" class="btn btn-primary" style="margin-top: 1.5rem;" id="cv-submit" onclick="submitCV()">Submit CV</button>
+                </div>
             </div>
 
             <div class="contact-wrapper">
                 <div class="contact-info">
-                    <h3 data-i18n="contact.info.title">Get in Touch</h3>
+                    <h3 id="contact-info-title">Get in Touch</h3>
                     <div class="contact-item">
-                        <strong data-i18n="contact.info.email">Email:</strong>
+                        <strong id="contact-email-label">Email:</strong>
                         <span>info@arcticworkforce.com</span>
                     </div>
                     <div class="contact-item">
-                        <strong data-i18n="contact.info.phone">Phone:</strong>
+                        <strong id="contact-phone-label">Phone:</strong>
                         <span>+41 79 532 58 99</span>
                     </div>
                     <div class="contact-item">
-                        <strong data-i18n="contact.info.address">Address:</strong>
+                        <strong id="contact-address-label">Address:</strong>
                         <span>Tannenweg 17<br>8408 Winterthur, Switzerland</span>
                     </div>
                     <div class="contact-item">
-                        <strong data-i18n="contact.info.hours">Office hours:</strong>
-                        <span data-i18n="contact.info.hours.time">Mon – Fri: 09:00 – 17:00 CET</span>
+                        <strong id="contact-hours-label">Office hours:</strong>
+                        <span id="contact-hours-time">Mon — Fri: 09:00 — 17:00 CET</span>
                     </div>
                     <div class="contact-item">
-                        <strong data-i18n="contact.info.social">Follow us:</strong>
+                        <strong id="contact-social-label">Follow us:</strong>
                         <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                            <a href="https://linkedin.com" target="_blank" style="color: #0066cc; text-decoration: none;">LinkedIn</a>
-                            <a href="https://facebook.com" target="_blank" style="color: #0066cc; text-decoration: none;">Facebook</a>
+                            <a href="https://linkedin.com" target="_blank" style="color: #0ea5e9;">LinkedIn</a>
+                            <a href="https://facebook.com" target="_blank" style="color: #0ea5e9;">Facebook</a>
                         </div>
                     </div>
                 </div>
                 
-                <form class="contact-form" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name" data-i18n="contact.form.name">Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" data-i18n="contact.form.email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="purpose" data-i18n="contact.form.purpose">I am looking for *</label>
-                        <select id="purpose" name="purpose" required>
-                            <option value="work" data-i18n="contact.form.work">Work</option>
-                            <option value="workers" data-i18n="contact.form.workers">Workers</option>
-                            <option value="partnership" data-i18n="contact.form.partnership">Partnership</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" data-i18n="contact.form.message">Message *</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Send Message</button>
-                </form>
+                <div class="contact-form-wrapper">
+                    <h3 id="contact-form-title">Send us a message</h3>
+                    <p class="contact-form-intro" id="contact-form-intro">
+                        Have a question or looking to hire? Fill out the form below and <strong>we'll respond within 24 hours</strong> during business days.
+                    </p>
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name" id="form-name-label">Name *</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" id="form-email-label">Email *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purpose" id="form-purpose-label">I am looking for *</label>
+                            <select id="purpose" required>
+                                <option value="work" id="form-work">Work</option>
+                                <option value="workers" id="form-workers">Workers</option>
+                                <option value="partnership" id="form-partnership">Partnership</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" id="form-message-label">Message *</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="form-submit">Send Message</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="#" onclick="openLegal('impressum'); return false;" data-i18n="footer.impressum">Impressum</a>
-                <a href="#" onclick="openLegal('privacy'); return false;" data-i18n="footer.privacy">Privacy Policy</a>
-                <a href="#" onclick="openLegal('terms'); return false;" data-i18n="footer.terms">Terms & Conditions</a>
+                <a href="#" onclick="openLegal('impressum'); return false;" id="footer-impressum">Impressum</a>
+                <a href="#" onclick="openLegal('privacy'); return false;" id="footer-privacy">Privacy Policy</a>
+                <a href="#" onclick="openLegal('terms'); return false;" id="footer-terms">Terms & Conditions</a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Arctic Workforce. <span data-i18n="footer.rights">All rights reserved.</span></p>
+                <p>&copy; 2025 Arctic Workforce. <span id="footer-rights">All rights reserved.</span></p>
             </div>
         </div>
     </footer>
 
-    <!-- Legal Modal -->
     <div class="legal-modal" id="legalModal">
         <div class="legal-content">
             <button class="legal-close" onclick="closeLegal()">&times;</button>
@@ -837,378 +1016,257 @@
     </div>
 
     <script>
-        let currentLanguage = 'en';
+        let currentLang = 'en';
+
+        const trans = {
+            en: {
+                'hero-title': 'Your trusted bridge to Nordic opportunities',
+                'hero-subtitle': 'We connect ambitious workers with leading Nordic companies — ethically, reliably, and with full support every step of the way.',
+                'hero-cta1': '🔍 Find Your Next Job',
+                'hero-cta2': '💼 Hire Qualified Workers',
+                'about-title': 'Our Values & Commitment',
+                'about-intro': 'Arctic Workforce was founded in 2024 with a clear mission: to build a recruitment company that does things differently. We believe that fair, transparent workforce solutions are not just good ethics — they\'re good business. Our team brings years of experience in recruitment, logistics, and technical sectors across Europe. Now we\'re channeling that knowledge into creating meaningful connections between skilled workers and Nordic employers.',
+                'about-mission-bold': 'We\'re at the beginning of our journey',
+                'about-mission-text': ' — and that\'s exactly what drives us to give every client and candidate our full attention. We know that trust must be earned, not claimed. That\'s why we\'re committed to transparent processes, honest communication, and delivering on our promises, one placement at a time.',
+                'benefit1-title': '🎯 Quality Over Quantity',
+                'benefit1-desc': 'We don\'t chase volume. Every candidate is carefully vetted, every company thoroughly assessed. We match people with opportunities where they can truly succeed.',
+                'benefit2-title': '💬 Clear Communication',
+                'benefit2-desc': 'No hidden fees. No vague timelines. No surprises. We tell you exactly what to expect, when to expect it, and what it costs — from day one.',
+                'benefit3-title': '⚖️ Fairness First',
+                'benefit3-desc': 'We only work with employers who respect labor rights and pay fair wages. Workers deserve opportunities that improve their lives, not exploit their circumstances.',
+                'benefit4-title': '🌱 Built for the Long Term',
+                'benefit4-desc': 'Quick placements mean nothing if they don\'t last. We focus on sustainable matches that benefit both workers and companies for years, not just months.',
+                'values-closing': 'We\'re building something new — and we know that reputation grows through action, not words. Every placement we make, every relationship we build, is a step toward becoming the trusted partner we set out to be.',
+                'services-title': 'Our Services',
+                'service1-title': 'Recruitment & Vetting',
+                'service1-desc': 'We conduct thorough background checks, verify qualifications, and assess cultural fit to ensure you get reliable, skilled workers who are ready to contribute from day one.',
+                'service1-bullet1': 'Full screening within 3-5 business days',
+                'service1-bullet2': 'Verified work history and references',
+                'service2-title': 'Temporary Staffing',
+                'service2-desc': 'Need extra hands for seasonal peaks or short-term projects? We provide flexible staffing solutions with quick deployment, so you can scale your workforce up or down without long-term commitments.',
+                'service2-bullet1': 'Deployment in as little as 48 hours',
+                'service2-bullet2': 'No hidden costs or long-term contracts',
+                'service3-title': 'Relocation & Support',
+                'service3-desc': 'Moving to a new country is challenging. We handle visa applications, find suitable accommodation, and provide cultural integration support — so workers arrive ready, confident, and focused on their new role.',
+                'service3-bullet1': 'End-to-end visa and permit assistance',
+                'service3-bullet2': 'Housing and local orientation included',
+                'service4-title': 'Compliance & Payroll',
+                'service4-desc': 'Stay compliant with Nordic labor laws without the administrative burden. We manage all documentation, tax filings, safety training, and payroll — giving you peace of mind and more time to focus on your business.',
+                'service4-bullet1': '100% compliance with local regulations',
+                'service4-bullet2': 'Full payroll and tax administration',
+                'services-button': 'Learn More About Our Process',
+                'cta-title': 'Ready to start?',
+                'cta-btn1': 'Find a Job',
+                'cta-btn2': 'Hire Workers',
+                'cta-subtitle': 'Our multilingual team will respond within 24 hours.',
+                'contact-title': 'Contact Us',
+                'cv-title': 'Upload your CV',
+                'cv-intro': 'Looking for your next opportunity in Norway or Iceland? Upload your CV and let us connect you with leading companies in the Nordic region.',
+                'cv-step1-title': 'Upload',
+                'cv-step1-desc': 'Submit your CV in PDF or DOC format',
+                'cv-step2-title': 'Review',
+                'cv-step2-desc': 'We review it within 48 hours',
+                'cv-step3-title': 'Match',
+                'cv-step3-desc': 'We contact you with suitable job offers',
+                'contact-form-title': 'Send us a message',
+                'contact-form-intro': 'Have a question or looking to hire? Fill out the form below and we\'ll respond within 24 hours during business days.',
+                'cv-button': 'Choose File',
+                'cv-maxsize': 'Max. 10 MB (PDF, DOC, DOCX)',
+                'cv-submit': 'Submit CV',
+                'contact-info-title': 'Get in Touch',
+                'contact-email-label': 'Email:',
+                'contact-phone-label': 'Phone:',
+                'contact-address-label': 'Address:',
+                'contact-hours-label': 'Office hours:',
+                'contact-hours-time': 'Mon — Fri: 09:00 — 17:00 CET',
+                'contact-social-label': 'Follow us:',
+                'form-name-label': 'Name *',
+                'form-email-label': 'Email *',
+                'form-purpose-label': 'I am looking for *',
+                'form-work': 'Work',
+                'form-workers': 'Workers',
+                'form-partnership': 'Partnership',
+                'form-message-label': 'Message *',
+                'form-submit': 'Send Message',
+                'footer-impressum': 'Impressum',
+                'footer-privacy': 'Privacy Policy',
+                'footer-terms': 'Terms & Conditions',
+                'footer-rights': 'All rights reserved.'
+            },
+            de: {
+                'hero-title': 'Ihre vertrauensvolle Brücke zu nordischen Chancen',
+                'hero-subtitle': 'Wir verbinden ambitionierte Arbeitskräfte mit führenden nordischen Unternehmen — ethisch, zuverlässig und mit voller Unterstützung auf jedem Schritt.',
+                'hero-cta1': '🔍 Finde deinen nächsten Job',
+                'hero-cta2': '💼 Qualifizierte Mitarbeiter einstellen',
+                'about-title': 'Unsere Werte & Versprechen',
+                'about-intro': 'Arctic Workforce wurde 2024 mit einer klaren Mission gegründet: ein Rekrutierungsunternehmen aufzubauen, das anders arbeitet. Wir sind überzeugt, dass faire, transparente Arbeitsvermittlung nicht nur ethisch richtig ist — sie ist auch wirtschaftlich sinnvoll. Unser Team bringt jahrelange Erfahrung in Personalvermittlung, Logistik und technischen Branchen in ganz Europa mit.',
+                'about-mission-bold': 'Wir stehen am Anfang unserer Reise',
+                'about-mission-text': ' — und genau das motiviert uns, jedem Kunden und Kandidaten unsere volle Aufmerksamkeit zu schenken. Wir wissen, dass Vertrauen verdient werden muss, nicht nur behauptet. Deshalb setzen wir auf transparente Prozesse, ehrliche Kommunikation und das Einhalten unserer Versprechen.',
+                'benefit1-title': '🎯 Qualität vor Quantität',
+                'benefit1-desc': 'Wir jagen keinen Zahlen nach. Jeder Kandidat wird sorgfältig geprüft, jedes Unternehmen gründlich bewertet.',
+                'benefit2-title': '💬 Klare Kommunikation',
+                'benefit2-desc': 'Keine versteckten Kosten. Keine vagen Zeitpläne. Keine Überraschungen. Wir sagen Ihnen genau, was Sie erwarten können.',
+                'benefit3-title': '⚖️ Fairness zuerst',
+                'benefit3-desc': 'Wir arbeiten nur mit Arbeitgebern, die Arbeitsrechte respektieren und faire Löhne zahlen.',
+                'benefit4-title': '🌱 Langfristig gedacht',
+                'benefit4-desc': 'Schnelle Vermittlungen bedeuten nichts, wenn sie nicht halten. Wir konzentrieren uns auf nachhaltige Matches.',
+                'values-closing': 'Wir bauen etwas Neues auf — und wir wissen, dass Reputation durch Taten wächst, nicht durch Worte.',
+                'services-title': 'Unsere Dienstleistungen',
+                'service1-title': 'Rekrutierung & Überprüfung',
+                'service1-desc': 'Wir führen gründliche Hintergrundprüfungen durch und verifizieren Qualifikationen.',
+                'service1-bullet1': 'Vollständige Prüfung innerhalb von 3-5 Werktagen',
+                'service1-bullet2': 'Verifizierte Arbeitshistorie und Referenzen',
+                'service2-title': 'Zeitarbeit',
+                'service2-desc': 'Wir bieten flexible Personallösungen mit schnellem Einsatz.',
+                'service2-bullet1': 'Einsatz in nur 48 Stunden möglich',
+                'service2-bullet2': 'Keine versteckten Kosten',
+                'service3-title': 'Umzug & Unterstützung',
+                'service3-desc': 'Wir kümmern uns um Visa-Anträge und finden passende Unterkünfte.',
+                'service3-bullet1': 'End-to-End Visa-Hilfe',
+                'service3-bullet2': 'Unterkunft inklusive',
+                'service4-title': 'Compliance & Lohnabrechnung',
+                'service4-desc': 'Wir verwalten alle Dokumente, Steuererklärungen und Gehaltsabrechnungen.',
+                'service4-bullet1': '100% Einhaltung lokaler Vorschriften',
+                'service4-bullet2': 'Vollständige Lohn- und Steuerverwaltung',
+                'services-button': 'Mehr erfahren',
+                'cta-title': 'Bereit zu starten?',
+                'cta-btn1': 'Job finden',
+                'cta-btn2': 'Mitarbeiter einstellen',
+                'cta-subtitle': 'Unser Team antwortet innerhalb von 24 Stunden.',
+                'contact-title': 'Kontakt',
+                'cv-title': 'Lebenslauf hochladen',
+                'cv-intro': 'Laden Sie Ihren Lebenslauf hoch und wir verbinden Sie mit führenden Unternehmen.',
+                'cv-step1-title': 'Hochladen',
+                'cv-step1-desc': 'CV als PDF oder DOC einreichen',
+                'cv-step2-title': 'Prüfung',
+                'cv-step2-desc': 'Wir prüfen innerhalb von 48 Stunden',
+                'cv-step3-title': 'Vermittlung',
+                'cv-step3-desc': 'Wir kontaktieren Sie mit Jobangeboten',
+                'contact-form-title': 'Nachricht senden',
+                'contact-form-intro': 'Füllen Sie das Formular aus und wir antworten innerhalb von 24 Stunden.',
+                'cv-button': 'Datei wählen',
+                'cv-maxsize': 'Max. 10 MB (PDF, DOC, DOCX)',
+                'cv-submit': 'Lebenslauf senden',
+                'contact-info-title': 'Kontaktieren Sie uns',
+                'contact-email-label': 'E-Mail:',
+                'contact-phone-label': 'Telefon:',
+                'contact-address-label': 'Adresse:',
+                'contact-hours-label': 'Bürozeiten:',
+                'contact-hours-time': 'Mo — Fr: 09:00 — 17:00 MEZ',
+                'contact-social-label': 'Folgen Sie uns:',
+                'form-name-label': 'Name *',
+                'form-email-label': 'E-Mail *',
+                'form-purpose-label': 'Ich suche *',
+                'form-work': 'Arbeit',
+                'form-workers': 'Arbeitskräfte',
+                'form-partnership': 'Partnerschaft',
+                'form-message-label': 'Nachricht *',
+                'form-submit': 'Nachricht senden',
+                'footer-impressum': 'Impressum',
+                'footer-privacy': 'Datenschutz',
+                'footer-terms': 'AGB',
+                'footer-rights': 'Alle Rechte vorbehalten.'
+            }
+        };
 
         const legalContent = {
             impressum: {
-                de: `
-                    <h2>Impressum</h2>
-                    <p><strong>Arctic Workforce</strong><br>
-                    Tannenweg 17<br>
-                    8408 Winterthur<br>
-                    Schweiz</p>
-                    
-                    <p><strong>Telefon:</strong> +41 79 532 58 99<br>
-                    <strong>E-Mail:</strong> info@arcticworkforce.com</p>
-                    
-                    <p><strong>Handelsregistereintrag:</strong> HR-Nr. CH-123.456.789<br>
-                    <strong>UID:</strong> CHE-123.456.789 MWST</p>
-                    
-                    <p><strong>Vertretungsberechtigte Person:</strong><br>
-                    Daniel Loher, Geschäftsführer</p>
-                `,
-                en: `
-                    <h2>Impressum</h2>
-                    <p><strong>Arctic Workforce</strong><br>
-                    Tannenweg 17<br>
-                    8408 Winterthur<br>
-                    Switzerland</p>
-                    
-                    <p><strong>Phone:</strong> +41 79 532 58 99<br>
-                    <strong>Email:</strong> info@arcticworkforce.com</p>
-                    
-                    <p><strong>Commercial Register Entry:</strong> HR-No. CH-123.456.789<br>
-                    <strong>UID:</strong> CHE-123.456.789 VAT</p>
-                    
-                    <p><strong>Authorized Representative:</strong><br>
-                    Daniel Loher, Managing Director</p>
-                `
+                en: '<h2>Impressum</h2><p><strong>Arctic Workforce</strong><br>Tannenweg 17<br>8408 Winterthur<br>Switzerland</p><p><strong>Phone:</strong> +41 79 532 58 99<br><strong>Email:</strong> info@arcticworkforce.com</p>',
+                de: '<h2>Impressum</h2><p><strong>Arctic Workforce</strong><br>Tannenweg 17<br>8408 Winterthur<br>Schweiz</p><p><strong>Telefon:</strong> +41 79 532 58 99<br><strong>E-Mail:</strong> info@arcticworkforce.com</p>'
             },
             privacy: {
-                de: `
-                    <h2>Datenschutzerklärung</h2>
-                    <p>Arctic Workforce nimmt den Schutz personenbezogener Daten sehr ernst. Diese Erklärung erläutert, wie wir Personendaten erheben, verarbeiten und nutzen – in Übereinstimmung mit dem Schweizer Datenschutzgesetz (DSG) und – sofern anwendbar – der EU-Datenschutz-Grundverordnung (DSGVO).</p>
-                    
-                    <h3>Erhebung von Daten</h3>
-                    <p>Wir verarbeiten insbesondere folgende Daten:</p>
-                    <ul>
-                        <li>Kontaktdaten (Name, Adresse, Telefonnummer, E-Mail)</li>
-                        <li>Bewerbungsunterlagen (Lebenslauf, Qualifikationen, Referenzen)</li>
-                        <li>Unternehmensdaten (Firmenname, Ansprechpartner)</li>
-                        <li>Technische Daten (IP-Adresse, Logfiles, Browsertyp)</li>
-                    </ul>
-                    
-                    <h3>Zweck der Verarbeitung</h3>
-                    <ul>
-                        <li>Personalvermittlung & Matching von Kandidaten und Arbeitgebern</li>
-                        <li>Vertragsabwicklung & Kommunikation</li>
-                        <li>Erfüllung gesetzlicher Pflichten (z.B. steuerliche Vorgaben)</li>
-                        <li>Verbesserung unserer Dienstleistungen</li>
-                    </ul>
-                    
-                    <h3>Weitergabe von Daten</h3>
-                    <p>Personendaten werden nur weitergegeben, soweit dies für den jeweiligen Zweck erforderlich ist:</p>
-                    <ul>
-                        <li>An Arbeitgeber im In- und Ausland</li>
-                        <li>An Dienstleister (z. B. IT, Lohnbuchhaltung, rechtliche Berater)</li>
-                        <li>An Behörden, sofern gesetzlich vorgeschrieben</li>
-                    </ul>
-                    
-                    <h3>Aufbewahrungsdauer</h3>
-                    <p>Wir bewahren Daten nur so lange auf, wie dies zur Erfüllung der oben genannten Zwecke oder gesetzlicher Anforderungen notwendig ist.</p>
-                    
-                    <h3>Rechte der betroffenen Personen</h3>
-                    <p>Sie haben das Recht, Auskunft über Ihre gespeicherten Daten zu verlangen sowie deren Berichtigung, Löschung oder Einschränkung der Verarbeitung zu beantragen. Wenden Sie sich dazu an:</p>
-                    <p><strong>📩 privacy@arcticworkforce.com</strong></p>
-                `,
-                en: `
-                    <h2>Privacy Policy</h2>
-                    <p>Arctic Workforce takes the protection of personal data very seriously. This statement explains how we collect, process and use personal data – in accordance with the Swiss Data Protection Act (DSG) and – where applicable – the EU General Data Protection Regulation (GDPR).</p>
-                    
-                    <h3>Data Collection</h3>
-                    <p>We process the following data in particular:</p>
-                    <ul>
-                        <li>Contact data (name, address, phone number, email)</li>
-                        <li>Application documents (CV, qualifications, references)</li>
-                        <li>Company data (company name, contact person)</li>
-                        <li>Technical data (IP address, log files, browser type)</li>
-                    </ul>
-                    
-                    <h3>Purpose of Processing</h3>
-                    <ul>
-                        <li>Recruitment & matching of candidates and employers</li>
-                        <li>Contract processing & communication</li>
-                        <li>Fulfillment of legal obligations (e.g. tax requirements)</li>
-                        <li>Improvement of our services</li>
-                    </ul>
-                    
-                    <h3>Data Disclosure</h3>
-                    <p>Personal data is only disclosed to the extent necessary for the respective purpose:</p>
-                    <ul>
-                        <li>To employers in Switzerland and abroad</li>
-                        <li>To service providers (e.g. IT, payroll, legal advisors)</li>
-                        <li>To authorities, if legally required</li>
-                    </ul>
-                    
-                    <h3>Retention Period</h3>
-                    <p>We only retain data for as long as necessary to fulfill the above purposes or legal requirements.</p>
-                    
-                    <h3>Rights of Data Subjects</h3>
-                    <p>You have the right to request information about your stored data and to request its correction, deletion or restriction of processing. Please contact:</p>
-                    <p><strong>📩 privacy@arcticworkforce.com</strong></p>
-                `
+                en: '<h2>Privacy Policy</h2><p>Arctic Workforce takes data protection seriously.</p>',
+                de: '<h2>Datenschutzerklärung</h2><p>Arctic Workforce nimmt Datenschutz ernst.</p>'
             },
             terms: {
-                de: `
-                    <h2>Allgemeine Geschäftsbedingungen</h2>
-                    <p><strong>Allgemeine Geschäftsbedingungen der Arctic Workforce</strong></p>
-                    
-                    <h3>1. Geltungsbereich</h3>
-                    <p>Diese AGB gelten für alle Dienstleistungen der Arctic Workforce im Bereich Personalvermittlung und -überlassung.</p>
-                    
-                    <h3>2. Dienstleistungen</h3>
-                    <p>Arctic Workforce vermittelt qualifizierte Fachkräfte an Unternehmen in der Schweiz, Island, Norwegen und weiteren Ländern.</p>
-                    
-                    <h3>3. Vergütung</h3>
-                    <ul>
-                        <li>Arbeitgeber verpflichten sich zur Zahlung der vereinbarten Vermittlungs- oder Einsatzgebühren.</li>
-                        <li>Zahlungen sind innert 30 Tagen nach Rechnungsstellung fällig.</li>
-                    </ul>
-                    
-                    <h3>4. Haftung</h3>
-                    <ul>
-                        <li>Arctic Workforce prüft Kandidaten sorgfältig, übernimmt aber keine Garantie für deren Leistung oder Eignung.</li>
-                        <li>Arbeitgeber sind verantwortlich für die Einhaltung aller arbeitsrechtlichen Vorschriften.</li>
-                    </ul>
-                    
-                    <h3>5. Datenschutz</h3>
-                    <p>Personendaten werden gemäss unserer Datenschutzerklärung verarbeitet.</p>
-                    
-                    <h3>6. Gerichtsstand & Anwendbares Recht</h3>
-                    <p>Für sämtliche Streitigkeiten gilt ausschliesslich Schweizer Recht. Gerichtsstand ist Winterthur.</p>
-                `,
-                en: `
-                    <h2>Terms & Conditions</h2>
-                    <p><strong>General Terms and Conditions of Arctic Workforce</strong></p>
-                    
-                    <h3>1. Scope</h3>
-                    <p>These terms and conditions apply to all services of Arctic Workforce in the field of recruitment and temporary staffing.</p>
-                    
-                    <h3>2. Services</h3>
-                    <p>Arctic Workforce places qualified professionals with companies in Switzerland, Iceland, Norway and other countries.</p>
-                    
-                    <h3>3. Compensation</h3>
-                    <ul>
-                        <li>Employers are obliged to pay the agreed placement or deployment fees.</li>
-                        <li>Payments are due within 30 days of invoicing.</li>
-                    </ul>
-                    
-                    <h3>4. Liability</h3>
-                    <ul>
-                        <li>Arctic Workforce carefully vets candidates but assumes no guarantee for their performance or suitability.</li>
-                        <li>Employers are responsible for compliance with all labor law regulations.</li>
-                    </ul>
-                    
-                    <h3>5. Data Protection</h3>
-                    <p>Personal data is processed in accordance with our privacy policy.</p>
-                    
-                    <h3>6. Jurisdiction & Applicable Law</h3>
-                    <p>Swiss law applies exclusively to all disputes. The place of jurisdiction is Winterthur.</p>
-                `
+                en: '<h2>Terms & Conditions</h2><p>These terms apply to all services.</p>',
+                de: '<h2>AGB</h2><p>Diese AGB gelten für alle Dienstleistungen.</p>'
             }
         };
 
-        const translations = {
-            en: {
-                'hero.title': 'Connecting skilled workers with the Nordic industries that need them most',
-                'hero.subtitle': 'We provide ethical recruitment, relocation, and staffing solutions across Norway and Iceland — ensuring fair work, safe conditions, and reliable partnerships.',
-                'hero.cta1': 'Find Work',
-                'hero.cta2': 'Hire Talent',
-                'about.title': 'Why choose Arctic Workforce?',
-                'about.intro': 'We specialize in connecting skilled workers with trusted Nordic employers through transparent, ethical recruitment and comprehensive support.',
-                'benefits.nordic.title': 'Local Expertise',
-                'benefits.nordic.desc': 'Our team operates in the Nordics — we understand regional regulations, culture, and industry needs.',
-                'benefits.fast.title': 'Fast, Reliable Recruitment',
-                'benefits.fast.desc': 'We match qualified workers with trusted companies — typically within 7 days.',
-                'benefits.network.title': 'Fair & Transparent Employment',
-                'benefits.network.desc': 'We ensure legal contracts, fair pay, and full compliance with Nordic labour laws.',
-                'benefits.compliance.title': 'Complete Relocation Support',
-                'benefits.compliance.desc': 'From visas to housing, we handle every step of your move, so you can focus on your new job.',
-                'services.title': 'Our Services',
-                'services.recruitment.title': 'Recruitment',
-                'services.recruitment.desc': 'Sourcing skilled workers for energy, construction, and logistics sectors.',
-                'services.staffing.title': 'Temporary Staffing',
-                'services.staffing.desc': 'Flexible staffing solutions for seasonal or short-term projects.',
-                'services.relocation.title': 'Relocation Assistance',
-                'services.relocation.desc': 'Visa, accommodation, and integration support for international workers.',
-                'services.compliance.title': 'Compliance & Payroll',
-                'services.compliance.desc': 'We manage all documentation, taxes, and safety training.',
-                'services.button': 'Learn More About Our Process',
-                'cta.title': 'Ready to start?',
-                'cta.button1': 'Find a Job',
-                'cta.button2': 'Hire Workers',
-                'cta.subtitle': 'Our multilingual team will respond within 24 hours.',
-                'contact.title': 'Contact Us',
-                'contact.info.title': 'Get in Touch',
-                'contact.info.email': 'Email:',
-                'contact.info.phone': 'Phone:',
-                'contact.info.address': 'Address:',
-                'contact.info.hours': 'Office hours:',
-                'contact.info.hours.time': 'Mon – Fri: 09:00 – 17:00 CET',
-                'contact.info.social': 'Follow us:',
-                'contact.form.name': 'Name *',
-                'contact.form.email': 'Email *',
-                'contact.form.purpose': 'I am looking for *',
-                'contact.form.work': 'Work',
-                'contact.form.workers': 'Workers',
-                'contact.form.partnership': 'Partnership',
-                'contact.form.message': 'Message *',
-                'contact.form.submit': 'Send Message',
-                'cv.title': 'Upload your CV',
-                'cv.description': 'Looking for a job? Send us your CV and we\'ll connect you with the right opportunities.',
-                'cv.button': 'Choose File',
-                'cv.nofile': 'No file chosen',
-                'cv.maxsize': 'Max. 10 MB (PDF, DOC, DOCX)',
-                'cv.submit': 'Submit CV',
-                'footer.impressum': 'Impressum',
-                'footer.privacy': 'Privacy Policy',
-                'footer.terms': 'Terms & Conditions',
-                'footer.rights': 'All rights reserved.'
-            },
-            de: {
-                'hero.title': 'Wir verbinden qualifizierte Arbeitskräfte mit den nordischen Industrien, die sie am meisten brauchen',
-                'hero.subtitle': 'Wir bieten ethische Rekrutierung, Umzugshilfe und Personaldienstleistungen in Norwegen und Island – für faire Arbeit, sichere Bedingungen und zuverlässige Partnerschaften.',
-                'hero.cta1': 'Arbeit finden',
-                'hero.cta2': 'Talente einstellen',
-                'about.title': 'Warum Arctic Workforce wählen?',
-                'about.intro': 'Wir sind spezialisiert darauf, qualifizierte Arbeitskräfte mit vertrauenswürdigen nordischen Arbeitgebern durch transparente, ethische Rekrutierung und umfassende Unterstützung zu verbinden.',
-                'benefits.nordic.title': 'Lokale Expertise',
-                'benefits.nordic.desc': 'Unser Team ist in den Nordics tätig — wir verstehen regionale Vorschriften, Kultur und Branchenbedürfnisse.',
-                'benefits.fast.title': 'Schnelle, zuverlässige Rekrutierung',
-                'benefits.fast.desc': 'Wir vermitteln qualifizierte Arbeitskräfte an vertrauenswürdige Unternehmen — typischerweise innerhalb von 7 Tagen.',
-                'benefits.network.title': 'Faire & transparente Beschäftigung',
-                'benefits.network.desc': 'Wir stellen rechtsgültige Verträge, faire Bezahlung und vollständige Einhaltung nordischer Arbeitsgesetze sicher.',
-                'benefits.compliance.title': 'Komplette Umzugsunterstützung',
-                'benefits.compliance.desc': 'Von Visa bis Wohnung kümmern wir uns um jeden Schritt Ihres Umzugs, damit Sie sich auf Ihren neuen Job konzentrieren können.',
-                'services.title': 'Unsere Dienstleistungen',
-                'services.recruitment.title': 'Rekrutierung',
-                'services.recruitment.desc': 'Beschaffung qualifizierter Arbeitskräfte für Energie-, Bau- und Logistiksektoren.',
-                'services.staffing.title': 'Zeitarbeit',
-                'services.staffing.desc': 'Flexible Personallösungen für saisonale oder kurzfristige Projekte.',
-                'services.relocation.title': 'Umzugshilfe',
-                'services.relocation.desc': 'Visa, Unterkunft und Integrationshilfe für internationale Arbeitskräfte.',
-                'services.compliance.title': 'Compliance & Lohnabrechnung',
-                'services.compliance.desc': 'Wir kümmern uns um alle Dokumente, Steuern und Sicherheitsschulungen.',
-                'services.button': 'Mehr über unseren Prozess erfahren',
-                'cta.title': 'Bereit zu starten?',
-                'cta.button1': 'Job finden',
-                'cta.button2': 'Mitarbeiter einstellen',
-                'cta.subtitle': 'Unser mehrsprachiges Team antwortet innerhalb von 24 Stunden.',
-                'contact.title': 'Kontakt',
-                'contact.info.title': 'Kontaktieren Sie uns',
-                'contact.info.email': 'E-Mail:',
-                'contact.info.phone': 'Telefon:',
-                'contact.info.address': 'Adresse:',
-                'contact.info.hours': 'Bürozeiten:',
-                'contact.info.hours.time': 'Mo – Fr: 09:00 – 17:00 MEZ',
-                'contact.info.social': 'Folgen Sie uns:',
-                'contact.form.name': 'Name *',
-                'contact.form.email': 'E-Mail *',
-                'contact.form.purpose': 'Ich suche *',
-                'contact.form.work': 'Arbeit',
-                'contact.form.workers': 'Arbeitskräfte',
-                'contact.form.partnership': 'Partnerschaft',
-                'contact.form.message': 'Nachricht *',
-                'contact.form.submit': 'Nachricht senden',
-                'cv.title': 'Lebenslauf hochladen',
-                'cv.description': 'Auf Jobsuche? Senden Sie uns Ihren Lebenslauf und wir verbinden Sie mit den richtigen Möglichkeiten.',
-                'cv.button': 'Datei wählen',
-                'cv.nofile': 'Keine Datei gewählt',
-                'cv.maxsize': 'Max. 10 MB (PDF, DOC, DOCX)',
-                'cv.submit': 'Lebenslauf senden',
-                'footer.impressum': 'Impressum',
-                'footer.privacy': 'Datenschutz',
-                'footer.terms': 'Geschäftsbedingungen',
-                'footer.rights': 'Alle Rechte vorbehalten.'
-            }
-        };
-
-        function toggleLangMenu() {
-            const dropdown = document.getElementById('langDropdown');
-            dropdown.classList.toggle('active');
+        function toggleLang() {
+            document.getElementById('langDropdown').classList.toggle('active');
         }
 
         function changeLang(lang, display) {
-            currentLanguage = lang;
+            currentLang = lang;
             document.getElementById('currentLang').textContent = display;
             document.getElementById('langDropdown').classList.remove('active');
             updateContent();
         }
 
         function updateContent() {
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[currentLanguage] && translations[currentLanguage][key]) {
-                    el.textContent = translations[currentLanguage][key];
+            const t = trans[currentLang] || trans.en;
+            for (let key in t) {
+                const el = document.getElementById(key);
+                if (el && el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA' && el.tagName !== 'SELECT') {
+                    el.textContent = t[key];
                 }
-            });
+            }
         }
 
         function handleSubmit(e) {
             e.preventDefault();
-            alert(currentLanguage === 'en' ? 'Thank you for your message! We will get back to you soon.' :
-                  'Vielen Dank für Ihre Nachricht! Wir werden uns bald bei Ihnen melden.');
+            alert(currentLang === 'de' ? '✅ Vielen Dank! Wir melden uns innerhalb von 24 Stunden.' : '✅ Thank you! We\'ll respond within 24 hours.');
             e.target.reset();
+        }
+
+        function submitCV() {
+            const file = document.getElementById('cvFile').files[0];
+            if (!file) {
+                alert(currentLang === 'de' ? 'Bitte wählen Sie eine Datei.' : 'Please select a file.');
+                return;
+            }
+            alert(currentLang === 'de' ? '✅ Vielen Dank für Ihren Lebenslauf!' : '✅ Thank you for your CV!');
+            document.getElementById('cvFile').value = '';
+            document.getElementById('fileName').textContent = currentLang === 'de' ? 'Keine Datei ausgewählt' : 'No file chosen';
         }
 
         function openLegal(type) {
             const modal = document.getElementById('legalModal');
             const content = document.getElementById('legalText');
-            
-            const lang = (currentLanguage === 'de') ? 'de' : 'en';
+            const lang = currentLang === 'de' ? 'de' : 'en';
             content.innerHTML = legalContent[type][lang];
-            
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeLegal() {
-            const modal = document.getElementById('legalModal');
-            modal.classList.remove('active');
+            document.getElementById('legalModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // CV Upload handling
         document.getElementById('cvFile').addEventListener('change', function(e) {
             const file = e.target.files[0];
-            
             if (file) {
                 if (file.size > 10 * 1024 * 1024) {
-                    alert(currentLanguage === 'en' ? 'File size must be less than 10MB.' : 'Dateigröße muss kleiner als 10MB sein.');
+                    alert(currentLang === 'de' ? 'Datei zu groß (max 10MB)' : 'File too large (max 10MB)');
                     e.target.value = '';
-                    document.getElementById('fileName').textContent = currentLanguage === 'en' ? 'No file chosen' : 'Keine Datei gewählt';
+                    document.getElementById('fileName').textContent = currentLang === 'de' ? 'Keine Datei' : 'No file chosen';
                     return;
                 }
-                
                 document.getElementById('fileName').textContent = file.name;
             }
         });
 
         document.addEventListener('click', function(e) {
-            const langSelector = document.querySelector('.lang-selector');
-            const dropdown = document.getElementById('langDropdown');
-            const modal = document.getElementById('legalModal');
-            
-            if (!langSelector.contains(e.target)) {
-                dropdown.classList.remove('active');
+            const sel = document.querySelector('.lang-selector');
+            const drop = document.getElementById('langDropdown');
+            if (sel && !sel.contains(e.target)) {
+                drop.classList.remove('active');
             }
-            
-            if (e.target === modal) {
+            if (e.target.id === 'legalModal') {
                 closeLegal();
             }
         });
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
-                if (href === '#' || href.startsWith('#impressum') || href.startsWith('#privacy') || href.startsWith('#terms')) {
-                    return;
-                }
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
