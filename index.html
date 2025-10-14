@@ -7,597 +7,93 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: #2c3e50;
-            background: #ffffff;
-        }
-        
+        body { font-family: 'Inter', sans-serif; line-height: 1.7; color: #2c3e50; background: #ffffff; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        header {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
+        header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
         .logo img { height: 90px; width: auto; }
-        
         .lang-selector { position: relative; }
-        
-        .lang-btn {
-            background: #f0f9ff;
-            border: 2px solid #0ea5e9;
-            padding: 10px 18px;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .lang-btn:hover {
-            background: #0ea5e9;
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .lang-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: white;
-            border: 2px solid #0ea5e9;
-            border-radius: 12px;
-            margin-top: 8px;
-            min-width: 180px;
-            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
-        }
-        
+        .lang-btn { background: #f0f9ff; border: 2px solid #0ea5e9; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; transition: all 0.3s; }
+        .lang-btn:hover { background: #0ea5e9; color: white; transform: translateY(-2px); }
+        .lang-dropdown { display: none; position: absolute; top: 100%; right: 0; background: white; border: 2px solid #0ea5e9; border-radius: 12px; margin-top: 8px; min-width: 180px; box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15); }
         .lang-dropdown.active { display: block; }
-        
-        .lang-option {
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
+        .lang-option { padding: 12px 16px; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; gap: 10px; }
         .lang-option:hover { background: #f0f9ff; }
-        
-        .hero {
-            background: url('https://i.postimg.cc/ydyJjcqj/background.png') center/cover;
-            color: white;
-            padding: 120px 0;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(15, 52, 96, 0.92) 0%, rgba(14, 116, 144, 0.85) 100%);
-            z-index: 1;
-        }
-        
+        .hero { background: url('https://i.postimg.cc/ydyJjcqj/background.png') center/cover; color: white; padding: 120px 0; text-align: center; position: relative; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(15, 52, 96, 0.92) 0%, rgba(14, 116, 144, 0.85) 100%); z-index: 1; }
         .hero .container { position: relative; z-index: 2; }
-        
-        .hero h1 {
-            font-size: 3.8rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-        
-        .hero p {
-            font-size: 1.35rem;
-            margin-bottom: 3rem;
-            max-width: 750px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 16px 40px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(14, 165, 233, 0.4);
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: #0ea5e9;
-            border: 3px solid white;
-        }
-        
-        .btn-secondary:hover {
-            background: #f0f9ff;
-            transform: translateY(-3px);
-        }
-        
-        .about {
-            padding: 100px 0;
-            background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%);
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            color: #1a365d;
-            margin-bottom: 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 800;
-        }
-        
-        .about-intro {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #475569;
-            text-align: center;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-        
-        .about-mission {
-            font-size: 1.15rem;
-            color: #64748b;
-            text-align: center;
-            margin-bottom: 5rem;
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-            padding: 2rem;
-            background: rgba(14, 165, 233, 0.03);
-            border-radius: 12px;
-            border-left: 4px solid #0ea5e9;
-        }
-        
-        .about-mission strong {
-            color: #0f3460;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .benefit-item {
-            background: white;
-            padding: 3rem 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(15, 52, 96, 0.08);
-            border: 1px solid #e2e8f0;
-            transition: all 0.4s ease;
-        }
-        
-        .benefit-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.15);
-            border-color: #0ea5e9;
-        }
-        
-        .benefit-item h3 {
-            color: #0f3460;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .benefit-item p {
-            color: #64748b;
-            line-height: 1.8;
-        }
-        
-        .values-closing {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #0f3460;
-            font-weight: 600;
-            max-width: 750px;
-            margin: 5rem auto 0;
-            line-height: 1.8;
-            padding: 2.5rem;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(2, 132, 199, 0.05) 100%);
-            border-radius: 16px;
-            border-left: 5px solid #0ea5e9;
-        }
-        
-        .services {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .service-card {
-            background: white;
-            padding: 3rem 2.5rem;
-            box-shadow: 0 4px 24px rgba(15, 52, 96, 0.08);
-            transition: all 0.4s ease;
-            border-radius: 16px;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .service-card:hover {
-            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.18);
-            transform: translateY(-8px);
-            border-color: #0ea5e9;
-        }
-        
-        .service-card h3 {
-            color: #0f3460;
-            margin-bottom: 1.25rem;
-            font-size: 1.65rem;
-            font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .service-card p {
-            color: #64748b;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0 0;
-        }
-        
-        .service-card ul li {
-            color: #555;
-            padding: 0.4rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .service-card ul li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #0ea5e9;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .cta-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #0f3460 0%, #0e7490 100%);
-            text-align: center;
-            color: white;
-        }
-        
-        .cta-section h2 {
-            font-size: 3.2rem;
-            margin-bottom: 2.5rem;
-            font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-        }
-        
+        .hero h1 { font-size: 3.8rem; margin-bottom: 1.5rem; font-weight: 800; font-family: 'Poppins', sans-serif; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.35rem; margin-bottom: 3rem; max-width: 750px; margin-left: auto; margin-right: auto; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 16px 40px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; cursor: pointer; border: none; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .btn-primary { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(14, 165, 233, 0.4); }
+        .btn-secondary { background: white; color: #0ea5e9; border: 3px solid white; }
+        .btn-secondary:hover { background: #f0f9ff; transform: translateY(-3px); }
+        .about { padding: 100px 0; background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%); }
+        .section-title { text-align: center; font-size: 3rem; color: #1a365d; margin-bottom: 1.5rem; font-family: 'Poppins', sans-serif; font-weight: 800; }
+        .about-intro { font-size: 1.2rem; margin-bottom: 2rem; color: #475569; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+        .about-mission { font-size: 1.15rem; color: #64748b; text-align: center; margin-bottom: 5rem; max-width: 850px; margin-left: auto; margin-right: auto; line-height: 1.8; padding: 2rem; background: rgba(14, 165, 233, 0.03); border-radius: 12px; border-left: 4px solid #0ea5e9; }
+        .about-mission strong { color: #0f3460; font-weight: 700; font-size: 1.2rem; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; max-width: 1100px; margin: 0 auto; }
+        .benefit-item { background: white; padding: 3rem 2.5rem; border-radius: 16px; box-shadow: 0 4px 24px rgba(15, 52, 96, 0.08); border: 1px solid #e2e8f0; transition: all 0.4s ease; }
+        .benefit-item:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(14, 165, 233, 0.15); border-color: #0ea5e9; }
+        .benefit-item h3 { color: #0f3460; font-size: 1.4rem; margin-bottom: 1rem; font-weight: 700; }
+        .benefit-item p { color: #64748b; line-height: 1.8; }
+        .values-closing { text-align: center; font-size: 1.2rem; color: #0f3460; font-weight: 600; max-width: 750px; margin: 5rem auto 0; line-height: 1.8; padding: 2.5rem; background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(2, 132, 199, 0.05) 100%); border-radius: 16px; border-left: 5px solid #0ea5e9; }
+        .services { padding: 100px 0; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); }
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; max-width: 1200px; margin: 0 auto; }
+        .service-card { background: white; padding: 3rem 2.5rem; box-shadow: 0 4px 24px rgba(15, 52, 96, 0.08); transition: all 0.4s ease; border-radius: 16px; border: 1px solid #e2e8f0; }
+        .service-card:hover { box-shadow: 0 12px 40px rgba(14, 165, 233, 0.18); transform: translateY(-8px); border-color: #0ea5e9; }
+        .service-card h3 { color: #0f3460; margin-bottom: 1.25rem; font-size: 1.65rem; font-weight: 800; font-family: 'Poppins', sans-serif; }
+        .service-card p { color: #64748b; line-height: 1.8; margin-bottom: 1.5rem; }
+        .service-card ul { list-style: none; padding: 0; margin: 1rem 0 0 0; }
+        .service-card ul li { color: #555; padding: 0.4rem 0; padding-left: 1.5rem; position: relative; }
+        .service-card ul li::before { content: '✓'; position: absolute; left: 0; color: #0ea5e9; font-weight: bold; font-size: 1.2rem; }
+        .cta-section { padding: 100px 0; background: linear-gradient(135deg, #0f3460 0%, #0e7490 100%); text-align: center; color: white; }
+        .cta-section h2 { font-size: 3.2rem; margin-bottom: 2.5rem; font-weight: 800; font-family: 'Poppins', sans-serif; }
         .contact { padding: 100px 0; background: white; }
-        
-        .cv-upload-section {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 3.5rem;
-            border-radius: 20px;
-            border: 2px solid #0ea5e9;
-            text-align: center;
-            margin-bottom: 5rem;
-            box-shadow: 0 8px 32px rgba(14, 165, 233, 0.12);
-        }
-        
-        .cv-upload-section h3 {
-            color: #0f3460;
-            margin-bottom: 1.25rem;
-            font-size: 2.2rem;
-            font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .cv-upload-section .cv-intro {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-        }
-        
-        .cv-process-steps {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .cv-step {
-            flex: 1;
-            min-width: 200px;
-            max-width: 250px;
-            background: white;
-            padding: 2rem 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 16px rgba(15, 52, 96, 0.08);
-            transition: all 0.3s ease;
-        }
-        
-        .cv-step:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
-        }
-        
-        .cv-step-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #0ea5e9, #0284c7);
-            color: white;
-            border-radius: 50%;
-            line-height: 50px;
-            font-weight: bold;
-            font-size: 1.4rem;
-            margin-bottom: 1.25rem;
-        }
-        
-        .cv-step h4 {
-            color: #0f3460;
-            margin-bottom: 0.75rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        
+        .cv-upload-section { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 3.5rem; border-radius: 20px; border: 2px solid #0ea5e9; text-align: center; margin-bottom: 5rem; box-shadow: 0 8px 32px rgba(14, 165, 233, 0.12); }
+        .cv-upload-section h3 { color: #0f3460; margin-bottom: 1.25rem; font-size: 2.2rem; font-weight: 800; font-family: 'Poppins', sans-serif; }
+        .cv-upload-section .cv-intro { font-size: 1.1rem; color: #555; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+        .cv-process-steps { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap; }
+        .cv-step { flex: 1; min-width: 200px; max-width: 250px; background: white; padding: 2rem 1.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(15, 52, 96, 0.08); transition: all 0.3s ease; }
+        .cv-step:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15); }
+        .cv-step-number { display: inline-block; width: 50px; height: 50px; background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; border-radius: 50%; line-height: 50px; font-weight: bold; font-size: 1.4rem; margin-bottom: 1.25rem; }
+        .cv-step h4 { color: #0f3460; margin-bottom: 0.75rem; font-size: 1.2rem; font-weight: 700; }
         .cv-step p { color: #64748b; font-size: 0.95rem; }
-        
         .file-upload-input { display: none; }
-        
-        .file-upload-label {
-            display: inline-block;
-            padding: 14px 36px;
-            background: linear-gradient(135deg, #0ea5e9, #0284c7);
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 700;
-        }
-        
-        .file-upload-label:hover {
-            background: linear-gradient(135deg, #0284c7, #0369a1);
-            transform: translateY(-2px);
-        }
-        
+        .file-upload-label { display: inline-block; padding: 14px 36px; background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; border-radius: 10px; cursor: pointer; transition: all 0.3s; font-weight: 700; }
+        .file-upload-label:hover { background: linear-gradient(135deg, #0284c7, #0369a1); transform: translateY(-2px); }
         .file-name { display: block; margin-top: 1rem; color: #666; }
         .file-size-info { font-size: 0.85rem; color: #999; margin-top: 0.5rem; }
-        
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .contact-form-wrapper {
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(15, 52, 96, 0.08);
-            border: 1px solid #e2e8f0;
-        }
-        
-        .contact-form-wrapper h3 {
-            color: #0f3460;
-            margin-bottom: 1.25rem;
-            font-size: 2rem;
-            font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .contact-form-intro {
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        
-        .contact-form-intro strong { color: #0f3460; font-weight: 700; }
-        
-        .contact-info {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 3rem;
-            border-radius: 16px;
-            border: 1px solid #bae6fd;
-        }
-        
-        .contact-info h3 {
-            color: #0f3460;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-        }
-        
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .contact-form-wrapper { background: white; padding: 3rem; border-radius: 16px; box-shadow: 0 4px 24px rgba(15, 52, 96, 0.08); border: 1px solid #e2e8f0; }
+        .contact-form-wrapper h3 { color: #0f3460; margin-bottom: 1.25rem; font-size: 2rem; font-weight: 800; font-family: 'Poppins', sans-serif; }
+        .contact-form-intro { color: #666; margin-bottom: 2rem; line-height: 1.6; }
+        .contact-info { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 3rem; border-radius: 16px; border: 1px solid #bae6fd; }
+        .contact-info h3 { color: #0f3460; margin-bottom: 2rem; font-size: 2rem; font-weight: 800; font-family: 'Poppins', sans-serif; }
         .contact-item { margin-bottom: 1.5rem; }
-        
-        .contact-item strong {
-            display: block;
-            color: #0f3460;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-        
+        .contact-item strong { display: block; color: #0f3460; margin-bottom: 0.5rem; font-weight: 700; }
         .form-group { margin-bottom: 1rem; }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.75rem;
-            color: #0f3460;
-            font-weight: 600;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s;
-            background: white;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #0ea5e9;
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-        }
-        
+        .form-group label { display: block; margin-bottom: 0.75rem; color: #0f3460; font-weight: 600; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; font-family: 'Inter', sans-serif; transition: all 0.3s; background: white; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1); }
         .form-group textarea { min-height: 120px; resize: vertical; }
-        
-        footer {
-            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
-            color: #fff;
-            padding: 4rem 0 1.5rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: #7dd3fc;
-            text-decoration: none;
-            cursor: pointer;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-        
+        footer { background: linear-gradient(135deg, #0f3460 0%, #16213e 100%); color: #fff; padding: 4rem 0 1.5rem; }
+        .footer-links { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .footer-links a { color: #7dd3fc; text-decoration: none; cursor: pointer; transition: color 0.3s; font-weight: 500; }
         .footer-links a:hover { color: #ffffff; }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #94a3b8;
-        }
-        
-        .legal-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 9999;
-            overflow-y: auto;
-        }
-        
-        .legal-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-        
-        .legal-content {
-            background: white;
-            max-width: 900px;
-            width: 100%;
-            padding: 3rem;
-            border-radius: 8px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        .legal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #0ea5e9;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-        
+        .footer-bottom { text-align: center; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1); color: #94a3b8; }
+        .legal-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 9999; overflow-y: auto; }
+        .legal-modal.active { display: flex; align-items: center; justify-content: center; padding: 2rem; }
+        .legal-content { background: white; max-width: 900px; width: 100%; padding: 3rem; border-radius: 8px; max-height: 90vh; overflow-y: auto; position: relative; }
+        .legal-close { position: absolute; top: 1rem; right: 1rem; background: #0ea5e9; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; }
         .legal-content h2 { color: #0f3460; margin-bottom: 1.5rem; }
         .legal-content h3 { color: #333; margin-top: 2rem; margin-bottom: 1rem; }
         .legal-content p, .legal-content ul { color: #666; line-height: 1.8; margin-bottom: 1rem; }
         .legal-content ul { margin-left: 2rem; }
-        
+        .legal-content em { display: block; margin-bottom: 1rem; color: #999; }
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .hero p { font-size: 1.1rem; }
@@ -634,7 +130,7 @@
 
     <section class="hero">
         <div class="container">
-            <h1 id="txt1">Your trusted bridge to Nordic opportunities</h1>
+            <h1 id="txt1">Empowering your workforce across the North</h1>
             <p id="txt2">We connect ambitious workers with leading Nordic companies — ethically, reliably, and with full support every step of the way.</p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary" id="txt3">🔍 Find Your Next Job</a>
@@ -841,18 +337,27 @@
         let lang = 'en';
         
         const t = {
-            en: ['Your trusted bridge to Nordic opportunities','We connect ambitious workers with leading Nordic companies — ethically, reliably, and with full support every step of the way.','🔍 Find Your Next Job','💼 Hire Qualified Workers','Our Values & Commitment','Arctic Workforce was founded in 2024 with a clear mission: to build a recruitment company that does things differently. We believe that fair, transparent workforce solutions are not just good ethics — they\'re good business.','We\'re at the beginning of our journey',' — and that\'s exactly what drives us to give every client and candidate our full attention. We know that trust must be earned, not claimed.','🎯 Quality Over Quantity','We don\'t chase volume. Every candidate is carefully vetted, every company thoroughly assessed.','💬 Clear Communication','No hidden fees. No vague timelines. No surprises. We tell you exactly what to expect.','⚖️ Fairness First','We only work with employers who respect labor rights and pay fair wages.','🌱 Built for the Long Term','We focus on sustainable matches that benefit both workers and companies for years.','We\'re building something new — and we know that reputation grows through action, not words.','Our Services','Recruitment & Vetting','We conduct thorough background checks and verify qualifications.','Full screening within 3-5 business days','Verified work history and references','Temporary Staffing','We provide flexible staffing solutions with quick deployment.','Deployment in as little as 48 hours','No hidden costs or long-term contracts','Relocation & Support','We handle visa applications and find suitable accommodation.','End-to-end visa and permit assistance','Housing and local orientation included','Compliance & Payroll','We manage all documentation, tax filings, and payroll.','100% compliance with local regulations','Full payroll and tax administration','Learn More About Our Process','Ready to start?','Find a Job','Hire Workers','Our multilingual team will respond within 24 hours.','Contact Us','Upload your CV','Upload your CV and let us connect you with leading companies in the Nordic region.','Upload','Submit your CV in PDF or DOC format','Review','We review it within 48 hours','Match','We contact you with suitable job offers','Choose File','Max. 10 MB (PDF, DOC, DOCX)','Submit CV','Get in Touch','Email:','Phone:','Address:','Office hours:','Mon — Fri: 09:00 — 17:00 CET','Follow us:','Send us a message','Have a question or looking to hire? Fill out the form below and we\'ll respond within 24 hours.','Name *','Email *','I am looking for *','Message *','Send Message','Impressum','Privacy Policy','Terms & Conditions','All rights reserved.','Work','Workers','Partnership'],
-            de: ['Ihre vertrauensvolle Brücke zu nordischen Chancen','Wir verbinden ambitionierte Arbeitskräfte mit führenden nordischen Unternehmen — ethisch, zuverlässig und mit voller Unterstützung.','🔍 Finde deinen nächsten Job','💼 Qualifizierte Mitarbeiter einstellen','Unsere Werte & Versprechen','Arctic Workforce wurde 2024 mit einer klaren Mission gegründet: ein Rekrutierungsunternehmen aufzubauen, das anders arbeitet. Wir sind überzeugt, dass faire, transparente Arbeitsvermittlung nicht nur ethisch richtig ist — sie ist auch wirtschaftlich sinnvoll.','Wir stehen am Anfang unserer Reise',' — und genau das motiviert uns, jedem Kunden und Kandidaten unsere volle Aufmerksamkeit zu schenken. Wir wissen, dass Vertrauen verdient werden muss, nicht nur behauptet.','🎯 Qualität vor Quantität','Wir jagen keinen Zahlen nach. Jeder Kandidat wird sorgfältig geprüft, jedes Unternehmen gründlich bewertet.','💬 Klare Kommunikation','Keine versteckten Kosten. Keine vagen Zeitpläne. Keine Überraschungen. Wir sagen Ihnen genau, was Sie erwarten können.','⚖️ Fairness zuerst','Wir arbeiten nur mit Arbeitgebern, die Arbeitsrechte respektieren und faire Löhne zahlen.','🌱 Langfristig gedacht','Wir konzentrieren uns auf nachhaltige Matches, die beiden Seiten über Jahre hinweg Nutzen bringen.','Wir bauen etwas Neues auf — und wir wissen, dass Reputation durch Taten wächst, nicht durch Worte.','Unsere Dienstleistungen','Rekrutierung & Überprüfung','Wir führen gründliche Hintergrundprüfungen durch und verifizieren Qualifikationen.','Vollständige Prüfung innerhalb von 3-5 Werktagen','Verifizierte Arbeitshistorie und Referenzen','Zeitarbeit','Wir bieten flexible Personallösungen mit schnellem Einsatz.','Einsatz in nur 48 Stunden möglich','Keine versteckten Kosten','Umzug & Unterstützung','Wir kümmern uns um Visa-Anträge und finden passende Unterkünfte.','End-to-End Visa-Hilfe','Unterkunft inklusive','Compliance & Lohnabrechnung','Wir verwalten alle Dokumente, Steuererklärungen und Gehaltsabrechnungen.','100% Einhaltung lokaler Vorschriften','Vollständige Lohn- und Steuerverwaltung','Mehr erfahren','Bereit zu starten?','Job finden','Mitarbeiter einstellen','Unser Team antwortet innerhalb von 24 Stunden.','Kontakt','Lebenslauf hochladen','Laden Sie Ihren Lebenslauf hoch und wir verbinden Sie mit führenden Unternehmen.','Hochladen','CV als PDF oder DOC einreichen','Prüfung','Wir prüfen innerhalb von 48 Stunden','Vermittlung','Wir kontaktieren Sie mit Jobangeboten','Datei wählen','Max. 10 MB (PDF, DOC, DOCX)','Lebenslauf senden','Kontaktieren Sie uns','E-Mail:','Telefon:','Adresse:','Bürozeiten:','Mo — Fr: 09:00 — 17:00 MEZ','Folgen Sie uns:','Nachricht senden','Füllen Sie das Formular aus und wir antworten innerhalb von 24 Stunden.','Name *','E-Mail *','Ich suche *','Nachricht *','Nachricht senden','Impressum','Datenschutz','AGB','Alle Rechte vorbehalten.','Arbeit','Arbeitskräfte','Partnerschaft'],
-            no: ['Din pålitelige bro til nordiske muligheter','Vi kobler ambisiøse arbeidere med ledende nordiske selskaper — etisk, pålitelig og med full støtte.','🔍 Finn din neste jobb','💼 Ansett kvalifiserte arbeidere','Våre verdier & forpliktelser','Arctic Workforce ble grunnlagt i 2024 med et klart oppdrag: å bygge et rekrutteringsselskap som gjør ting annerledes.','Vi er i starten av vår reise',' — og det er nettopp det som driver oss til å gi hver klient vår fulle oppmerksomhet.','🎯 Kvalitet over kvantitet','Vi jager ikke volum. Hver kandidat blir nøye kontrollert.','💬 Klar kommunikasjon','Ingen skjulte kostnader. Ingen vage tidslinjer. Ingen overraskelser.','⚖️ Rettferdighet først','Vi jobber bare med arbeidsgivere som respekterer arbeidsrettigheter.','🌱 Bygget for langsiktighet','Vi fokuserer på bærekraftige matcher som gagner begge parter i årevis.','Vi bygger noe nytt — og vi vet at omdømme vokser gjennom handling.','Våre tjenester','Rekruttering & kontroll','Vi gjennomfører grundige bakgrunnssjekker.','Full screening innen 3-5 virkedager','Verifisert arbeidshistorikk','Vikarbyrå','Vi tilbyr fleksible bemanningsløsninger.','Utrulling på 48 timer','Ingen skjulte kostnader','Flytting & støtte','Vi håndterer visumsøknader og finner bolig.','Ende-til-ende visum-hjelp','Bolig inkludert','Etterlevelse & lønn','Vi administrerer all dokumentasjon og lønn.','100% etterlevelse','Full lønnsadministrasjon','Lær mer','Klar til å starte?','Finn en jobb','Ansett arbeidere','Vårt team svarer innen 24 timer.','Kontakt oss','Last opp din CV','Last opp CV og la oss koble deg med ledende selskaper.','Last opp','Send CV i PDF eller DOC','Gjennomgang','Vi gjennomgår innen 48 timer','Match','Vi kontakter deg med jobbtilbud','Velg fil','Maks. 10 MB (PDF, DOC, DOCX)','Send CV','Ta kontakt','E-post:','Telefon:','Adresse:','Åpningstider:','Man — Fre: 09:00 — 17:00 CET','Følg oss:','Send melding','Fyll ut skjemaet så svarer vi innen 24 timer.','Navn *','E-post *','Jeg søker *','Melding *','Send melding','Impressum','Personvern','Vilkår','Alle rettigheter reservert.','Arbeid','Arbeidere','Partnerskap'],
-            is: ['Áreiðanleg brú þín að norrænum tækifærum','Við tengjum metnaðarfulla starfsmenn við leiðandi norræn fyrirtæki.','🔍 Finndu næsta starfið','💼 Ráða starfsmenn','Gildi okkar','Arctic Workforce var stofnað 2024 með skýra framtíðarsýn.','Við erum í upphafi','— og það hvetur okkur til að veita fulla athygli.','🎯 Gæði fram yfir magn','Við eldum ekki magnið. Hver umsækjandi er skoðaður.','💬 Skýr samskipti','Engin falin gjöld. Engin óskýr tímaáætlun.','⚖️ Sanngirni fyrst','Við vinnum aðeins með vinnuréttindum.','🌱 Byggt til lengri tíma','Við einbeitum okkur að sjálfbærum samsvörunum.','Við byggjum eitthvað nýtt — orðspor vex með gjörðum.','Þjónusta okkar','Ráðning & skoðun','Við framkvæmum bakgrunnskannanir.','Full skoðun innan 3-5 daga','Staðfest starfsferilssaga','Tímabundin þjónusta','Við bjóðum sveigjanlegar lausnir.','Útfærsla á 48 klst.','Engin falin gjöld','Flutningur & stuðningur','Við sjáum um vegabréfsáritun.','Vegabréfsáritun','Húsnæði innifalið','Reglueftirliti','Við stjórnum skjölum og launum.','100% fylgni','Full launastjórnun','Lærðu meira','Tilbúinn?','Finndu vinnu','Ráðið','Teymið okkar svarar innan 24 klst.','Hafðu samband','Hladdu upp CV','Hladdu upp CV og láttu okkur tengja þig.','Hlaða upp','Sendu CV á PDF eða DOC','Yfirferð','Við yfirförum innan 48 klst.','Samsvörun','Við höfum samband','Veldu skrá','Hámark 10 MB','Senda CV','Komdu í samband','Netfang:','Sími:','Heimilisfang:','Opnunartími:','Mán — Fös: 09:00 — 17:00','Fylgdu okkur:','Sendu skilaboð','Fylltu út og við munum svara innan 24 klst.','Nafn *','Netfang *','Ég leita að *','Skilaboð *','Senda','Impressum','Persónuvernd','Skilmálar','Allur réttur áskilinn.','Vinnu','Starfsmönnum','Samstarfi'],
-            pl: ['Twój most do nordyckich możliwości','Łączymy pracowników z wiodącymi nordyckimi firmami.','🔍 Znajdź pracę','💼 Zatrudnij','Nasze wartości','Arctic Workforce założono w 2024 z jasną misją.','Jesteśmy na początku','— i to motywuje nas do pełnego zaangażowania.','🎯 Jakość nad ilość','Nie gonimy za wolumenem. Każdy kandydat jest sprawdzany.','💬 Jasna komunikacja','Żadnych ukrytych opłat. Żadnych niejasnych terminów.','⚖️ Uczciwość','Pracujemy tylko z pracodawcami szanującymi prawa.','🌱 Na długi termin','Skupiamy się na trwałych dopasowaniach.','Budujemy coś nowego — reputacja rośnie przez działanie.','Nasze usługi','Rekrutacja','Przeprowadzamy sprawdzenia.','Weryfikacja w 3-5 dni','Zweryfikowana historia','Zatrudnienie tymczasowe','Oferujemy elastyczne rozwiązania.','Wdrożenie w 48 godzin','Brak ukrytych kosztów','Przeprowadzka','Zajmujemy się wizami i zakwaterowaniem.','Pomoc wizowa','Zakwaterowanie','Zgodność','Zarządzamy dokumentacją i płacami.','100% zgodność','Pełna administracja','Dowiedz się więcej','Gotowy?','Znajdź pracę','Zatrudnij','Zespół odpowie w 24 godziny.','Kontakt','Prześlij CV','Prześlij CV i połączymy Cię z firmami.','Prześlij','Wyślij CV w PDF lub DOC','Przegląd','Sprawdzamy w 48 godzin','Dopasowanie','Skontaktujemy się','Wybierz plik','Maks. 10 MB','Wyślij CV','Skontaktuj się','E-mail:','Telefon:','Adres:','Godziny:','Pon — Pt: 09:00 — 17:00','Śledź nas:','Wyślij wiadomość','Wypełnij formularz, odpowiemy w 24 godziny.','Imię *','E-mail *','Szukam *','Wiadomość *','Wyślij','Impressum','Prywatność','Warunki','Wszelkie prawa.','Pracy','Pracowników','Partnerstwa'],
-            ro: ['Podul tău spre oportunități nordice','Conectăm lucrători cu companii nordice de top.','🔍 Găsește job','💼 Angajează','Valorile noastre','Arctic Workforce a fost fondată în 2024 cu o misiune clară.','Suntem la început','— și exact asta ne motivează.','🎯 Calitate','Nu alergăm după volum. Fiecare candidat este verificat.','💬 Comunicare clară','Fără taxe ascunse. Fără termene vagi.','⚖️ Corectitudine','Lucrăm doar cu angajatori care respectă drepturile.','🌱 Pe termen lung','Ne concentrăm pe potriviri durabile.','Construim ceva nou — reputația crește prin acțiune.','Serviciile noastre','Recrutare','Efectuăm verificări amănunțite.','Screening în 3-5 zile','Istoric verificat','Personal temporar','Oferim soluții flexibile.','Desfășurare în 48 ore','Fără costuri ascunse','Relocare','Ne ocupăm de vize și cazare.','Asistență viză','Cazare inclusă','Conformitate','Gestionăm documentația și salariile.','100% conformitate','Administrare completă','Află mai multe','Gata?','Găsește job','Angajează','Echipa răspunde în 24 ore.','Contact','Încarcă CV','Încarcă CV și te conectăm cu companii.','Încarcă','Trimite CV în PDF sau DOC','Revizuire','Revizuim în 48 ore','Potrivire','Te contactăm','Alege fișier','Max. 10 MB','Trimite CV','Contact','Email:','Telefon:','Adresă:','Program:','Lun — Vin: 09:00 — 17:00','Urmărește:','Trimite mesaj','Completează formularul, răspundem în 24 ore.','Nume *','Email *','Caut *','Mesaj *','Trimite','Impressum','Confidențialitate','Termeni','Toate drepturile.','Muncă','Lucrători','Parteneriat']
+            en: ['Empowering your workforce across the North','We connect ambitious workers with leading Nordic companies — ethically, reliably, and with full support every step of the way.','🔍 Find Your Next Job','💼 Hire Qualified Workers','Our Values & Commitment','Arctic Workforce was founded in 2024 with a clear mission: to build a recruitment company that does things differently. We believe that fair, transparent workforce solutions are not just good ethics — they are good business.','We are at the beginning of our journey',' — and that is exactly what drives us to give every client and candidate our full attention. We know that trust must be earned, not claimed.','🎯 Quality Over Quantity','We do not chase volume. Every candidate is carefully vetted, every company thoroughly assessed.','💬 Clear Communication','No hidden fees. No vague timelines. No surprises. We tell you exactly what to expect.','⚖️ Fairness First','We only work with employers who respect labor rights and pay fair wages.','🌱 Built for the Long Term','We focus on sustainable matches that benefit both workers and companies for years.','We are building something new — and we know that reputation grows through action, not words.','Our Services','Recruitment & Vetting','We conduct thorough background checks and verify qualifications.','Full screening within 3-5 business days','Verified work history and references','Temporary Staffing','We provide flexible staffing solutions with quick deployment.','Deployment in as little as 48 hours','No hidden costs or long-term contracts','Relocation & Support','We handle visa applications and find suitable accommodation.','End-to-end visa and permit assistance','Housing and local orientation included','Compliance & Payroll','We manage all documentation, tax filings, and payroll.','100% compliance with local regulations','Full payroll and tax administration','Learn More About Our Process','Ready to start?','Find a Job','Hire Workers','Our multilingual team will respond within 24 hours.','Contact Us','Upload your CV','Upload your CV and let us connect you with leading companies in the Nordic region.','Upload','Submit your CV in PDF or DOC format','Review','We review it within 48 hours','Match','We contact you with suitable job offers','Choose File','Max. 10 MB (PDF, DOC, DOCX)','Submit CV','Get in Touch','Email:','Phone:','Office hours:','Mon — Fri: 09:00 — 17:00 CET','Follow us:','Send us a message','Have a question or looking to hire? Fill out the form below and we will respond within 24 hours.','Name *','Email *','I am looking for *','Message *','Send Message','Impressum','Privacy Policy','Terms & Conditions','All rights reserved.','Work','Workers','Partnership'],
+            de: ['Stärken Sie Ihre Arbeitskräfte im Norden','Wir verbinden ambitionierte Arbeitskräfte mit führenden nordischen Unternehmen — ethisch, zuverlässig und mit voller Unterstützung.','🔍 Finde deinen nächsten Job','💼 Qualifizierte Mitarbeiter einstellen','Unsere Werte & Versprechen','Arctic Workforce wurde 2024 mit einer klaren Mission gegründet: ein Rekrutierungsunternehmen aufzubauen, das anders arbeitet.','Wir stehen am Anfang unserer Reise',' — und genau das motiviert uns, jedem Kunden und Kandidaten unsere volle Aufmerksamkeit zu schenken.','🎯 Qualität vor Quantität','Wir jagen keinen Zahlen nach. Jeder Kandidat wird sorgfältig geprüft.','💬 Klare Kommunikation','Keine versteckten Kosten. Keine vagen Zeitpläne.','⚖️ Fairness zuerst','Wir arbeiten nur mit Arbeitgebern, die Arbeitsrechte respektieren.','🌱 Langfristig gedacht','Wir konzentrieren uns auf nachhaltige Matches.','Wir bauen etwas Neues auf — Reputation wächst durch Taten.','Unsere Dienstleistungen','Rekrutierung & Überprüfung','Wir führen gründliche Hintergrundprüfungen durch.','Vollständige Prüfung innerhalb von 3-5 Werktagen','Verifizierte Arbeitshistorie','Zeitarbeit','Wir bieten flexible Personallösungen.','Einsatz in nur 48 Stunden möglich','Keine versteckten Kosten','Umzug & Unterstützung','Wir kümmern uns um Visa-Anträge und finden Unterkünfte.','End-to-End Visa-Hilfe','Unterkunft inklusive','Compliance & Lohnabrechnung','Wir verwalten alle Dokumente und Gehaltsabrechnungen.','100% Einhaltung lokaler Vorschriften','Vollständige Lohn- und Steuerverwaltung','Mehr erfahren','Bereit zu starten?','Job finden','Mitarbeiter einstellen','Unser Team antwortet innerhalb von 24 Stunden.','Kontakt','Lebenslauf hochladen','Laden Sie Ihren Lebenslauf hoch und wir verbinden Sie mit führenden Unternehmen.','Hochladen','CV als PDF oder DOC einreichen','Prüfung','Wir prüfen innerhalb von 48 Stunden','Vermittlung','Wir kontaktieren Sie mit Jobangeboten','Datei wählen','Max. 10 MB (PDF, DOC, DOCX)','Lebenslauf senden','Kontaktieren Sie uns','E-Mail:','Telefon:','Bürozeiten:','Mo — Fr: 09:00 — 17:00 MEZ','Folgen Sie uns:','Nachricht senden','Füllen Sie das Formular aus und wir antworten innerhalb von 24 Stunden.','Name *','E-Mail *','Ich suche *','Nachricht *','Nachricht senden','Impressum','Datenschutz','AGB','Alle Rechte vorbehalten.','Arbeit','Arbeitskräfte','Partnerschaft'],
+            no: ['Styrker din arbeidsstyrke over hele Norden','Vi kobler ambisiøse arbeidere med ledende nordiske selskaper.','🔍 Finn din neste jobb','💼 Ansett kvalifiserte arbeidere','Våre verdier','Arctic Workforce ble grunnlagt i 2024 med et klart oppdrag.','Vi er i starten av vår reise',' — og det driver oss til å gi hver klient vår fulle oppmerksomhet.','🎯 Kvalitet over kvantitet','Vi jager ikke volum. Hver kandidat blir nøye kontrollert.','💬 Klar kommunikasjon','Ingen skjulte kostnader. Ingen vage tidslinjer.','⚖️ Rettferdighet først','Vi jobber bare med arbeidsgivere som respekterer arbeidsrettigheter.','🌱 Bygget for langsiktighet','Vi fokuserer på bærekraftige matcher.','Vi bygger noe nytt — omdømme vokser gjennom handling.','Våre tjenester','Rekruttering & kontroll','Vi gjennomfører grundige bakgrunnssjekker.','Full screening innen 3-5 virkedager','Verifisert arbeidshistorikk','Vikarbyrå','Vi tilbyr fleksible bemanningsløsninger.','Utrulling på 48 timer','Ingen skjulte kostnader','Flytting & støtte','Vi håndterer visumsøknader og finner bolig.','Ende-til-ende visum-hjelp','Bolig inkludert','Etterlevelse & lønn','Vi administrerer all dokumentasjon og lønn.','100% etterlevelse','Full lønnsadministrasjon','Lær mer','Klar til å starte?','Finn en jobb','Ansett arbeidere','Vårt team svarer innen 24 timer.','Kontakt oss','Last opp din CV','Last opp CV og la oss koble deg med ledende selskaper.','Last opp','Send CV i PDF eller DOC','Gjennomgang','Vi gjennomgår innen 48 timer','Match','Vi kontakter deg med jobbtilbud','Velg fil','Maks. 10 MB','Send CV','Ta kontakt','E-post:','Telefon:','Åpningstider:','Man — Fre: 09:00 — 17:00 CET','Følg oss:','Send melding','Fyll ut skjemaet så svarer vi innen 24 timer.','Navn *','E-post *','Jeg søker *','Melding *','Send melding','Impressum','Personvern','Vilkår','Alle rettigheter reservert.','Arbeid','Arbeidere','Partnerskap'],
+            is: ['Styrkjum starfsfólk þitt um norðurslóðir','Við tengjum metnaðarfulla starfsmenn við leiðandi norræn fyrirtæki.','🔍 Finndu næsta starfið','💼 Ráða starfsmenn','Gildi okkar','Arctic Workforce var stofnað 2024 með skýra framtíðarsýn.','Við erum í upphafi',' — og það hvetur okkur til að veita fulla athygli.','🎯 Gæði fram yfir magn','Við eldum ekki magnið. Hver umsækjandi er skoðaður.','💬 Skýr samskipti','Engin falin gjöld. Engin óskýr tímaáætlun.','⚖️ Sanngirni fyrst','Við vinnum aðeins með vinnuréttindum.','🌱 Byggt til lengri tíma','Við einbeitum okkur að sjálfbærum samsvörunum.','Við byggjum eitthvað nýtt — orðspor vex með gjörðum.','Þjónusta okkar','Ráðning & skoðun','Við framkvæmum bakgrunnskannanir.','Full skoðun innan 3-5 daga','Staðfest starfsferilssaga','Tímabundin þjónusta','Við bjóðum sveigjanlegar lausnir.','Útfærsla á 48 klst.','Engin falin gjöld','Flutningur & stuðningur','Við sjáum um vegabréfsáritun.','Vegabréfsáritun','Húsnæði innifaliÐ','Reglueftirliti','Við stjórnum skjölum og launum.','100% fylgni','Full launastjórnun','Lærðu meira','Tilbúinn?','Finndu vinnu','Ráðið','Teymið okkar svarar innan 24 klst.','Hafðu samband','Hladdu upp CV','Hladdu upp CV og láttu okkur tengja þig.','Hlaða upp','Sendu CV á PDF eða DOC','Yfirferð','Við yfirförum innan 48 klst.','Samsvörun','Við höfum samband','Veldu skrá','Hámark 10 MB','Senda CV','Komdu í samband','Netfang:','Sími:','Opnunartími:','Mán — Fös: 09:00 — 17:00','Fylgdu okkur:','Sendu skilaboð','Fylltu út og við munum svara innan 24 klst.','Nafn *','Netfang *','Ég leita að *','Skilaboð *','Senda','Impressum','Persónuvernd','Skilmálar','Allur réttur áskilinn.','Vinnu','Starfsmönnum','Samstarfi'],
+            pl: ['Wzmacniamy Twoją siłę roboczą na Północy','Łączymy pracowników z wiodącymi nordyckimi firmami.','🔍 Znajdź pracę','💼 Zatrudnij','Nasze wartości','Arctic Workforce założono w 2024 z jasną misją.','Jesteśmy na początku',' — i to motywuje nas do pełnego zaangażowania.','🎯 Jakość nad ilość','Nie gonimy za wolumenem. Każdy kandydat jest sprawdzany.','💬 Jasna komunikacja','Żadnych ukrytych opłat. Żadnych niejasnych terminów.','⚖️ Uczciwość','Pracujemy tylko z pracodawcami szanującymi prawa.','🌱 Na długi termin','Skupiamy się na trwałych dopasowaniach.','Budujemy coś nowego — reputacja rośnie przez działanie.','Nasze usługi','Rekrutacja','Przeprowadzamy sprawdzenia.','Weryfikacja w 3-5 dni','Zweryfikowana historia','Zatrudnienie tymczasowe','Oferujemy elastyczne rozwiązania.','Wdrożenie w 48 godzin','Brak ukrytych kosztów','Przeprowadzka','Zajmujemy się wizami i zakwaterowaniem.','Pomoc wizowa','Zakwaterowanie','Zgodność','Zarządzamy dokumentacją i płacami.','100% zgodność','Pełna administracja','Dowiedz się więcej','Gotowy?','Znajdź pracę','Zatrudnij','Zespół odpowie w 24 godziny.','Kontakt','Prześlij CV','Prześlij CV i połączymy Cię z firmami.','Prześlij','Wyślij CV w PDF lub DOC','Przegląd','Sprawdzamy w 48 godzin','Dopasowanie','Skontaktujemy się','Wybierz plik','Maks. 10 MB','Wyślij CV','Skontaktuj się','E-mail:','Telefon:','Godziny:','Pon — Pt: 09:00 — 17:00','Śledź nas:','Wyślij wiadomość','Wypełnij formularz, odpowiemy w 24 godziny.','Imię *','E-mail *','Szukam *','Wiadomość *','Wyślij','Impressum','Prywatność','Warunki','Wszelkie prawa.','Pracy','Pracowników','Partnerstwa'],
+            ro: ['Împuternicim forța ta de muncă în Nord','Conectăm lucrători cu companii nordice de top.','🔍 Găsește job','💼 Angajează','Valorile noastre','Arctic Workforce a fost fondată în 2024 cu o misiune clară.','Suntem la început',' — și exact asta ne motivează.','🎯 Calitate','Nu alergăm după volum. Fiecare candidat este verificat.','💬 Comunicare clară','Fără taxe ascunse. Fără termene vagi.','⚖️ Corectitudine','Lucrăm doar cu angajatori care respectă drepturile.','🌱 Pe termen lung','Ne concentrăm pe potriviri durabile.','Construim ceva nou — reputația crește prin acțiune.','Serviciile noastre','Recrutare','Efectuăm verificări amănunțite.','Screening în 3-5 zile','Istoric verificat','Personal temporar','Oferim soluții flexibile.','Desfășurare în 48 ore','Fără costuri ascunse','Relocare','Ne ocupăm de vize și cazare.','Asistență viză','Cazare inclusă','Conformitate','Gestionăm documentația și salariile.','100% conformitate','Administrare completă','Află mai multe','Gata?','Găsește job','Angajează','Echipa răspunde în 24 ore.','Contact','Încarcă CV','Încarcă CV și te conectăm cu companii.','Încarcă','Trimite CV în PDF sau DOC','Revizuire','Revizuim în 48 ore','Potrivire','Te contactăm','Alege fișier','Max. 10 MB','Trimite CV','Contact','Email:','Telefon:','Program:','Lun — Vin: 09:00 — 17:00','Urmărește:','Trimite mesaj','Completează formularul, răspundem în 24 ore.','Nume *','Email *','Caut *','Mesaj *','Trimite','Impressum','Confidențialitate','Termeni','Toate drepturile.','Muncă','Lucrători','Parteneriat']
         };
         
         const legal = {
-            impressum: {en:'<h2>Impressum</h2><p><strong>Arctic Workforce</strong><br>Tannenweg 17<br>8408 Winterthur<br>Switzerland</p><p>Phone: +41 79 532 58 99<br>Email: info@arcticworkforce.com</p>',de:'<h2>Impressum</h2><p><strong>Arctic Workforce</strong><br>Tannenweg 17<br>8408 Winterthur<br>Schweiz</p><p>Telefon: +41 79 532 58 99<br>E-Mail: info@arcticworkforce.com</p>'},
-            privacy: {en:'<h2>Privacy Policy</h2><p>Arctic Workforce takes data protection seriously.</p>',de:'<h2>Datenschutz</h2><p>Arctic Workforce nimmt Datenschutz ernst.</p>'},
-            terms: {en:'<h2>Terms & Conditions</h2><p>These terms apply to all services.</p>',de:'<h2>AGB</h2><p>Diese AGB gelten für alle Dienstleistungen.</p>'}
+            impressum: {
+                en:'<h2>Impressum</h2><h3>Company Information</h3><p><strong>Arctic Workforce</strong><br>Tannenweg 17<br>8408 Winterthur<br>Switzerland</p><h3>Contact</h3><p>Phone: +41 79 532 58 99<br>Email: info@arcticworkforce.com</p><h3>Business Registration</h3><p>Company registered in Switzerland<br>UID: CHE-XXX.XXX.XXX (pending)<br>Founded: 2024</p><h3>Responsible for Content</h3><p>Arctic Workforce Management<br>Tannenweg 17<br>8408 Winterthur, Switzerland</p><h3>Disclaimer</h3><p>Arctic Workforce makes every effort to ensure the accuracy and completeness of information on this website. However, we assume no liability for the topicality, accuracy, completeness or quality of the information provided.</p>',
+                de:'<h2>Impressum</h2><h3>Angaben gemäß Informationspflicht</h3><p><strong>Arctic Workforce</strong><br>Tannenweg 17<br>8408 Winterthur<br>Schweiz</p><h3>Kontakt</h3><p>Telefon: +41 79 532 58 99<br>E-Mail: info@arcticworkforce.com</p><h3>Handelsregister</h3><p>Eingetragen in der Schweiz<br>UID: CHE-XXX.XXX.XXX (in Bearbeitung)<br>Gründung: 2024</p><h3>Verantwortlich für den Inhalt</h3><p>Arctic Workforce Management<br>Tannenweg 17<br>8408 Winterthur, Schweiz</p>'
+            },
+            privacy: {
+                en:'<h2>Privacy Policy</h2><p><em>Last updated: January 2025</em></p><h3>1. Data Controller</h3><p>Arctic Workforce<br>Tannenweg 17<br>8408 Winterthur, Switzerland<br>Email: info@arcticworkforce.com</p><h3>2. Data Collection and Use</h3><p>We collect and process personal data in accordance with Swiss data protection law (DSG) and the EU General Data Protection Regulation (GDPR).</p><p><strong>Data we collect:</strong></p><ul><li>Contact information</li><li>Professional information</li><li>Communication data</li><li>Technical data</li></ul><h3>3. Your Rights</h3><p>You have the right to access, rectify, delete, and restrict processing of your personal data.</p><p>Contact: info@arcticworkforce.com</p>',
+                de:'<h2>Datenschutzerklärung</h2><p><em>Stand: Januar 2025</em></p><h3>1. Verantwortliche Stelle</h3><p>Arctic Workforce<br>Tannenweg 17<br>8408 Winterthur, Schweiz<br>E-Mail: info@arcticworkforce.com</p><h3>2. Datenerfassung</h3><p>Wir erheben und verarbeiten personenbezogene Daten gemäß dem Schweizer Datenschutzgesetz (DSG) und der EU-Datenschutz-Grundverordnung (DSGVO).</p><h3>3. Ihre Rechte</h3><p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten.</p><p>Kontakt: info@arcticworkforce.com</p>'
+            },
+            terms: {
+                en:'<h2>Terms & Conditions</h2><p><em>Last updated: January 2025</em></p><h3>1. Scope</h3><p>These Terms govern the use of services provided by Arctic Workforce located at Tannenweg 17, 8408 Winterthur, Switzerland.</p><h3>2. Services</h3><p>We provide recruitment, staffing, relocation, and compliance services.</p><h3>3. For Job Seekers</h3><p>You must provide accurate information. We do not charge job seekers for our recruitment services.</p><h3>4. For Employers</h3><p>Employer fees are specified in service agreements. Employers must comply with all labor laws.</p><h3>5. Contact</h3><p>Arctic Workforce<br>Tannenweg 17<br>8408 Winterthur, Switzerland<br>Email: info@arcticworkforce.com</p>',
+                de:'<h2>Allgemeine Geschäftsbedingungen</h2><p><em>Stand: Januar 2025</em></p><h3>1. Geltungsbereich</h3><p>Diese AGB regeln die Nutzung der Dienstleistungen von Arctic Workforce mit Sitz in Tannenweg 17, 8408 Winterthur, Schweiz.</p><h3>2. Dienstleistungen</h3><p>Wir bieten Rekrutierungs-, Personal-, Umzugs- und Compliance-Dienstleistungen.</p><h3>3. Für Arbeitssuchende</h3><p>Sie müssen genaue Informationen angeben. Wir berechnen Arbeitssuchenden keine Gebühren.</p><h3>4. Für Arbeitgeber</h3><p>Arbeitgebergebühren sind in Servicevereinbarungen festgelegt. Arbeitgeber müssen alle Arbeitsgesetze einhalten.</p><h3>5. Kontakt</h3><p>Arctic Workforce<br>Tannenweg 17<br>8408 Winterthur, Schweiz<br>E-Mail: info@arcticworkforce.com</p>'
+            }
         };
         
         function toggleLang() {
@@ -869,7 +374,7 @@
         
         function updateContent() {
             const texts = t[lang] || t.en;
-            for(let i=0; i<texts.length; i++) {
+            for(let i=0; i<texts.length && i<69; i++) {
                 const el = document.getElementById('txt'+(i+1));
                 if(el) el.textContent = texts[i];
             }
@@ -882,7 +387,7 @@
         
         function handleSubmit(e) {
             e.preventDefault();
-            const msg = {en:'✅ Thank you! We\'ll respond within 24 hours.',de:'✅ Vielen Dank! Wir melden uns innerhalb von 24 Stunden.',no:'✅ Takk! Vi svarer innen 24 timer.',is:'✅ Takk! Við munum svara innan 24 klst.',pl:'✅ Dziękujemy! Odpowiemy w 24 godziny.',ro:'✅ Mulțumim! Vom răspunde în 24 ore.'};
+            const msg = {en:'✅ Thank you! We will respond within 24 hours.',de:'✅ Vielen Dank! Wir melden uns innerhalb von 24 Stunden.',no:'✅ Takk! Vi svarer innen 24 timer.',is:'✅ Takk! Við munum svara innan 24 klst.',pl:'✅ Dziękujemy! Odpowiemy w 24 godziny.',ro:'✅ Mulțumim! Vom răspunde în 24 ore.'};
             alert(msg[lang] || msg.en);
             e.target.reset();
         }
@@ -904,7 +409,7 @@
         function openLegal(type) {
             const modal = document.getElementById('legalModal');
             const content = document.getElementById('legalText');
-            const l = legal[type][lang] || legal[type].en;
+            const l = (legal[type] && legal[type][lang]) ? legal[type][lang] : (legal[type] && legal[type].en) ? legal[type].en : '';
             content.innerHTML = l;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
