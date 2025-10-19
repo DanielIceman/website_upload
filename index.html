@@ -379,11 +379,13 @@
                 const el = document.getElementById('txt'+(i+1));
                 if(el) el.textContent = texts[i];
             }
-            const opts = ['opt1','opt2','opt3'];
-            for(let i=0; i<3; i++) {
-                const el = document.getElementById(opts[i]);
-                if(el) el.textContent = texts[70+i];
-            }
+            // Update dropdown options
+            const opt1 = document.getElementById('opt1');
+            const opt2 = document.getElementById('opt2');
+            const opt3 = document.getElementById('opt3');
+            if(opt1) opt1.textContent = texts[70];
+            if(opt2) opt2.textContent = texts[71];
+            if(opt3) opt3.textContent = texts[72];
         }
         
         function handleSubmit(e) {
