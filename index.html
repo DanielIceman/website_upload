@@ -113,17 +113,17 @@
                 <img src='https://i.postimg.cc/5yRZbF6b/arctic-logo.jpg' alt='Arctic Workforce'>
             </div>
             <div class="lang-selector">
-                <button class="lang-btn" onclick="toggleLang()">
+                <button class="lang-btn" id="lang-toggle-btn">
                     <span id="currentLang">🇬🇧 EN</span>
                     <span>▼</span>
                 </button>
                 <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-option" onclick="changeLang('en')"><span>🇬🇧</span><span>English</span></div>
-                    <div class="lang-option" onclick="changeLang('de')"><span>🇩🇪</span><span>Deutsch</span></div>
-                    <div class="lang-option" onclick="changeLang('no')"><span>🇳🇴</span><span>Norsk</span></div>
-                    <div class="lang-option" onclick="changeLang('is')"><span>🇮🇸</span><span>Íslenska</span></div>
-                    <div class="lang-option" onclick="changeLang('pl')"><span>🇵🇱</span><span>Polski</span></div>
-                    <div class="lang-option" onclick="changeLang('ro')"><span>🇷🇴</span><span>Română</span></div>
+                    <div class="lang-option" data-lang="en"><span>🇬🇧</span><span>English</span></div>
+                    <div class="lang-option" data-lang="de"><span>🇩🇪</span><span>Deutsch</span></div>
+                    <div class="lang-option" data-lang="no"><span>🇳🇴</span><span>Norsk</span></div>
+                    <div class="lang-option" data-lang="is"><span>🇮🇸</span><span>Íslenska</span></div>
+                    <div class="lang-option" data-lang="pl"><span>🇵🇱</span><span>Polski</span></div>
+                    <div class="lang-option" data-lang="ro"><span>🇷🇴</span><span>Română</span></div>
                 </div>
             </div>
         </nav>
@@ -255,7 +255,9 @@
                     <label for="cvFile" class="file-upload-label" id="txt49">Choose File</label>
                     <span class="file-name" id="fileName">No file chosen</span>
                     <p class="file-size-info" id="txt50">Max. 10 MB (PDF, DOC, DOCX)</p>
-                    <button type="button" class="btn btn-primary" style="margin-top: 1.5rem;" id="txt51" onclick="submitCV()">Submit CV</button>
+                    <button type="button" class="btn btn-primary" style="margin-top: 1.5rem;" id="submitCvBtn">
+                        <span id="txt51">Submit CV</span>
+                    </button>
                 </div>
             </div>
 
@@ -268,7 +270,7 @@
                     </div>
                     <div class="contact-item">
                         <strong id="txt54">Phone:</strong>
-                        <span>+41 44 444 44 44</span>
+                        <a href="tel:+41444444444" style="color: #0ea5e9; text-decoration: none;">+41 44 444 44 44</a>
                     </div>
                     <div class="contact-item">
                         <strong id="txt56">Office hours:</strong>
@@ -277,8 +279,8 @@
                     <div class="contact-item">
                         <strong id="txt58">Follow us:</strong>
                         <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                            <a href="https://linkedin.com" target="_blank" style="color: #0ea5e9;">LinkedIn</a>
-                            <a href="https://facebook.com" target="_blank" style="color: #0ea5e9;">Facebook</a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style="color: #0ea5e9;">LinkedIn</a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style="color: #0ea5e9;">Facebook</a>
                         </div>
                     </div>
                 </div>
@@ -286,7 +288,7 @@
                 <div class="contact-form-wrapper">
                     <h3 id="txt59">Send us a message</h3>
                     <p class="contact-form-intro" id="txt60">Have a question or looking to hire? Fill out the form below and we'll respond within 48 hours.</p>
-                    <form onsubmit="handleSubmit(event)">
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="contactName" id="txt61">Name *</label>
                             <input type="text" id="contactName" name="contactName" required>
@@ -317,9 +319,9 @@
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="javascript:void(0);" onclick="openLegal('impressum')" id="txt66">Impressum</a>
-                <a href="javascript:void(0);" onclick="openLegal('privacy')" id="txt67">Privacy Policy</a>
-                <a href="javascript:void(0);" onclick="openLegal('terms')" id="txt68">Terms & Conditions</a>
+                <a href="#" data-legal="impressum" id="txt66">Impressum</a>
+                <a href="#" data-legal="privacy" id="txt67">Privacy Policy</a>
+                <a href="#" data-legal="terms" id="txt68">Terms & Conditions</a>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Arctic Workforce. <span id="txt69">All rights reserved.</span></p>
@@ -329,137 +331,20 @@
 
     <div class="legal-modal" id="legalModal">
         <div class="legal-content">
-            <button class="legal-close" onclick="closeLegal()">&times;</button>
+            <button class="legal-close" id="legal-close-btn">&times;</button>
             <div id="legalText"></div>
         </div>
     </div>
 
     <script>
-        let lang = 'en';
+        document.addEventListener('DOMContentLoaded', () => {
         
-        const translations = {
-            en: ['Empowering your workforce across the North','We connect ambitious workers with leading Nordic companies – ethically, reliably, and with full support every step of the way.','🔍 Find Your Next Job','💼 Hire Qualified Workers','Our Values & Commitment','Arctic Workforce was founded in 2025 with a clear mission: to build a recruitment company that does things differently. We believe that fair, transparent workforce solutions are not just good ethics – they are good business.','We are at the beginning of our journey',' – and that is exactly what drives us to give every client and candidate our full attention. We know that trust must be earned, not claimed.','🎯 Quality Over Quantity','We do not chase volume. Every candidate is carefully vetted, every company thoroughly assessed.','💬 Clear Communication','No hidden fees. No vague timelines. No surprises. We tell you exactly what to expect.','⚖️ Fairness First','We only work with employers who respect labor rights and pay fair wages.','🌱 Built for the Long Term','We focus on sustainable matches that benefit both workers and companies for years.','We are building something new – and we know that reputation grows through action, not words.','Our Services','Recruitment & Vetting','We conduct thorough background checks and verify qualifications.','Full screening within 3-5 business days','Verified work history and references','Temporary Staffing','We provide flexible staffing solutions with quick deployment.','Deployment in as little as 48 hours','No hidden costs or long-term contracts','Relocation & Support','We handle visa applications and find suitable accommodation.','End-to-end visa and permit assistance','Housing and local orientation included','Compliance & Payroll','We manage all documentation, tax filings, and payroll.','100% compliance with local regulations','Full payroll and tax administration','Learn More About Our Process','Ready to start?','Find Your Next Job','Hire Qualified Workers','Our multilingual team will respond within 48 hours.','Contact Us','Upload your CV','Upload your CV and let us connect you with leading companies in the Nordic region.','Upload','Submit your CV in PDF or DOC format','Review','We review it within 48 hours','Match','We contact you with suitable job offers','Choose File','Max. 10 MB (PDF, DOC, DOCX)','Submit CV','Get in Touch','Email:','Phone:','Office hours:','Mon – Fri: 09:00 – 17:00 CET','Follow us:','Send us a message','Have a question or looking to hire? Fill out the form below and we will respond within 48 hours.','Name *','Email *','I am looking for *','Message *','Send Message','Impressum','Privacy Policy','Terms & Conditions','All rights reserved.','Work','Workers','Partnership'],
-            de: ['Stärken Sie Ihre Arbeitskräfte im Norden','Wir verbinden ambitionierte Arbeitskräfte mit führenden nordischen Unternehmen – ethisch, zuverlässig und mit voller Unterstützung.','🔍 Finde deinen nächsten Job','💼 Qualifizierte Mitarbeiter einstellen','Unsere Werte & Versprechen','Arctic Workforce wurde 2025 mit einer klaren Mission gegründet: ein Rekrutierungsunternehmen aufzubauen, das anders arbeitet.','Wir stehen am Anfang unserer Reise',' – und genau das motiviert uns, jedem Kunden und Kandidaten unsere volle Aufmerksamkeit zu schenken.','🎯 Qualität vor Quantität','Wir jagen keinen Zahlen nach. Jeder Kandidat wird sorgfältig geprüft.','💬 Klare Kommunikation','Keine versteckten Kosten. Keine vagen Zeitpläne.','⚖️ Fairness zuerst','Wir arbeiten nur mit Arbeitgebern, die Arbeitsrechte respektieren.','🌱 Langfristig gedacht','Wir konzentrieren uns auf nachhaltige Matches.','Wir bauen etwas Neues auf – Reputation wächst durch Taten.','Unsere Dienstleistungen','Rekrutierung & Überprüfung','Wir führen gründliche Hintergrundprüfungen durch.','Vollständige Prüfung innerhalb von 3-5 Werktagen','Verifizierte Arbeitshistorie','Zeitarbeit','Wir bieten flexible Personallösungen.','Einsatz in nur 48 Stunden möglich','Keine versteckten Kosten','Umzug & Unterstützung','Wir kümmern uns um Visa-Anträge und finden Unterkünfte.','End-to-End Visa-Hilfe','Unterkunft inklusive','Compliance & Lohnabrechnung','Wir verwalten alle Dokumente und Gehaltsabrechnungen.','100% Einhaltung lokaler Vorschriften','Vollständige Lohn- und Steuerverwaltung','Mehr erfahren','Bereit zu starten?','Job finden','Mitarbeiter einstellen','Unser Team antwortet innerhalb von 48 Stunden.','Kontakt','Lebenslauf hochladen','Laden Sie Ihren Lebenslauf hoch und wir verbinden Sie mit führenden Unternehmen.','Hochladen','CV als PDF oder DOC einreichen','Prüfung','Wir prüfen innerhalb von 48 Stunden','Vermittlung','Wir kontaktieren Sie mit Jobangeboten','Datei wählen','Max. 10 MB (PDF, DOC, DOCX)','Lebenslauf senden','Kontaktieren Sie uns','E-Mail:','Telefon:','Bürozeiten:','Mo – Fr: 09:00 – 17:00 MEZ','Folgen Sie uns:','Nachricht senden','Füllen Sie das Formular aus und wir antworten innerhalb von 48 Stunden.','Name *','E-Mail *','Ich suche *','Nachricht *','Nachricht senden','Impressum','Datenschutz','AGB','Alle Rechte vorbehalten.','Arbeit','Arbeitskräfte','Partnerschaft'],
-            no: ['Styrker din arbeidsstyrke over hele Norden','Vi kobler ambisiøse arbeidere med ledende nordiske selskaper.','🔍 Finn din neste jobb','💼 Ansett kvalifiserte arbeidere','Våre verdier','Arctic Workforce ble grunnlagt i 2025 med et klart oppdrag.','Vi er i starten av vår reise',' – og det driver oss til å gi hver klient vår fulle oppmerksomhet.','🎯 Kvalitet over kvantitet','Vi jager ikke volum. Hver kandidat blir nøye kontrollert.','💬 Klar kommunikasjon','Ingen skjulte kostnader. Ingen vage tidslinjer.','⚖️ Rettferdighet først','Vi jobber bare med arbeidsgivere som respekterer arbeidsrettigheter.','🌱 Bygget for langsiktighet','Vi fokuserer på bærekraftige matcher.','Vi bygger noe nytt – omdømme vokser gjennom handling.','Våre tjenester','Rekruttering & kontroll','Vi gjennomfører grundige bakgrunnssjekker.','Full screening innen 3-5 virkedager','Verifisert arbeidshistorikk','Vikarbyrå','Vi tilbyr fleksible bemanningsløsninger.','Utrulling på 48 timer','Ingen skjulte kostnader','Flytting & støtte','Vi håndterer visumsøknader og finner bolig.','Ende-til-ende visum-hjelp','Bolig inkludert','Etterlevelse & lønn','Vi administrerer all dokumentasjon og lønn.','100% etterlevelse','Full lønnsadministrasjon','Lær mer','Klar til å starte?','Finn din neste jobb','Ansett kvalifiserte arbeidere','Vårt team svarer innen 48 timer.','Kontakt oss','Last opp din CV','Last opp CV og la oss koble deg med ledende selskaper.','Last opp','Send CV i PDF eller DOC','Gjennomgang','Vi gjennomgår innen 48 timer','Match','Vi kontakter deg med jobbtilbud','Velg fil','Maks. 10 MB','Send CV','Ta kontakt','E-post:','Telefon:','Åpningstider:','Man – Fre: 09:00 – 17:00 CET','Følg oss:','Send melding','Fyll ut skjemaet så svarer vi innen 48 timer.','Navn *','E-post *','Jeg søker *','Melding *','Send melding','Impressum','Personvern','Vilkår','Alle rettigheter reservert.','Arbeid','Arbeidere','Partnerskap'],
-            is: ['Styrkjum starfsfólk þitt um norðurslóðir','Við tengjum metnaðarfulla starfsmenn við leiðandi norræn fyrirtæki.','🔍 Finndu næsta starfið','💼 Ráða starfsmenn','Gildi okkar','Arctic Workforce var stofnað 2025 með skýra framtíðarsýn.','Við erum í upphafi',' – og það hvetur okkur til að veita fulla athygli.','🎯 Gæði fram yfir magn','Við eldum ekki magnið. Hver umsækjandi er skoðaður.','💬 Skýr samskipti','Engin falin gjöld. Engin óskýr tímaáætlun.','⚖️ Sanngirni fyrst','Við vinnum aðeins með vinnuréttindum.','🌱 Byggt til lengri tíma','Við einbeitum okkur að sjálfbærum samsvörunum.','Við byggjum eitthvað nýtt – orðspor vex með gjörðum.','Þjónusta okkar','Ráðning & skoðun','Við framkvæmum bakgrunnskannanir.','Full skoðun innan 3-5 daga','Staðfest starfsferilssaga','Tímabundin þjónusta','Við bjóðum sveigjanlegar lausnir.','Útfærsla á 48 klst.','Engin falin gjöld','Flutningur & stuðningur','Við sjáum um vegabréfsáritun.','Vegabréfsáritun','Húsnæði innifalið','Reglueftirliti','Við stjórnum skjölum og launum.','100% fylgni','Full launastjórnun','Lærðu meira','Tilbúinn?','Finndu næsta starfið','Ráða starfsmenn','Teymið okkar svarar innan 48 klst.','Hafðu samband','Hladdu upp CV','Hladdu upp CV og láttu okkur tengja þig.','Hlaða upp','Sendu CV á PDF eða DOC','Yfirferð','Við yfirförum innan 48 klst.','Samsvörun','Við höfum samband','Veldu skrá','Hámark 10 MB','Senda CV','Komdu í samband','Netfang:','Sími:','Opnunartími:','Mán – Fös: 09:00 – 17:00','Fylgdu okkur:','Sendu skilaboð','Fylltu út og við munum svara innan 48 klst.','Nafn *','Netfang *','Ég leita að *','Skilaboð *','Senda','Impressum','Persónuvernd','Skilmálar','Allur réttur áskilinn.','Vinnu','Starfsmönnum','Samstarfi'],
-            pl: ['Wzmacniamy Twoją siłę roboczą na Północy','Łączymy pracowników z wiodącymi nordyckimi firmami.','🔍 Znajdź pracę','💼 Zatrudnij','Nasze wartości','Arctic Workforce założono w 2025 z jasną misją.','Jesteśmy na początku',' – i to motywuje nas do pełnego zaangażowania.','🎯 Jakość nad ilość','Nie gonimy za wolumenem. Każdy kandydat jest sprawdzany.','💬 Jasna komunikacja','Żadnych ukrytych opłat. Żadnych niejasnych terminów.','⚖️ Uczciwość','Pracujemy tylko z pracodawcami szanującymi prawa.','🌱 Na długi termin','Skupiamy się na trwałych dopasowaniach.','Budujemy coś nowego – reputacja rośnie przez działanie.','Nasze usługi','Rekrutacja','Przeprowadzamy sprawdzenia.','Weryfikacja w 3-5 dni','Zweryfikowana historia','Zatrudnienie tymczasowe','Oferujemy elastyczne rozwiązania.','Wdrożenie w 48 godzin','Brak ukrytych kosztów','Przeprowadzka','Zajmujemy się wizami i zakwaterowaniem.','Pomoc wizowa','Zakwaterowanie','Zgodność','Zarządzamy dokumentacją i płacami.','100% zgodność','Pełna administracja','Dowiedz się więcej','Gotowy?','Znajdź pracę','Zatrudnij','Zespół odpowie w 48 godziny.','Kontakt','Prześlij CV','Prześlij CV i połączymy Cię z firmami.','Prześlij','Wyślij CV w PDF lub DOC','Przegląd','Sprawdzamy w 48 godzin','Dopasowanie','Skontaktujemy się','Wybierz plik','Maks. 10 MB','Wyślij CV','Skontaktuj się','E-mail:','Telefon:','Godziny:','Pon – Pt: 09:00 – 17:00','Śledź nas:','Wyślij wiadomość','Wypełnij formularz, odpowiemy w 48 godziny.','Imię *','E-mail *','Szukam *','Wiadomość *','Wyślij','Impressum','Prywatność','Warunki','Wszelkie prawa.','Pracy','Pracowników','Partnerstwa'],
-            ro: ['Împuternicim forța ta de muncă în Nord','Conectăm lucrători cu companii nordice de top.','🔍 Găsește job','💼 Angajează','Valorile noastre','Arctic Workforce a fost fondată în 2025 cu o misiune clară.','Suntem la început',' – și exact asta ne motivează.','🎯 Calitate','Nu alergăm după volum. Fiecare candidat este verificat.','💬 Comunicare clară','Fără taxe ascunse. Fără termene vagi.','⚖️ Corectitudine','Lucrăm doar cu angajatori care respectă drepturile.','🌱 Pe termen lung','Ne concentrăm pe potriviri durabile.','Construim ceva nou – reputația crește prin acțiune.','Serviciile noastre','Recrutare','Efectuăm verificări amănunțite.','Screening în 3-5 zile','Istoric verificat','Personal temporar','Oferim soluții flexibile.','Desfășurare în 48 ore','Fără costuri ascunse','Relocare','Ne ocupăm de vize și cazare.','Asistență viză','Cazare inclusă','Conformitate','Gestionăm documentația și salariile.','100% conformitate','Administrare completă','Află mai multe','Gata?','Găsește job','Angajează','Echipa răspunde în 48 ore.','Contact','Încarcă CV','Încarcă CV și te conectăm cu companii.','Încarcă','Trimite CV în PDF sau DOC','Revizuire','Revizuim în 48 ore','Potrivire','Te contactăm','Alege fișier','Max. 10 MB','Trimite CV','Contact','Email:','Telefon:','Program:','Lun – Vin: 09:00 – 17:00','Urmărește:','Trimite mesaj','Completează formularul, răspundem în 48 ore.','Nume *','Email *','Caut *','Mesaj *','Trimite','Impressum','Confidențialitate','Termeni','Toate drepturile.','Muncă','Lucrători','Parteneriat']
-        };
-        
-        const legal = {
-            impressum: {
-                en: '<h2>Impressum</h2><h3>Company Information</h3><p><strong>Arctic Workforce</strong><br>Tannenweg 17<br>8408 Winterthur<br>Switzerland</p><h3>Contact</h3><p>Phone: +41 44 444 44 44<br>Email: info@arcticworkforce.com</p><h3>Business Registration</h3><p>Company registered in Switzerland<br>UID: CHE-XXX.XXX.XXX (pending)<br>Founded: 2025</p><h3>Responsible for Content</h3><p>Arctic Workforce Management<br>Tannenweg 17<br>8408 Winterthur, Switzerland</p><h3>Disclaimer</h3><p>Arctic Workforce makes every effort to ensure the accuracy and completeness of information on this website. However, we assume no liability for the topicality, accuracy, completeness or quality of the information provided.</p>',
-                de: '<h2>Impressum</h2><h3>Angaben gemäß Informationspflicht</h3><p><strong>Arctic Workforce</strong><br>Tannenweg 17<br>8408 Winterthur<br>Schweiz</p><h3>Kontakt</h3><p>Telefon: +41 44 444 44 44<br>E-Mail: info@arcticworkforce.com</p><h3>Handelsregister</h3><p>Eingetragen in der Schweiz<br>UID: CHE-XXX.XXX.XXX (in Bearbeitung)<br>Gründung: 2025</p><h3>Verantwortlich für den Inhalt</h3><p>Arctic Workforce Management<br>Tannenweg 17<br>8408 Winterthur, Schweiz</p>'
-            },
-            privacy: {
-                en: '<h2>Privacy Policy</h2><p><em>Last updated: January 2025</em></p><h3>1. Data Controller</h3><p>Arctic Workforce<br>Tannenweg 17<br>8408 Winterthur, Switzerland<br>Email: info@arcticworkforce.com</p><h3>2. Data Collection and Use</h3><p>We collect and process personal data in accordance with Swiss data protection law (DSG) and the EU General Data Protection Regulation (GDPR).</p><p><strong>Data we collect:</strong></p><ul><li>Contact information</li><li>Professional information</li><li>Communication data</li><li>Technical data</li></ul><h3>3. Your Rights</h3><p>You have the right to access, rectify, delete, and restrict processing of your personal data.</p><p>Contact: info@arcticworkforce.com</p>',
-                de: '<h2>Datenschutzerklärung</h2><p><em>Stand: Januar 2025</em></p><h3>1. Verantwortliche Stelle</h3><p>Arctic Workforce<br>Tannenweg 17<br>8408 Winterthur, Schweiz<br>E-Mail: info@arcticworkforce.com</p><h3>2. Datenerfassung</h3><p>Wir erheben und verarbeiten personenbezogene Daten gemäß dem Schweizer Datenschutzgesetz (DSG) und der EU-Datenschutz-Grundverordnung (DSGVO).</p><h3>3. Ihre Rechte</h3><p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten.</p><p>Kontakt: info@arcticworkforce.com</p>'
-            },
-            terms: {
-                en: '<h2>Terms & Conditions</h2><p><em>Last updated: January 2025</em></p><h3>1. Scope</h3><p>These Terms govern the use of services provided by Arctic Workforce located at Tannenweg 17, 8408 Winterthur, Switzerland.</p><h3>2. Services</h3><p>We provide recruitment, staffing, relocation, and compliance services.</p><h3>3. For Job Seekers</h3><p>You must provide accurate information. We do not charge job seekers for our recruitment services.</p><h3>4. For Employers</h3><p>Employer fees are specified in service agreements. Employers must comply with all labor laws.</p><h3>5. Contact</h3><p>Arctic Workforce<br>Tannenweg 17<br>8408 Winterthur, Switzerland<br>Email: info@arcticworkforce.com</p>',
-                de: '<h2>Allgemeine Geschäftsbedingungen</h2><p><em>Stand: Januar 2025</em></p><h3>1. Geltungsbereich</h3><p>Diese AGB regeln die Nutzung der Dienstleistungen von Arctic Workforce mit Sitz in Tannenweg 17, 8408 Winterthur, Schweiz.</p><h3>2. Dienstleistungen</h3><p>Wir bieten Rekrutierungs-, Personal-, Umzugs- und Compliance-Dienstleistungen.</p><h3>3. Für Arbeitssuchende</h3><p>Sie müssen genaue Informationen angeben. Wir berechnen Arbeitssuchenden keine Gebühren.</p><h3>4. Für Arbeitgeber</h3><p>Arbeitgebergebühren sind in Servicevereinbarungen festgelegt. Arbeitgeber müssen alle Arbeitsgesetze einhalten.</p><h3>5. Kontakt</h3><p>Arctic Workforce<br>Tannenweg 17<br>8408 Winterthur, Schweiz<br>E-Mail: info@arcticworkforce.com</p>'
-            }
-        };
-        
-        function toggleLang() {
-            document.getElementById('langDropdown').classList.toggle('active');
-        }
-        
-        function changeLang(l) {
-            lang = l;
-            const flags = {en:'🇬🇧 EN',de:'🇩🇪 DE',no:'🇳🇴 NO',is:'🇮🇸 IS',pl:'🇵🇱 PL',ro:'🇷🇴 RO'};
-            document.getElementById('currentLang').textContent = flags[l];
-            document.getElementById('langDropdown').classList.remove('active');
-            updateContent();
-        }
-        
-        function updateContent() {
-            const texts = translations[lang] || translations.en;
-            for(let i=0; i<69; i++) {
-                const el = document.getElementById('txt'+(i+1));
-                if(el) el.textContent = texts[i];
-            }
-            // Update dropdown options
-            const opt1 = document.getElementById('opt1');
-            const opt2 = document.getElementById('opt2');
-            const opt3 = document.getElementById('opt3');
-            if(opt1) opt1.textContent = texts[70];
-            if(opt2) opt2.textContent = texts[71];
-            if(opt3) opt3.textContent = texts[72];
-        }
-        
-        function handleSubmit(e) {
-            e.preventDefault();
-            const msg = {en:'✅ Thank you! We will respond within 48 hours.',de:'✅ Vielen Dank! Wir melden uns innerhalb von 48 Stunden.',no:'✅ Takk! Vi svarer innen 48 timer.',is:'✅ Takk! Við munum svara innan 48 klst.',pl:'✅ Dziękujemy! Odpowiemy w 48 godziny.',ro:'✅ Mulțumim! Vom răspunde în 48 ore.'};
-            alert(msg[lang] || msg.en);
-            e.target.reset();
-        }
-        
-        function submitCV() {
-            const file = document.getElementById('cvFile').files[0];
-            if(!file) {
-                const noFile = {en:'Please select a file.',de:'Bitte wählen Sie eine Datei.',no:'Velg en fil.',is:'Veldu skrá.',pl:'Wybierz plik.',ro:'Selectați un fișier.'};
-                alert(noFile[lang] || noFile.en);
-                return;
-            }
-            if(file.size > 10*1024*1024) {
-                const tooLarge = {en:'File too large (max 10MB)',de:'Datei zu groß (max 10MB)',no:'Fil for stor (maks 10MB)',is:'Skrá of stór (hámark 10MB)',pl:'Plik za duży (max 10MB)',ro:'Fișier prea mare (max 10MB)'};
-                alert(tooLarge[lang] || tooLarge.en);
-                return;
-            }
-            const success = {en:'✅ Thank you for your CV! We will review it within 48 hours.',de:'✅ Vielen Dank für Ihren Lebenslauf! Wir prüfen ihn innerhalb von 48 Stunden.',no:'✅ Takk for CV! Vi gjennomgår den innen 48 timer.',is:'✅ Takk fyrir CV! Við yfirförum það innan 48 klst.',pl:'✅ Dziękujemy za CV! Sprawdzimy je w ciągu 48 godzin.',ro:'✅ Mulțumim pentru CV! Îl vom revizui în 48 ore.'};
-            alert(success[lang] || success.en);
-            document.getElementById('cvFile').value = '';
-            const noFileText = {en:'No file chosen',de:'Keine Datei',no:'Ingen fil',is:'Engin skrá',pl:'Brak pliku',ro:'Niciun fișier'};
-            document.getElementById('fileName').textContent = noFileText[lang] || noFileText.en;
-        }
-        
-        function openLegal(type) {
-            const modal = document.getElementById('legalModal');
-            const content = document.getElementById('legalText');
-            const l = (legal[type] && legal[type][lang]) ? legal[type][lang] : (legal[type] && legal[type].en) ? legal[type].en : '';
-            content.innerHTML = l;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeLegal() {
-            document.getElementById('legalModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        document.getElementById('cvFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if(file) {
-                if(file.size > 10*1024*1024) {
-                    const tooLarge = {en:'File too large (max 10MB)',de:'Datei zu groß (max 10MB)',no:'Fil for stor (maks 10MB)',is:'Skrá of stór (hámark 10MB)',pl:'Plik za duży (max 10MB)',ro:'Fișier prea mare (max 10MB)'};
-                    alert(tooLarge[lang] || tooLarge.en);
-                    e.target.value = '';
-                    const noFileText = {en:'No file chosen',de:'Keine Datei',no:'Ingen fil',is:'Engin skrá',pl:'Brak pliku',ro:'Niciun fișier'};
-                    document.getElementById('fileName').textContent = noFileText[lang] || noFileText.en;
-                    return;
-                }
-                document.getElementById('fileName').textContent = file.name;
-            }
-        });
-        
-        document.addEventListener('click', function(e) {
-            const sel = document.querySelector('.lang-selector');
-            const drop = document.getElementById('langDropdown');
-            if(sel && !sel.contains(e.target)) drop.classList.remove('active');
-            if(e.target.id === 'legalModal') closeLegal();
-        });
-        
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if(href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if(target) target.scrollIntoView({behavior: 'smooth'});
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+            let lang = 'en';
+            
+            const translations = {
+                en: ['Empowering your workforce across the North','We connect ambitious workers with leading Nordic companies – ethically, reliably, and with full support every step of the way.','🔍 Find Your Next Job','💼 Hire Qualified Workers','Our Values & Commitment','Arctic Workforce was founded in 2025 with a clear mission: to build a recruitment company that does things differently. We believe that fair, transparent workforce solutions are not just good ethics – they are good business.','We are at the beginning of our journey',' – and that is exactly what drives us to give every client and candidate our full attention. We know that trust must be earned, not claimed.','🎯 Quality Over Quantity','We do not chase volume. Every candidate is carefully vetted, every company thoroughly assessed.','💬 Clear Communication','No hidden fees. No vague timelines. No surprises. We tell you exactly what to expect.','⚖️ Fairness First','We only work with employers who respect labor rights and pay fair wages.','🌱 Built for the Long Term','We focus on sustainable matches that benefit both workers and companies for years.','We are building something new – and we know that reputation grows through action, not words.','Our Services','Recruitment & Vetting','We conduct thorough background checks and verify qualifications.','Full screening within 3-5 business days','Verified work history and references','Temporary Staffing','We provide flexible staffing solutions with quick deployment.','Deployment in as little as 48 hours','No hidden costs or long-term contracts','Relocation & Support','We handle visa applications and find suitable accommodation.','End-to-end visa and permit assistance','Housing and local orientation included','Compliance & Payroll','We manage all documentation, tax filings, and payroll.','100% compliance with local regulations','Full payroll and tax administration','Learn More About Our Process','Ready to start?','Find Your Next Job','Hire Qualified Workers','Our multilingual team will respond within 48 hours.','Contact Us','Upload your CV','Upload your CV and let us connect you with leading companies in the Nordic region.','Upload','Submit your CV in PDF or DOC format','Review','We review it within 48 hours','Match','We contact you with suitable job offers','Choose File','Max. 10 MB (PDF, DOC, DOCX)','Submit CV','Get in Touch','Email:','Phone:','Office hours:','Mon – Fri: 09:00 – 17:00 CET','Follow us:','Send us a message','Have a question or looking to hire? Fill out the form below and we will respond within 48 hours.','Name *','Email *','I am looking for *','Message *','Send Message','Impressum','Privacy Policy','Terms & Conditions','All rights reserved.','Work','Workers','Partnership'],
+                de: ['Stärken Sie Ihre Arbeitskräfte im Norden','Wir verbinden ambitionierte Arbeitskräfte mit führenden nordischen Unternehmen – ethisch, zuverlässig und mit voller Unterstützung.','🔍 Finde deinen nächsten Job','💼 Qualifizierte Mitarbeiter einstellen','Unsere Werte & Versprechen','Arctic Workforce wurde 2025 mit einer klaren Mission gegründet: ein Rekrutierungsunternehmen aufzubauen, das anders arbeitet.','Wir stehen am Anfang unserer Reise',' – und genau das motiviert uns, jedem Kunden und Kandidaten unsere volle Aufmerksamkeit zu schenken.','🎯 Qualität vor Quantität','Wir jagen keinen Zahlen nach. Jeder Kandidat wird sorgfältig geprüft.','💬 Klare Kommunikation','Keine versteckten Kosten. Keine vagen Zeitpläne.','⚖️ Fairness zuerst','Wir arbeiten nur mit Arbeitgebern, die Arbeitsrechte respektieren.','🌱 Langfristig gedacht','Wir konzentrieren uns auf nachhaltige Matches.','Wir bauen etwas Neues auf – Reputation wächst durch Taten.','Unsere Dienstleistungen','Rekrutierung & Überprüfung','Wir führen gründliche Hintergrundprüfungen durch.','Vollständige Prüfung innerhalb von 3-5 Werktagen','Verifizierte Arbeitshistorie','Zeitarbeit','Wir bieten flexible Personallösungen.','Einsatz in nur 48 Stunden möglich','Keine versteckten Kosten','Umzug & Unterstützung','Wir kümmern uns um Visa-Anträge und finden Unterkünfte.','End-to-End Visa-Hilfe','Unterkunft inklusive','Compliance & Lohnabrechnung','Wir verwalten alle Dokumente und Gehaltsabrechnungen.','100% Einhaltung lokaler Vorschriften','Vollständige Lohn- und Steuerverwaltung','Mehr erfahren','Bereit zu starten?','Job finden','Mitarbeiter einstellen','Unser Team antwortet innerhalb von 48 Stunden.','Kontakt','Lebenslauf hochladen','Laden Sie Ihren Lebenslauf hoch und wir verbinden Sie mit führenden Unternehmen.','Hochladen','CV als PDF oder DOC einreichen','Prüfung','Wir prüfen innerhalb von 48 Stunden','Vermittlung','Wir kontaktieren Sie mit Jobangeboten','Datei wählen','Max. 10 MB (PDF, DOC, DOCX)','Lebenslauf senden','Kontaktieren Sie uns','E-Mail:','Telefon:','Bürozeiten:','Mo – Fr: 09:00 – 17:00 MEZ','Folgen Sie uns:','Nachricht senden','Füllen Sie das Formular aus und wir antworten innerhalb von 48 Stunden.','Name *','E-Mail *','Ich suche *','Nachricht *','Nachricht senden','Impressum','Datenschutz','AGB','Alle Rechte vorbehalten.','Arbeit','Arbeitskräfte','Partnerschaft'],
+                no: ['Styrker din arbeidsstyrke over hele Norden','Vi kobler ambisiøse arbeidere med ledende nordiske selskaper.','🔍 Finn din neste jobb','💼 Ansett kvalifiserte arbeidere','Våre verdier','Arctic Workforce ble grunnlagt i 2025 med et klart oppdrag.','Vi er i starten av vår reise',' – og det driver oss til å gi hver klient vår fulle oppmerksomhet.','🎯 Kvalitet over kvantitet','Vi jager ikke volum. Hver kandidat blir nøye kontrollert.','💬 Klar kommunikasjon','Ingen skjulte kostnader. Ingen vage tidslinjer.','⚖️ Rettferdighet først','Vi jobber bare med arbeidsgivere som respekterer arbeidsrettigheter.','🌱 Bygget for langsiktighet','Vi fokuserer på bærekraftige matcher.','Vi bygger noe nytt – omdømme vokser gjennom handling.','Våre tjenester','Rekruttering & kontroll','Vi gjennomfører grundige bakgrunnssjekker.','Full screening innen 3-5 virkedager','Verifisert arbeidshistorikk','Vikarbyrå','Vi tilbyr fleksible bemanningsløsninger.','Utrulling på 48 timer','Ingen skjulte kostnader','Flytting & støtte','Vi håndterer visumsøknader og finner bolig.','Ende-til-ende visum-hjelp','Bolig inkludert','Etterlevelse & lønn','Vi administrerer all dokumentasjon og lønn.','100% etterlevelse','Full lønnsadministrasjon','Lær mer','Klar til å starte?','Finn din neste jobb','Ansett kvalifiserte arbeidere','Vårt team svarer innen 48 timer.','Kontakt oss','Last opp din CV','Last opp CV og la oss koble deg med ledende selskaper.','Last opp','Send CV i PDF eller DOC','Gjennomgang','Vi gjennomgår innen 48 timer','Match','Vi kontakter deg med jobbtilbud','Velg fil','Maks. 10 MB','Send CV','Ta kontakt','E-post:','Telefon:','Åpningstider:','Man – Fre: 09:00 – 17:00 CET','Følg oss:','Send melding','Fyll ut skjemaet så svarer vi innen 48 timer.','Navn *','E-post *','Jeg søker *','Melding *','Send melding','Impressum','Personvern','Vilkår','Alle rettigheter reservert.','Arbeid','Arbeidere','Partnerskap'],
+                is: ['Styrkjum starfsfólk þitt um norðurslóðir','Við tengjum metnaðarfulla starfsmenn við leiðandi norræn fyrirtæki.','🔍 Finndu næsta starfið','💼 Ráða starfsmenn','Gildi okkar','Arctic Workforce var stofnað 2025 með skýra framtíðarsýn.','Við erum í upphafi',' – og það hvetur okkur til að veita fulla athygli.','🎯 Gæði fram yfir magn','Við eldum ekki magnið. Hver umsækjandi er skoðaður.','💬 Skýr samskipti','Engin falin gjöld. Engin óskýr tímaáætlun.','⚖️ Sanngirni fyrst','Við vinnum aðeins með vinnuréttindum.','🌱 Byggt til lengri tíma','Við einbeitum okkur að sjálfbærum samsvörunum.','Við byggjum eitthvað nýtt – orðspor vex með gjörðum.','Þjónusta okkar','Ráðning & skoðun','Við framkvæmum bakgrunnskannanir.','Full skoðun innan 3-5 daga','Staðfest starfsferilssaga','Tímabundin þjónusta','Við bjóðum sveigjanlegar lausnir.','Útfærsla á 48 klst.','Engin falin gjöld','Flutningur & stuðningur','Við sjáum um vegabréfsáritun.','Vegabréfsáritun','Húsnæði innifalið','Reglueftirliti','Við stjórnum skjölum og launum.','100% fylgni','Full launastjórnun','Lærðu meira','Tilbúinn?','Finndu næsta starfið','Ráða starfsmenn','Teymið okkar svarar innan 48 klst.','Hafðu samband','Hladdu upp CV','Hladdu upp CV og láttu okkur tengja þig.','Hlaða upp','Sendu CV á PDF eða DOC','Yfirferð','Við yfirförum innan 48 klst.','Samsvörun','Við höfum samband','Veldu skrá','Hámark 10 MB','Senda CV','Komdu í samband','Netfang:','Sími:','Opnunartími:','Mán – Fös: 09:00 – 17:00','Fylgdu okkur:','Sendu skilaboð','Fylltu út og við munum svara innan 48 klst.','Nafn *','Netfang *','Ég leita að *','Skilaboð *','Senda','Impressum','Persónuvernd','Skilmálar','Allur réttur áskilinn.','Vinnu','Starfsmönnum','Samstarfi'],
+                pl: ['Wzmacniamy Twoją siłę roboczą na Północy','Łączymy pracowników z wiodącymi nordyckimi firmami.','🔍 Znajdź pracę','💼 Zatrudnij','Nasze wartości','Arctic Workforce założono w 2025 z jasną misją.','Jesteśmy na początku',' – i to motywuje nas do pełnego zaangażowania.','🎯 Jakość nad ilość','Nie gonimy za wolumenem. Każdy kandydat jest sprawdzany.','💬 Jasna komunikacja','Żadnych ukrytych opłat. Żadnych niejasnych terminów.','⚖️ Uczciwość','Pracujemy tylko z pracodawcami szanującymi prawa.','🌱 Na długi termin','Skupiamy się na trwałych dopasowaniach.','Budujemy coś nowego – reputacja rośnie przez działanie.','Nasze usługi','Rekrutacja','Przeprowadzamy sprawdzenia.','Weryfikacja w 3-5 dni','Zweryfikowana historia','Zatrudnienie tymczasowe','Oferujemy elastyczne rozwiązania.','Wdrożenie w 48 godzin','Brak ukrytych kosztów','Przeprowadzka','Zajmujemy się wizami i zakwaterowaniem.','Pomoc wizowa','Zakwaterowanie','Zgodność','Zarządzamy dokumentacją i płacami.','100% zgodność','Pełna administracja','Dowiedz się więcej','Gotowy?','Znajdź pracę','Zatrudnij','Zespół odpowie w 48 godziny.','Kontakt','Prześlij CV','Prześlij CV i połączymy Cię z firmami.','Prześlij','Wyślij CV w PDF lub DOC','Przegląd','Sprawdzamy w 48 godzin','Dopasowanie','Skontaktujemy się','Wybierz plik','Maks. 10 MB','Wyślij CV','Skontaktuj się','E-mail:','Telefon:','Godziny:','Pon – Pt: 09:00 – 17:00','Śledź nas:','Wyślij wiadomość','Wypełnij formularz, odpowiemy w 48 godziny.','Imię *','E-mail *','Szukam *','Wiadomość *','Wyślij','Impressum','Prywatność','Warunki','Wszelkie prawa.','Pracy','Pracowników','Partnerstwa'],
+                ro: ['Împuternicim forța ta de muncă în Nord','Conectăm lucrători cu companii nordice de top.','🔍 Găsește job','💼 Angajează','Valorile noastre','Arctic Workforce a fost fondată în 2025 cu o misiune clară.','Suntem la început',' – și exact asta ne motivează.','🎯 Calitate','Nu alergăm după volum. Fiecare candidat este verificat.','💬 Comunicare clară','Fără taxe ascunse. Fără termene vagi.','⚖️ Corectitudine','Lucrăm doar cu angajatori care respectă drepturile.','🌱 Pe termen lung','Ne concentrăm pe potriviri durabile.','Construim ceva nou – reputația crește prin acțiune.','Serviciile noastre','Recrutare','Efectuăm verificări amănunțite.','Screening în 3-5 zile','Istoric verificat','Personal temporar','Oferim soluții flexibile.','Desfășurare în 48 ore','Fără costuri ascunse','Relocare','Ne ocupăm de vize și cazare.','Asistență viză','Cazare inclusă','Conformitate','Gestionăm documentația și salariile.','100% conformitate','Administrare completă','Află mai multe','Gata?','Găsește job','Angajează','Echipa răspunde în 48 ore.','Contact','Încarcă CV','Încarcă CV și te conectăm cu companii.','Încarcă','Trimite CV în PDF sau DOC','Revizuire','Revizuim în 48 ore','Potrivire','Te contactăm','Alege fișier','Max. 10 MB','Trimite CV','Contact','Email:','Telefon:','Program:','Lun – Vin: 09:00 – 17:00','Urmărește:','Trimite mesaj','Completează formularul, răspundem în 48 ore.','Nume *','Email *','Caut *','Mesaj *','Trimite','Impressum','Confidențialitate','Termeni','Toate drepturile.','M
